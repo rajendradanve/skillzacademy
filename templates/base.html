@@ -1,58 +1,101 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    {% block meta %}
-    <!-- Required meta tags -->
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% endblock %}
 
-    <!--Block to add extra meta if required for particular page-->
-    {% block extra_meta %}
+<head>
+  {% block meta %}
+  <!-- Required meta tags -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% endblock %}
 
-    {% endblock %}
+  <!--Block to add extra meta if required for particular page-->
+  {% block extra_meta %}
 
-    {% block corecss %}
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    {% endblock %}
-    <!--Block to add extra css if required for particular page-->
-    {% block extra_css%}
-    {% endblock %}
+  {% endblock %}
 
-    {% block corejs %}
-    <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    {% endblock %}
-    
-     <!--Block to add extra ja if required for particular page-->
-    {% block extra_js %} 
-    {% endblock %}
-    <title>Skillz Academy {% block extra_title %}{% endblock %}</title>
-  </head>
-  <body>
-    <header class="container-fluid fixed-top">
+  {% block corecss %}
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  {% endblock %}
+  <!--Block to add extra css if required for particular page-->
+  {% block extra_css%}
+  {% endblock %}
 
-    </header>
-    {% if messages %}
-    <div class="message-container">
+  {% block corejs %}
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+  {% endblock %}
 
+  <!--Block to add extra ja if required for particular page-->
+  {% block extra_js %}
+  {% endblock %}
+  <title>Skillz Academy {% block extra_title %}{% endblock %}</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Skillz Academy</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   
+        <form class=" d-flex justify-content-center mr-auto ml-auto">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        
+        <ul class="nav ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    {% endif %}
+  </nav>
+  {% if messages %}
+  <div class="message-container">
 
-     <!--Block to add extra page header if required for the particular page-->
-    {% block page_header %} 
-    {% endblock %}
+  </div>
+  {% endif %}
 
-     <!--Block to add page content-->
-    {% block content %}
-    {% endblock %}
+  <!--Block to add extra page header if required for the particular page-->
+  {% block page_header %}
+  {% endblock %}
+
+  <!--Block to add page content-->
+  {% block content %}
+  {% endblock %}
 
 
-    <!--Extra JS which can in run after page is loaded-->
-    {% block postloadjs %}
-    {% endblock %}
-  </body>
+  <!--Extra JS which can in run after page is loaded-->
+  {% block postloadjs %}
+  {% endblock %}
+</body>
+
 </html>
