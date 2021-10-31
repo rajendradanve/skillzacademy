@@ -85,7 +85,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 1
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -110,6 +109,18 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+# Settings for all auth
+SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.consol.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+
 
 WSGI_APPLICATION = 'skillzacademy.wsgi.application'
 
