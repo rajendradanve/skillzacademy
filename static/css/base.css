@@ -1,1 +1,7 @@
+body{
+    font-family: 'Lato';
+}
 
+.logo-font {
+    text-transform: uppercase;
+}
