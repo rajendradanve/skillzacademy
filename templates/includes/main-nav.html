@@ -1,3 +1,13 @@
+<div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+        <li class="nav-item d-block d-md-none">
+            <a href="{% url 'home' %}" class="logo-font font-weight-bold nav-link text-black mr-5" id="home-link">
+                Home
+            </a>
+        </li>  
+    </ul>
+
+
 <li class="list-inline-item">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
@@ -47,7 +57,8 @@
 <li class="list-inline-item"><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
 {% endif %}
 
-
 <li class="list-inline-item">
     <a href=""><i class="fas fa-shopping-cart fa-lg"></i></a>
 </li>
+
+</div>
