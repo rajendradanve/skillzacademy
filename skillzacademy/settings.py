@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
+    'courses',
 
     # Allauth social media provider
     'allauth.socialaccount.providers.facebook',
