@@ -14,4 +14,4 @@ def all_courses(request):
         
     }
     
-    return render(request, 'courses/course.html', context)
+    return render(request, 'courses/courses.html', context)
