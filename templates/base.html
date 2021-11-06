@@ -100,7 +100,8 @@
       </div>
     </div>
   </nav>
-
+  
+ 
   {% if messages %}
   <div class="message-container">
 
@@ -109,9 +110,14 @@
 
   <!--Block to add extra page header if required for the particular page-->
   {% block page_header %}
+  <div class="container header-container">
+    
+
+  </div>
   {% endblock %}
 
   <!--Block to add page content-->
+
   {% block content %}
   {% endblock %}
 
