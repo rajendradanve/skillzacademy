@@ -41,42 +41,45 @@
 </head>
 
 <body>
-<header class="container-fluid fixed-top">
-  <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-    <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
-      <a href="{% url 'home' %}" class="nav-link main-logo-link">
-        <h2 class="logo-font text-black my-0">Skillz Academy</h2>
-      </a>
-    </div>
-    <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-      <form action="" method="GET">
-        
-        <div class="input-group">
-          <input type="text" name="q" class="form-control-border border-black rounded-0" placeholder="Search Courses">
-          <div class="input-group-append">
-            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-              <span class="icon">
-                <i class="fas fa-search"></i>
-              </span>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-      <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-        {% if request.user.is_authenticated %}
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Skillz Academy</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                   <li class="list-inline-item">Admin Profile</li>
                 {% else %}
-                <li class="list-inline-item dropdown">
-                  <a class="nav-link text-black" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-center">
-                      <div><i class="fas fa-user"></i></div>
+                      <div><i class="fas fa-user fa-lg"></i></div>
                       <p class="my-0">My Account</p>
                   </div>
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">My Learning</a></li>
                     <li><a class="dropdown-item" href="#">My Teaching</a></li>
                     <li><a class="dropdown-item" href="#">Purchase History</a></li>
@@ -86,26 +89,18 @@
                 </li>
                 {% endif %}
           {% else %}
-            <li class="list-inline-item"><a href="{% url 'account_signup' %}" class="nav-link">Register</a></li>
-            <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="{% url 'account_signup' %}" class="nav-link">Register</a></li>
+            <li class="nav-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
           {% endif %}
-          <li class="list-inline-item">
-            <a class="nav-link text-black" href="">
-              <div class="text-center"> <i class="fas fa-shopping-cart fa-lg"></i></div>
-              <p class="my-0">
-                {% if grand_total %} 
-                  ${{ grand_total | floatformat:2}}
-                {% else %}
-                  $0.00
-                {% endif %}
-              </p>
-            </a>
+          <li class="nav-item">
+            <a class="nav-link" href=""><i class="fas fa-shopping-cart fa-lg"></i></a>
         </li>
-      </ul>
+        </ul>
+       
+      </div>
     </div>
-  </div>
-
-</header>
+  </nav>
+  
  
   {% if messages %}
   <div class="message-container">
