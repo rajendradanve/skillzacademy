@@ -45,7 +45,7 @@
   <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
     <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
       <a href="{% url 'home' %}" class="nav-link main-logo-link">
-        <h2 class="logo-font text-black my-0">Skillz Academy</h2>
+        <h2 class="logo-font text-dark my-0">Skillz Academy</h2>
       </a>
     </div>
     <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
@@ -54,7 +54,7 @@
         <div class="input-group">
           <input type="text" name="q" class="form-control border border-dark rounded-0  " placeholder="Search Courses">
           <div class="input-group-append">
-            <button class="form-control btn border border-dark rounded-0 " type="submit">
+            <button class="form-control btn btn-dark border border-dark rounded-0 " type="submit">
               <span class="icon">
                 <i class="fas fa-search"></i>
               </span>
@@ -67,12 +67,19 @@
       <ul class="list-inline list-unstyled text-center text-lg-right my-0">
         {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                  <li class="list-inline-item">Admin Profile</li>
+                  <li class="list-inline-item">
+                    <a class="nav-link text-dark" href="">
+                      <div class="text-center">
+                        <div><i class="fas fa-user-shield fa-lg"></i></div>
+                        <p class="my-0">Admin Profile</p>
+                    </div>
+                  </a> 
+                  </li>
                 {% else %}
                 <li class="list-inline-item dropdown">
-                  <a class="nav-link text-black" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link text-dark" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-center">
-                      <div><i class="fas fa-user"></i></div>
+                      <div><i class="fas fa-user fa-lg"></i></div>
                       <p class="my-0">My Account</p>
                   </div>
                   </a>
@@ -90,7 +97,7 @@
             <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
           {% endif %}
           <li class="list-inline-item">
-            <a class="nav-link text-black" href="">
+            <a class="nav-link text-dark" href="">
               <div class="text-center"> <i class="fas fa-shopping-cart fa-lg"></i></div>
               <p class="my-0">
                 {% if grand_total %} 
@@ -105,6 +112,15 @@
     </div>
   </div>
 
+  <div class="row bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        {% include 'includes/mobile-top-header.html' %}
+        {% include 'includes/main-nav.html' %}
+    </nav>
+  </div>
 </header>
  
   {% if messages %}
