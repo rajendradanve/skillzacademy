@@ -78,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request', # `allauth` needs this from django
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'courses.contexts.categories_list',  # included contexts.py from courses app
             ],
         },
     },
