@@ -5,11 +5,6 @@ def categories_list(request):
     
     main_categories = MainCategory.objects.all()
     categories = Category.objects.all()
-    for x in main_categories:
-        print(type(x))
-        
-    for y in categories:
-        print(type(y))
     
     context = {
         

@@ -1,13 +1,17 @@
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     font-family: 'Lato';
 }
 
+.content-placement {
+    padding-top: 164px;
+}
+
 /* from Bulma */
-.icon{
+.icon {
     align-items: center;
     display: inline-flex;
     justify-content: center;
@@ -24,6 +28,8 @@ body{
 }
 
 
+
+
 /* ----------------- Media Queries ------------------ */
 
 
@@ -37,16 +43,10 @@ body{
   }
 
   /* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
+@media (max-width: 992px) {
+
+    .content-placement {
+        padding-top: 131px;
     }
 
-    .header-container {
-        padding-top: 164px;
-    }
 }

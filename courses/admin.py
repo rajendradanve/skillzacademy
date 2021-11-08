@@ -32,7 +32,8 @@ class CourseScheduleAdmin(admin.ModelAdmin):
     list_display = (
         'course_id',
         'course_date',
-        'course_time',
+        'course_start_time',
+        'course_end_time',
         'course_link',
     )
     
