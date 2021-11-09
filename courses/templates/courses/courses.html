@@ -20,28 +20,30 @@
                <div class="row">
                    {% for course in courses %}
                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card h-100 border-1">
+                    <div class="card shadow-sm">
                         {% if course.image %}
                         <a href="{% url 'course_detail' course.id %}">
-                            <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="{{ course.name }}">
+                            <img class="bd-placeholder-img card-img-top border border-light" src="{{ course.image.url }}" alt="{{ course.name }}">
                         </a>
                         {% else %}
                         <a href="{% url 'course_detail' course.id %}">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                            <img class="bd-placeholder-img card-img-top border border-light" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
                         </a>
                         {% endif %}
                         <div class="card-body pb-0">
-                            <p class="mb-0">{{ course.title }}</p>
+                            <h6 class="mb-1">{{ course.title }}</h6>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">${{ course.price }}</p>
+                                    <!-- Rating is removed. Need to check logic for this
                                     {% if course.rating %}
                                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ course.rating }} / 5</small>
                                     {% else %}
                                         <small class="text-muted">No Rating</small>
                                     {% endif %}
+                                    -->
                                 </div>
                             </div>
                         </div>
