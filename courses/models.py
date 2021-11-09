@@ -69,7 +69,7 @@ class CourseSchedule(models.Model):
     course_date = models.DateField()
     course_start_time = models.TimeField()
     course_end_time = models.TimeField()
-    course_link = models.CharField(max_length=1024, null=False, blank=False)
+    course_link = models.URLField(max_length=1024, null=False, blank=False)
     course_timezone = models.CharField(max_length=100)
     date_added = models.DateField(auto_now_add=True)
     time_added = models.TimeField(auto_now_add=True)
