@@ -5,100 +5,109 @@
 <link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
 {% endblock %}
 
-{% block content %} 
-    <div class="container-fluid content-placement">
+{% block content %}
+<div class="container-fluid content-placement">
 
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
-                    {% if course.image %}
-                            <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="{{ course.name }}">
-                        {% else %}
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
-                        {% endif %}
-                </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
+            <div class="image-container my-5">
+                {% if course.image %}
+                <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="{{ course.name }}">
+                {% else %}
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                {% endif %}
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="course-details-container mb-5 mt-md-5">
-                    <h3 class="mb-2">{{ course.title }}</h3>
-                    <p class="lead mb-1 text-left font-weight-bold">${{ course.price }}</p>
-                    {% if course.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ course.rating }} / 5</small>
-                    {% else %}
-                        <small class="text-muted">No Rating</small>
-                    {% endif %}
-                    <hr>
-                    <p>Course Start Date: 
-                        <strong class="p-2 bg-primary text-white rounded-1">
-                            {% with course_schedule|first as course_start %}
-                                {{ course_start.course_date|date:"d M, Y"}}
-                            {% endwith %}
-
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="course-details-container mb-5 mt-md-5 ms-lg-4">
+                <h3 class="mb-2">{{ course.title }}</h3>
+                <p class="lead mb-1 text-left font-weight-bold">${{ course.price }}</p>
+                {% if course.rating %}
+                <small class="text-muted"><i class="fas fa-star mr-1"></i> {{ course.rating }} / 5</small>
+                {% else %}
+                <small class="text-muted">No Rating</small>
+                {% endif %}
+                <hr>
+                <p>Course Start Date:
+                    <strong class="p-2 bg-primary text-white rounded-1">
+                        {% with course_schedule|first as course_start %}
+                        {{ course_start.course_date|date:"d M, Y"}}
+                        {% endwith %}
                     </strong>
                 </p>
-                </div>
+                <p>Number of Classes: <strong class="p-2 ms-2">{{course.number_of_lectures}}</strong></p>
+                <a href="" class="btn btn-primary my-3">Add to cart</a>
             </div>
-            
         </div>
-        
-        <div class="row">
-            <div class="col bg-light">
-                <nav>
-					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link active" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-home" aria-selected="true">About Course</a>
-						<a class="nav-item nav-link" id="nav-learning-objective-tab" data-bs-toggle="tab" href="#nav-learning-objective" role="tab" aria-controls="nav-profile" aria-selected="false">Learning Objectives</a>
-						<a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-prerequisite" role="tab" aria-controls="nav-contact" aria-selected="false">Prerequisite</a>
-						<a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-for-who" role="tab" aria-controls="nav-contact" aria-selected="false">For Who</a>
-						<a class="nav-item nav-link" id="nav-course-schedule-tab" data-bs-toggle="tab" href="#nav-course-schedule" role="tab" aria-controls="nav-about" aria-selected="false">Course Schedule</a>
-						<a class="nav-item nav-link" id="nav-instructor-tab" data-bs-toggle="tab" href="#nav-instructor" role="tab" aria-controls="nav-about" aria-selected="false">Instructor</a>
-					</div>
-				</nav>
-				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-					<div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-home-tab">
-						{{ course.description }}
-					</div>
-					<div class="tab-pane fade" id="nav-learning-objective" role="tabpanel" aria-labelledby="nav-profile-tab">
-						{{ course.learning_objectives }}
-					</div>
-					<div class="tab-pane fade" id="nav-prerequisite" role="tabpanel" aria-labelledby="nav-contact-tab">
-						{{ course.prerequisite }}
-					</div>
-                    <div class="tab-pane fade" id="nav-for-who" role="tabpanel" aria-labelledby="nav-contact-tab">
-						{{ course.for_whom }}
-					</div>
-					<div class="tab-pane fade" id="nav-course-schedule" role="tabpanel" aria-labelledby="nav-about-tab">
-						
-                        <p>Below is the detail schedule of the course</p>
-                        <table class="table">
-                            <thead>
-                              <tr>
+
+    </div>
+
+    <div class="row">
+        <div class="col bg-light">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about"
+                        role="tab" aria-controls="nav-home" aria-selected="true">About Course</a>
+                    <a class="nav-item nav-link" id="nav-learning-objective-tab" data-bs-toggle="tab"
+                        href="#nav-learning-objective" role="tab" aria-controls="nav-profile"
+                        aria-selected="false">Learning Objectives</a>
+                    <a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-prerequisite"
+                        role="tab" aria-controls="nav-contact" aria-selected="false">Prerequisite</a>
+                    <a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-for-who"
+                        role="tab" aria-controls="nav-contact" aria-selected="false">For Who</a>
+                    <a class="nav-item nav-link" id="nav-course-schedule-tab" data-bs-toggle="tab"
+                        href="#nav-course-schedule" role="tab" aria-controls="nav-about" aria-selected="false">Course
+                        Schedule</a>
+                    <a class="nav-item nav-link" id="nav-instructor-tab" data-bs-toggle="tab" href="#nav-instructor"
+                        role="tab" aria-controls="nav-about" aria-selected="false">Instructor</a>
+                </div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-home-tab">
+                    {{ course.description }}
+                </div>
+                <div class="tab-pane fade" id="nav-learning-objective" role="tabpanel"
+                    aria-labelledby="nav-profile-tab">
+                    {{ course.learning_objectives }}
+                </div>
+                <div class="tab-pane fade" id="nav-prerequisite" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    {{ course.prerequisite }}
+                </div>
+                <div class="tab-pane fade" id="nav-for-who" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    {{ course.for_whom }}
+                </div>
+                <div class="tab-pane fade" id="nav-course-schedule" role="tabpanel" aria-labelledby="nav-about-tab">
+
+                    <p>Below is the detail schedule of the course</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
                                 <th scope="col">Date</th>
                                 <th scope="col">Start Time</th>
                                 <th scope="col">End Time</th>
                                 <th scope="col">Course Link</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                {% for course_schedule_each in course_schedule %}
-                              <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course_schedule_each in course_schedule %}
+                            <tr>
                                 <td>{{ course_schedule_each.course_date|date:"d M, Y" }}</td>
                                 <td>{{course_schedule_each.course_start_time}}</td>
                                 <td>{{course_schedule_each.course_end_time}}</td>
-                                <td><a href="{{ course_schedule_each.course_link }}" target="_blank">{{ course_schedule_each.course_link }}</a></td>
-                              </tr>
-                                {% endfor %}
-                            </tbody>
-                          </table>
-					</div>
-                    <div class="tab-pane fade" id="nav-instructor" role="tabpanel" aria-labelledby="nav-about-tab">
-						{{ course.instructor_info }}
-					</div>
-				</div>
+                                <td><a href="{{ course_schedule_each.course_link }}"
+                                        target="_blank">{{ course_schedule_each.course_link }}</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
+                <div class="tab-pane fade" id="nav-instructor" role="tabpanel" aria-labelledby="nav-about-tab">
+                    {{ course.instructor_info }}
                 </div>
-             
+            </div>
         </div>
-
-
     </div>
+    <hr class="mt-2">
+</div>
+
 {% endblock %}
