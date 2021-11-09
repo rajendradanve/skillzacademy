@@ -54,7 +54,7 @@
                         
                     {% for course_schedule_each in course_schedule %}
 
-                        <p class="mt-3">{{ course_schedule_each.course_date }} : From {{course_schedule_each.course_start_time}} to course_schedule_each.course_end_time</p>
+                        <p class="mt-3">{{ course_schedule_each.course_date }} : From {{course_schedule_each.course_start_time}} to {{course_schedule_each.course_end_time}}</p>
                         <p>Meeting Link : <a href="{{course_schedule_each.course_link}}" target="_blank">{{ course_schedule_each.course_link }}</a></p>
                         
                         <hr>
