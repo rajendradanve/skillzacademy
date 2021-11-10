@@ -13,8 +13,23 @@ def all_courses(request):
     category = None
     main_category = None
     
-    # sorting based on categories in main-nav items
+    sort = None
+    direction = None
+   
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'title':
+                sortkey = 'lower_title'
+                courses = courses.annotate(lower_title=Lower('title'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            courses = courses.order_by(sortkey)
+        
+         # sorting based on categories in main-nav items
         if 'category' in request.GET:
             category = request.GET['category']
             courses = courses.filter(category__name=category)
@@ -55,10 +70,12 @@ def course_detail(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     course_schedule = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date')
     
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'course': course,
         'course_schedule': course_schedule,
+        'current_sorting': current_sorting,
         
     }
     

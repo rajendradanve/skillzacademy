@@ -1,14 +1,18 @@
 <div class="collapse navbar-collapse" id="main-nav">
 
     <ul class="navbar-nav w-auto mx-auto">
+
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="all-courses-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 All Courses
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-courses-link">
-                <a href="" class="dropdown-item">By Price</a>
+                <a href="{% url 'courses'%}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <!-- currently no rating is used. To be implemented in future
                 <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
+
+                -->
+                <a href="{% url 'courses'%}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
                 <a href="{% url 'courses' %}" class="dropdown-item">All Courses</a>
             </div>
         </li>
