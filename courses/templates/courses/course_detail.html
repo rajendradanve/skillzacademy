@@ -21,6 +21,11 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="course-details-container mb-5 mt-md-5 ms-lg-4">
                 <h3 class="mb-2">{{ course.title }}</h3>
+                <p class="small mt-1 mb-0">
+                    <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
+                        <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
+                    </a>
+                </p> 
                 <p class="lead mb-1 text-left font-weight-bold">${{ course.price }}</p>
                 <!-- Rating code is removed temporarily
                 {% if course.rating %}
