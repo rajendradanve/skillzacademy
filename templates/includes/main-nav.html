@@ -23,60 +23,15 @@
                 {% for category in categories %}
                 
                     {% if category.main_category.name == main_category.name %}
-                        <a href="" class="dropdown-item">{{category.friendly_name}}</a>
+                        <a href="{% url 'courses' %}?category={{category.name}}" class="dropdown-item">{{category.friendly_name}}</a>
                     {% endif %}
                 {% endfor %}
-                <a href="" class="dropdown-item">All {{ main_category.friendly_name }} Courses</a>
+                <a href="{% url 'courses' %}?main_category={{main_category.name}}" class="dropdown-item">All {{ main_category.friendly_name }} Courses</a>
             </div>
         </li>
 
         {% endfor %}
-<!--
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="all-academic-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Academic
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-academic-link">
-                <a href="" class="dropdown-item">Academic category 1</a>
-                <a href="" class="dropdown-item ">Academic category 2</a>
-                <a href="" class="dropdown-item ">Academic category 3</a>
-                <a href="" class="dropdown-item">All Academic Courses</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="hobbies-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Hobbies
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="hobbies-link">
-                <a href="" class="dropdown-item">Hobbies category 1</a>
-                <a href="" class="dropdown-item ">Hobbies category 2</a>
-                <a href="" class="dropdown-item ">Hobbies category 3</a>
-                <a href="" class="dropdown-item">All Hobbies Courses</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="health-and-fitness-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Health & Fitness
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="health-and-fitness-link">
-                <a href="" class="dropdown-item">Hobbies category 1</a>
-                <a href="" class="dropdown-item ">Hobbies category 2</a>
-                <a href="" class="dropdown-item ">Hobbies category 3</a>
-                <a href="" class="dropdown-item">All Hobbies Courses</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="other-courses-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Other
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="other-courses-link">
-                <a href="" class="dropdown-item">Other category 1</a>
-                <a href="" class="dropdown-item ">Other category 2</a>
-                <a href="" class="dropdown-item ">Other category 3</a>
-                <a href="" class="dropdown-item">All Other Courses</a>
-            </div>
-        </li>
-        -->
+
     </ul>
 
 </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404, reverse
 from django.contrib import messages
 from django.db.models import Q
-from .models import Course, CourseSchedule
+from .models import Course, CourseSchedule, MainCategory, Category
 
 # Create your views here.
 
@@ -10,9 +10,26 @@ def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
     courses = Course.objects.all()
     query = None
+    category = None
+    main_category = None
+    
+    # sorting based on categories in main-nav items
+    if request.GET:
+        if 'category' in request.GET:
+            category = request.GET['category']
+            courses = courses.filter(category__name=category)
+            
+    # sorting based on all courses for top main-nav item
+        if 'main_category' in request.GET:
+            main_category = request.GET['main_category']
+            
+            categories = Category.objects.filter(main_category__name=main_category)
+            
+            courses = courses.filter(category__in=categories)
+            
     if request.GET:
         if 'q' in request.GET:
-            print("test")
+            
             query = request.GET['q']
             if not query:
                 messages.error(request, "Please enter search criteria!")
@@ -25,7 +42,8 @@ def all_courses(request):
     context = {
         'courses': courses,
         'search_term': query,
-        
+        'current_category': category,
+        'main_category': main_category,
     }
     
     return render(request, 'courses/courses.html', context)
