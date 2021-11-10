@@ -120,7 +120,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# ck editor config
+# ck editor config taken from https://django-ckeditor.readthedocs.io/en/latest/#optional-customizing-ckeditor-editor
 
 CKEDITOR_CONFIGS = {
     'default': {
