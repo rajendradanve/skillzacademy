@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 
@@ -40,11 +41,11 @@ class Course(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=254, null=False, blank=False)
-    description = models.TextField()
-    prerequisite = models.TextField()
-    learning_objectives = models.TextField()
-    for_whom = models.TextField()
-    instructor_info = models.TextField()
+    description = RichTextField()
+    prerequisite = RichTextField()
+    learning_objectives = RichTextField()
+    for_whom = RichTextField()
+    instructor_info = RichTextField()
     number_of_lectures = models.PositiveIntegerField()
     price = models.PositiveIntegerField(null=False, blank=False, default=100)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,

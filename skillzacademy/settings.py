@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     # Allauth social media provider
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+    
+    #Other libraries
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
