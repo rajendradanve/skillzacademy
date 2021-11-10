@@ -76,13 +76,11 @@ def course_detail(request, course_id):
     """ A view to show individual course details"""
     
     course = get_object_or_404(Course, pk=course_id)
-    course_schedule = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date')
-    
-    
+    course_schedule_list = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date')
 
     context = {
         'course': course,
-        'course_schedule': course_schedule,
+        'course_schedule_list': course_schedule_list,
         
         
     }

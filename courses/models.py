@@ -58,8 +58,6 @@ class Course(models.Model):
     date_updated = models.DateField(auto_now=True)
     time_updated = models.TimeField(auto_now=True)
     
-    
-    
     def __str__(self):
         return self.title
     

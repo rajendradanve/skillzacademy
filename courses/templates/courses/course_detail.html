@@ -38,7 +38,7 @@
 
                 <p>Course {% if course.number_of_lectures > 1 %}Start{% endif %} Date:
                     <strong class="p-2 bg-success text-white rounded-1">
-                        {% with course_schedule|first as course_start %}
+                        {% with course_schedule_list|first as course_start %}
                         {{ course_start.course_date|date:"d M, Y"}}
                         {% endwith %}
                     </strong>
@@ -100,13 +100,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for course_schedule_each in course_schedule %}
+                            {% for course_schedule in course_schedule_list %}
                             <tr>
-                                <td>{{ course_schedule_each.course_date|date:"d M, Y" }}</td>
-                                <td>{{course_schedule_each.course_start_time}}</td>
-                                <td>{{course_schedule_each.course_end_time}}</td>
-                                <td><a href="{{ course_schedule_each.course_link }}"
-                                        target="_blank">{{ course_schedule_each.course_link }}</a></td>
+                                <td>{{ course_schedule.course_date|date:"d M, Y" }}</td>
+                                <td>{{course_schedule.course_start_time}}</td>
+                                <td>{{course_schedule.course_end_time}}</td>
+                                <td><a href="{{ course_schedule.course_link }}"
+                                        target="_blank">{{ course_schedule.course_link }}</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
