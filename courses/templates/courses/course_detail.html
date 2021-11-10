@@ -74,23 +74,23 @@
                 </div>
             </nav>
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="col-10 offset-md-1 tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-home-tab">
                     {{ course.description }}
                 </div>
-                <div class="tab-pane fade" id="nav-learning-objective" role="tabpanel"
+                <div class="col-10 offset-md-1 tab-pane fade" id="nav-learning-objective" role="tabpanel"
                     aria-labelledby="nav-profile-tab">
                     {{ course.learning_objectives }}
                 </div>
-                <div class="tab-pane fade" id="nav-prerequisite" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="col-10 offset-md-1 tab-pane fade" id="nav-prerequisite" role="tabpanel" aria-labelledby="nav-contact-tab">
                     {{ course.prerequisite }}
                 </div>
-                <div class="tab-pane fade" id="nav-for-who" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="col-10 offset-md-1 tab-pane fade" id="nav-for-who" role="tabpanel" aria-labelledby="nav-contact-tab">
                     {{ course.for_whom }}
                 </div>
-                <div class="tab-pane fade" id="nav-course-schedule" role="tabpanel" aria-labelledby="nav-about-tab">
-
+                <div class="col-10 offset-md-1 tab-pane fade" id="nav-course-schedule" role="tabpanel" aria-labelledby="nav-about-tab">
+                  
                     <p>Below is the detail schedule of the course</p>
-                    <table class="table">
+                    <table class="table table-bordered table-responsive text-center ">
                         <thead>
                             <tr>
                                 <th scope="col">Date</th>
@@ -111,8 +111,9 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    
                 </div>
-                <div class="tab-pane fade" id="nav-instructor" role="tabpanel" aria-labelledby="nav-about-tab">
+                <div class="col-10 offset-md-1 tab-pane fade" id="nav-instructor" role="tabpanel" aria-labelledby="nav-about-tab">
                     {{ course.instructor_info }}
                 </div>
             </div>
