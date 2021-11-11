@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404, reverse
 from django.contrib import messages
 from django.db.models import Q
 from .models import Course, CourseSchedule, MainCategory, Category
+from django.db.models.functions import Lower
 
 # Create your views here.
 
@@ -31,6 +32,7 @@ def all_courses(request):
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
+                    
             courses = courses.order_by(sortkey)
         
          # sorting based on categories in main-nav items
