@@ -46,12 +46,14 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'courses',
+    'bag',
+    'user_profile',
 
     # Allauth social media provider USE_TZ = True
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     
-    #Other libraries
+    # Other libraries
     'ckeditor',
 ]
 
@@ -81,7 +83,9 @@ TEMPLATES = [
                 'django.template.context_processors.request', # `allauth` needs this from django
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'courses.contexts.categories_list',  # included contexts.py from courses app
+                'courses.contexts.categories_list',  # included contexts.py from courses app to be available entire site
+                'bag.contexts.bag_contents', # included contexts.py from bag app to be available entire site
+                'user_profile.contexts.discount',
             ],
         },
     },

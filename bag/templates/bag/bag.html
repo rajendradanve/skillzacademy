@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %} 
+    <div class="container content-placement mb-2">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">Shopping Cart</h2>
+                <hr>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col">
+               {% if bag_items %}
+                    <div class="table-responsive rounded">
+
+                    </div>
+               {% else %}
+                <p class="lead mb-5">Your cart is empty. Keep shopping to find a course! </p>
+                <a href="{% url 'courses' %}" class="btn btn-dark rounded-1 btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Learning</span>
+                </a>
+               {% endif %}
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -74,7 +74,7 @@
                     <a class="nav-link text-dark" href="">
                       <div class="text-center">
                         <div><i class="fas fa-user-shield fa-lg"></i></div>
-                        <p class="my-0">Admin Profile</p>
+                        <a href="{% url 'admin' %}"class="my-0">Admin Profile</a>
                     </div>
                   </a> 
                   </li>
@@ -100,7 +100,7 @@
             <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
           {% endif %}
           <li class="list-inline-item">
-            <a class="nav-link text-dark" href="">
+            <a class="nav-link text-dark" href="{% url 'view_bag' %}">
               <div class="text-center"> <i class="fas fa-shopping-cart fa-lg"></i></div>
               <p class="my-0">
                 {% if grand_total %} 
@@ -128,7 +128,7 @@
   </div>
   <div id="offer-banner" class="row text-center">
     <div class="col bg-dark text-white">
-        <h4 class="logo-font my-1">Get ${{ discount }}% if bought over {{ discount_threshold }} !</h4>                
+        <h4 class="logo-font my-1">Get {{ discount_percentage }}% discount, if bought over ${{ discount_threshold }} !</h4>                
     </div>            
 </div>
 </header>
