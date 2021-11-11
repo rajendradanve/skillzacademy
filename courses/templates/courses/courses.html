@@ -60,27 +60,28 @@
                <div class="row">
                    {% for course in courses %}
                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card shadow-sm">
+                    <div class="card h-100 shadow-sm">
                         {% if course.image %}
                         <a href="{% url 'course_detail' course.id %}">
-                            <img class="bd-placeholder-img card-img-top border border-light" src="{{ course.image.url }}" alt="{{ course.name }}">
+                            <img class="bd-placeholder-img card-img-top img-fluid border border-light" src="{{ course.image.url }}" alt="{{ course.name }}">
                         </a>
                         {% else %}
                         <a href="{% url 'course_detail' course.id %}">
-                            <img class="bd-placeholder-img card-img-top border border-light" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                            <img class="bd-placeholder-img card-img-top img-fluid border border-light" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
                         </a>
                         {% endif %}
                         <div class="card-body pb-0">
                             <h6 class="mb-1">{{ course.title }}</h6>
-                            <p class="small mt-1 mb-0">
-                                <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
-                                    <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
-                                </a>
-                            </p> 
+                            
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
+                                    <p class="small mt-1 mb-0">
+                                        <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
+                                            <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
+                                        </a>
+                                    </p> 
                                     <p class="lead mb-0 text-left font-weight-bold">${{ course.price }}</p>
                                     <!-- Rating is removed. Need to check logic for this
                                     {% if course.rating %}
