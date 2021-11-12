@@ -25,8 +25,6 @@ def bag_contents(request):
             'course': course,
             })
     
-
-    
     if total < discount_threshold:
         discount_delta = discount_threshold - total
         grand_total = total

@@ -16,7 +16,59 @@
             <div class="col">
                {% if bag_items %}
                     <div class="table-responsive rounded">
-                        {{ bag_items }}
+                        <table class="table table-sm table-borderless">
+                            <thead class="text-dark">
+                                <tr>
+                                    <th scope="col" class="text-center">Course Info</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Price</th>
+                                    
+                                </tr>
+                            </thead>
+                            {% for item in bag_items %}
+                                <tr>
+                                    <td class="p-3 w-25">
+                                        <img src="{{ item.course.image.url}}" alt="{{item.course.name}}" class="img-fluid rounded">
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0"><strong>{{ item.course.title}}</strong></p>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0"><strong>${{item.course.price}}</strong></p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="5"><hr></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="pt-5 text-end">
+                                    {% if discount_delta == 0 %}
+                                        <h6><s>Bag Total: ${{total|floatformat:2}}</s></h6>
+                                    {% endif %}
+                                        <h4><strong>Bag Total: ${{grand_total|floatformat:2}}</strong></h4>
+                                    {% if discount_delta > 0 %}
+                                        <p class="mb-1 text-danger">
+                                            You could get {{ discount_percentage }}% discount by adding just <strong>${{ discount_delta}}</strong> more!
+                                        </p>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-right">
+                                    <a href="" class="btn rounded-0 btn-lg">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">Keep Learning</span>
+                                    </a>
+                                    <a href="" class="btn btn-dark rounded-0 btn-lg">
+                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="icon"><i class="fas fa-lock"></i></span>
+                                        </a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                {% else %}
                 <p class="lead mb-5">Your cart is empty. Keep shopping to find a course! </p>
