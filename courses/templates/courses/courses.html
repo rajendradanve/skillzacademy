@@ -74,7 +74,7 @@
                             <h6 class="mb-1">{{ course.title }}</h6>
                             
                         </div>
-                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                        <div class="card-footer bg-white pt-0 border-0 text-start">
                             <div class="row">
                                 <div class="col">
                                     <p class="small mt-1 mb-0">
@@ -82,7 +82,7 @@
                                             <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
                                         </a>
                                     </p> 
-                                    <p class="lead mb-0 text-left font-weight-bold">${{ course.price }}</p>
+                                    <p class="lead mb-0 text-start font-weight-bold">${{ course.price }}</p>
                                     <!-- Rating is removed. Need to check logic for this
                                     {% if course.rating %}
                                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ course.rating }} / 5</small>
