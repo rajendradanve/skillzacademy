@@ -1,5 +1,8 @@
 from user_profile.models import Discount
 from decimal import Decimal
+from django.shortcuts import get_object_or_404
+from courses.models import Course
+
 
 def bag_contents(request):
     # Getting values of discount percentage and discount threshold amount. 
@@ -10,6 +13,18 @@ def bag_contents(request):
     bag_items = []
     total = 0
     product_count = 0
+    
+    bag = request.session.get('bag', []) #created bag session variable if not exist. 
+    
+    # Added bag items to bag_items list along with course object.
+    for course_id in bag:
+        course = get_object_or_404(Course, pk=course_id)
+        bag_items.append({
+            'course_id': course_id,
+            'course': course,
+            })
+    
+
     
     if total < discount_threshold:
         discount_delta = discount_threshold - total
