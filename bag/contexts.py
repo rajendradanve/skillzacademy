@@ -12,13 +12,14 @@ def bag_contents(request):
     
     bag_items = []
     total = 0
-    product_count = 0
+    course_count = 0
     
     bag = request.session.get('bag', []) #created bag session variable if not exist. 
     
     # Added bag items to bag_items list along with course object.
     for course_id in bag:
         course = get_object_or_404(Course, pk=course_id)
+        total += course.price
         bag_items.append({
             'course_id': course_id,
             'course': course,
@@ -39,7 +40,7 @@ def bag_contents(request):
         'discount_percentage': discount_percentage,
         'discount_threshold': discount_threshold, 
         'total': total,
-        'grand_totla': grand_total,
+        'grand_total': grand_total,
         'discount_delta': discount_delta,
         
     }

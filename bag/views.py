@@ -19,5 +19,6 @@ def add_to_bag(request, course_id):
     bag.append(course_id)
     
     request.session['bag'] = bag
+
     
     return redirect(redirect_url)
