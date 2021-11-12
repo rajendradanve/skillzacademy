@@ -85,7 +85,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'courses.contexts.categories_list',  # included contexts.py from courses app to be available entire site
                 'bag.contexts.bag_contents', # included contexts.py from bag app to be available entire site
-                'user_profile.contexts.discount',
+                
             ],
         },
     },
