@@ -50,6 +50,9 @@
                 <div class="col-12 mt-3">
                     <form action="{% url 'add_to_bag' course.id %}" class="form" method="POST">
                         {% csrf_token %}
+                        {% if already_in_cart %}
+                        <p class="text-info">This course is already added to your cart</p>
+                        {% endif %}
                         <a href="{% url 'courses' %}" class="btn rounded-1 border border-1 border-dark">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
@@ -60,7 +63,7 @@
                             <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'view_bag' %}">Go to cart</a>
                         {% else %}
                             <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
-                            {% endif %}
+                        {% endif %}
                         <input type="hidden" name = "redirect_url" value="{{request.path}}">
                     </form>
                 </div>
