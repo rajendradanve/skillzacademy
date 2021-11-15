@@ -79,10 +79,16 @@ def course_detail(request, course_id):
     
     course = get_object_or_404(Course, pk=course_id)
     course_schedule_list = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date')
+    already_in_cart = False
+    
+    if request.session['bag']:
+        if course_id in request.session['bag']:
+            already_in_cart = True
 
     context = {
         'course': course,
         'course_schedule_list': course_schedule_list,
+        'already_in_cart': already_in_cart
         
         
     }

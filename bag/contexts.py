@@ -30,7 +30,7 @@ def bag_contents(request):
         grand_total = total
     else:
         discount_delta = 0
-        grand_total = total * Decimal(discount_percentage/100)
+        grand_total = total * (1-Decimal(discount_percentage/100))
         
         
     context = {

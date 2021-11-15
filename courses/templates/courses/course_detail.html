@@ -56,7 +56,11 @@
                             </span>
                             <span class="text-uppercase">Keep Learning</span>
                         </a>
-                        <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
+                        {% if already_in_cart %}
+                            <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'view_bag' %}">Go to cart</a>
+                        {% else %}
+                            <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
+                            {% endif %}
                         <input type="hidden" name = "redirect_url" value="{{request.path}}">
                     </form>
                 </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 
 # Create your views here.
 
@@ -22,3 +22,15 @@ def add_to_bag(request, course_id):
 
     
     return redirect(redirect_url)
+
+
+def remove_course_from_bag(request, course_id):
+    """ Adjust the bag view a course to the bag """
+    print(type(course_id))
+    bag = request.session.get('bag', [])
+    
+    bag.remove(course_id)
+    
+    request.session['bag'] = bag
+    print(bag)
+    return redirect(reverse('view_bag',))
