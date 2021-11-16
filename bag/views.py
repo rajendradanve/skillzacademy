@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from courses.models import Course
 # Create your views here.
@@ -13,7 +13,7 @@ def view_bag(request):
 def add_to_bag(request, course_id):
     """ Add a course to the bag """
     
-    course = Course.objects.get(pk=course_id)
+    course = get_object_or_404(Course, pk=course_id)
     
     redirect_url = request.POST.get('redirect_url')
     
@@ -23,16 +23,17 @@ def add_to_bag(request, course_id):
     
     request.session['bag'] = bag
     messages.success(request, f'Added {course.title} to your bag')
+    
     return redirect(redirect_url)
 
 
 def remove_course_from_bag(request, course_id):
     """ Adjust the bag view a course to the bag """
-    
+    course = get_object_or_404(Course, pk=course_id)
     bag = request.session.get('bag', [])
     
     bag.remove(course_id)
     
     request.session['bag'] = bag
-    
+    messages.success(request, f'Removed {course.title} from your bag')
     return redirect(reverse('view_bag',))
