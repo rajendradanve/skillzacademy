@@ -11,7 +11,6 @@ class Order(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
-    total =  models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     discount_percentage = models.PositiveIntegerField(null=True, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)

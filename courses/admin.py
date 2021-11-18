@@ -1,18 +1,7 @@
 from django.contrib import admin
 from .models import Course, Category, CourseSchedule, MainCategory
-
-# Register your models here.
-class CourseAdmin(admin.ModelAdmin):
-    list_display = (
-        'title',
-        'category',
-        'created_by',
-        'price',
-        'rating',
-        'image',
-    )
-    
-
+  
+  
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
@@ -28,7 +17,8 @@ class MainCategoryAdmin(admin.ModelAdmin):
     )
 
 
-class CourseScheduleAdmin(admin.ModelAdmin):
+class CourseScheduleAdminInline(admin.TabularInline):
+    model = CourseSchedule
     list_display = (
         'course_id',
         'course_date',
@@ -37,8 +27,19 @@ class CourseScheduleAdmin(admin.ModelAdmin):
         'course_link',
     )
     
-    
+class CourseAdmin(admin.ModelAdmin):
+    inlines = (CourseScheduleAdminInline,)
+    list_display = (
+        'title',
+        'category',
+        'created_by',
+        'price',
+        'rating',
+        'image',
+    )
+  
+  
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(CourseSchedule, CourseScheduleAdmin)
+#admin.site.register(CourseSchedule, CourseScheduleAdmin)
 admin.site.register(MainCategory, MainCategoryAdmin)
