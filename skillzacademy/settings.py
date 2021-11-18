@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'courses',
     'bag',
     'user_profile',
+    'checkout',
 
     # Allauth social media provider USE_TZ = True
     'allauth.socialaccount.providers.facebook',
