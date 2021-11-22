@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     
     # Other libraries
     'ckeditor',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'skillzacademy.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap' 
 
 TEMPLATES = [
     {
@@ -84,10 +87,15 @@ TEMPLATES = [
                 'django.template.context_processors.request', # `allauth` needs this from django
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'courses.contexts.categories_list',  # included contexts.py from courses app to be available entire site
                 'bag.contexts.bag_contents', # included contexts.py from bag app to be available entire site
                 
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]

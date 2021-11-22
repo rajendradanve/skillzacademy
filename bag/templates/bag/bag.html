@@ -31,7 +31,11 @@
                                         
                                         <h5 class="my-0"><strong>{{ item.course.title}}</strong></h5>
                                         <div class="text-center">
-                                            <img src="{{ item.course.image.url}}" alt="{{item.course.name}}" class="img-fluid rounded mt-2 w-25 ">
+                                            {% if item.course.image %} 
+                                                <img src="{{ item.course.image.url}}" alt="{{item.course.title}}" class="img-fluid rounded mt-2 w-25 ">
+                                            {% else %}
+                                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}" class="img-fluid rounded mt-2 w-25 ">
+                                            {% endif %}
                                         </div>
                                         
                                     </td>
@@ -70,7 +74,7 @@
                                         </span>
                                         <span class="text-uppercase">Keep Learning</span>
                                     </a>
-                                    <a href="" class="btn btn-dark rounded-0 btn-lg">
+                                    <a href="{% url 'checkout' %}" class="btn btn-dark rounded-0 btn-lg">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon"><i class="fas fa-lock"></i></span>
                                         </a>
