@@ -185,8 +185,11 @@
   <!--Extra JS which can in run after page is loaded-->
   {% block postloadjs %}
     <script type="text/javascript">
-     let toast = new bootstrap.Toast('.toast');
-      toast.show();
+      $(document).ready(function(){
+
+        $('.toast').toast('show');
+      });
+     
     </script>
 
   {% endblock %}
