@@ -10,6 +10,10 @@ from django.contrib.auth.models import User
 
 
 def checkout(request):
+
+    if not request.user.is_authenticated:
+        return redirect(reverse('home'))
+
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 

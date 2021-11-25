@@ -35,7 +35,7 @@ def all_courses(request):
                     
             courses = courses.order_by(sortkey)
         
-         # sorting based on categories in main-nav items
+        # sorting based on categories in main-nav items
   
         if 'category' in request.GET:
             category = request.GET['category']
