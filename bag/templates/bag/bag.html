@@ -56,7 +56,7 @@
                                 <td colspan="5" class="pt-5 text-end">
                                     {% if discount_delta == 0 %}
                                         <h6>Bag Total: <s>${{total|floatformat:2}}</s></h6>
-                                        <p class="text-danger"> Hurray! You get {{ discount_percentage}}% of discount.</p>
+                                        <p class="text-danger"> Hurray! You got {{ discount_percentage}}% of discount.</p>
                                     {% endif %}
                                         <h4><strong>Bag Total: ${{grand_total|floatformat:2}}</strong></h4>
                                     {% if discount_delta > 0 %}

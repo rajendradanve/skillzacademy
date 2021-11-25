@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-# Create your models here.
 
 
 class MainCategory(models.Model):
@@ -50,19 +49,18 @@ class Course(models.Model):
     price = models.PositiveIntegerField(null=False, blank=False, default=100)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,
                                  blank=True)
-    
+
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    
+
     date_added = models.DateField(auto_now_add=True)
     time_added = models.TimeField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
     time_updated = models.TimeField(auto_now=True)
-    
-    
+
     def __str__(self):
         return self.title
-    
+
 
 class CourseSchedule(models.Model):
     course_id = models.ForeignKey('Course', on_delete=models.CASCADE)
