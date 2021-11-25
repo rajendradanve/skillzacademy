@@ -21,7 +21,7 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
     cardholder_full_name = models.CharField(max_length=32, null=False)
-    
+
     def update_total(self):
         """
         update grand_total each time a line item is added.
@@ -38,7 +38,7 @@ class Order(models.Model):
             self.discount_percentage = discount_percentage
         else:
             self.grand_total = self.order_total
-        
+
         self.save()
 
     def __str__(self):

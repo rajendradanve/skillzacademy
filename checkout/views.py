@@ -6,6 +6,7 @@ from bag.contexts import bag_contents
 from courses.models import Course
 from .models import OrderLineItem, Order
 from .forms import OrderForm
+from django.contrib.auth.models import User
 
 
 def checkout(request):
@@ -85,10 +86,14 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
+    user_email = None
+    if request.user.is_authenticated:
+        user_email = request.user.email
+        
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}.  \
-        A confirmation email will be sent to register email')
+        A confirmation email will be sent to register email:  { user_email }')
 
     if 'bag' in request.session:
         del request.session['bag']
@@ -96,6 +101,7 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'user_email': user_email,
     }
 
     return render(request, template, context)
