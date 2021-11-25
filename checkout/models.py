@@ -27,7 +27,7 @@ class Order(models.Model):
         Check if discount is applicable
         """
         self.discount_percentage = bag_contents.discount_percentage
-        self.order_total = self.lineitems.aggregate(Sum('course_price'))['course_price__sum']
+        self.order_total = self.lineitems.aggregate(Sum('course_price'))['course_price__sum'] or 0
         if self.order_total > bag_contents.discount_threshold:
             self.grand_total = self.order_total * (1 - bag_contents.discount_percentage/100)
         else:
