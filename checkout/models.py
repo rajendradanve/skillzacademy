@@ -4,8 +4,10 @@ from django.db.models import Sum
 from courses.models import Course
 from user_profile.models import Discount
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
 """
-Most of the logic and code taken from Boutique ADO checkout app 
+Most of the logic and code taken from Boutique ADO checkout app
 from code institute
 """
 
@@ -13,7 +15,8 @@ from code institute
 class Order(models.Model):
     order_number = models.CharField(default=uuid.uuid4().hex[:10].upper(),
                                     unique=True, max_length=10, editable=False)
-    
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True,
+                             null=True, related_name='orders')
     date = models.DateTimeField(auto_now_add=True)
     discount_percentage = models.PositiveIntegerField(null=True, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
@@ -32,7 +35,8 @@ class Order(models.Model):
         discount_percentage = discount.discount_percentage
         discount_threshold = discount.discount_amount_threshold
 
-        self.order_total = self.lineitems.aggregate(Sum('course_price'))['course_price__sum'] or 0
+        self.order_total = self.lineitems.aggregate(Sum('course_price'))[
+            'course_price__sum'] or 0
         if self.order_total > discount_threshold:
             self.grand_total = self.order_total * (1 - discount_percentage/100)
             self.discount_percentage = discount_percentage
@@ -58,7 +62,8 @@ class OrderLineItem(models.Model):
         """
         Override the original save method to set course price.
         """
-        self.course_price = self.course.price # getting current course price from the course.
+        self.course_price = self.course.price 
+        # getting current course price from the course.
         super().save(*args, **kwargs)
 
     def __str__(self):
