@@ -1,0 +1,422 @@
+[{
+    "model": "courses.maincategory",
+    "pk": 1,
+    "fields": {
+        "name": "academic",
+        "friendly_name": "Academic"
+    }
+}, {
+    "model": "courses.maincategory",
+    "pk": 2,
+    "fields": {
+        "name": "hobbies",
+        "friendly_name": "Hobbies"
+    }
+}, {
+    "model": "courses.maincategory",
+    "pk": 3,
+    "fields": {
+        "name": "health_and_fitness",
+        "friendly_name": "Health & Fitness"
+    }
+}, {
+    "model": "courses.maincategory",
+    "pk": 4,
+    "fields": {
+        "name": "other",
+        "friendly_name": "Other"
+    }
+}, {
+    "model": "courses.category",
+    "pk": 1,
+    "fields": {
+        "name": "web_development",
+        "friendly_name": "Web Development",
+        "main_category": 1
+    }
+}, {
+    "model": "courses.category",
+    "pk": 2,
+    "fields": {
+        "name": "mobile_development",
+        "friendly_name": "Mobile Development",
+        "main_category": 1
+    }
+}, {
+    "model": "courses.category",
+    "pk": 3,
+    "fields": {
+        "name": "maths",
+        "friendly_name": "Maths",
+        "main_category": 1
+    }
+}, {
+    "model": "courses.category",
+    "pk": 4,
+    "fields": {
+        "name": "musical_instruments",
+        "friendly_name": "Musical Instruments",
+        "main_category": 2
+    }
+}, {
+    "model": "courses.category",
+    "pk": 5,
+    "fields": {
+        "name": "singing",
+        "friendly_name": "Singing",
+        "main_category": 2
+    }
+}, {
+    "model": "courses.category",
+    "pk": 6,
+    "fields": {
+        "name": "yoga",
+        "friendly_name": "Yoga",
+        "main_category": 3
+    }
+}, {
+    "model": "courses.category",
+    "pk": 7,
+    "fields": {
+        "name": "diet",
+        "friendly_name": "Diet",
+        "main_category": 3
+    }
+}, {
+    "model": "courses.category",
+    "pk": 8,
+    "fields": {
+        "name": "cooking",
+        "friendly_name": "Cooking",
+        "main_category": 4
+    }
+}, {
+    "model": "courses.category",
+    "pk": 9,
+    "fields": {
+        "name": "coloring_drawing_sketching",
+        "friendly_name": "Coloring, Painting & Sketching",
+        "main_category": 2
+    }
+}, {
+    "model": "courses.course",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "created_by": 1,
+        "title": "Build a Backend REST API with Python & Django - Beginner",
+        "description": "<p>Welcome to the beginner course on How to Build a REST API from scratch, using Django, Django REST Framework, Python, Vagrant, VirtualBox, Atom, and ModHeaders. You&#39;ll also learn how to deploy your dev server to AWS! This course is made with Django 2.2 and Django REST Framework 3.9. The skills taught in this course are absolutely essential for creating successful products that users love and can&rsquo;t live without. By the end of this course you will have built a fully functioning REST API that can handle Creating and updating user profiles, login and authentication, Posting status updates, Viewing status update feeds. You&rsquo;ll also have a solid foundation for understanding one of the most complex components in software development.</p>",
+        "prerequisite": "<p>This course is for beginners. But knowledge of basic web programming languages is essential to understand the concepts.</p>",
+        "learning_objectives": "<p>You will learn, how to create the most important part of any user application</p>\r\n\r\n<ul>\r\n\t<li>How to create a local development server from scratch</li>\r\n\t<li>How to build your own browsable, self documenting REST API</li>\r\n\t<li>Handle user registration, login and status updates in your app with your very own REST API</li>\r\n</ul>",
+        "for_whom": "<p>This course is for developers who want build a REST API either for their app, MVP or business idea. This course is for frontend developers who want to learn backend.</p>",
+        "instructor_info": "<p>Hey, I&rsquo;m Mark! I&rsquo;m an award-winning full-stack software engineer with a passion for learning and teaching new technologies. This passion started at 12-years-old when I taught myself how to make Windows batch scripts. Little did I know that hacking around on my computer back then would turn into a life-long passion for programming. I went on to complete a degree in Computer Systems Networking at Nottingham Trent University, and worked in various developer roles at multinational corporations and startups. I always believed that the final step to learning is teaching. And so I started a software development blog and consultancy firm called London App Developer. My work has been featured in the Daily Mail, Mashable, TechCrunch, the Huffington Post, the Mirror and Gizmodo, and over 30,000 developers read my programming tutorials every month. My specialities are Python, Django, JavaScript, HTML5 and CSS3, but because I&rsquo;m full-stack, I can work my way around most programming languages and frameworks.</p>",
+        "number_of_lectures": 5,
+        "price": 100,
+        "rating": null,
+        "image_url": null,
+        "image": "615e1104ffbf5ae592265cc7_python-django.png",
+        "date_added": "2021-11-10",
+        "time_added": "16:05:14.304",
+        "date_updated": "2021-11-10",
+        "time_updated": "19:41:57.774"
+    }
+}, {
+    "model": "courses.course",
+    "pk": 2,
+    "fields": {
+        "category": 5,
+        "created_by": 1,
+        "title": "Western Vocal Classes For Kids",
+        "description": "<p>Western Vocal singing has a lot of benefits for children, especially when learned in person in one-month classes. An important benefit of being regular in your singing classes is for your good mental health. As you learn to sing songs from the beginning to the end, the coordination between your brain and your body develops. Thus it increases your reading skills and motor skills.</p>\r\n\r\n<p><strong>Enroll now!</strong></p>",
+        "prerequisite": "<p>This course is for kids from 6 to 10 years who want to learn singing basics.</p>",
+        "learning_objectives": "<p>Basics of Western Vocal Singing</p>",
+        "for_whom": "<p>For kids from 6yr to 10 yr&nbsp;</p>",
+        "instructor_info": "<p>Breck Alan has been teaching voice for over 20 years. He is a highly published and accomplished authority on the art of singing. Breck Alan specializes in contemporary styles and is perfect for the pop rock singer looking to develop a natural sounding, powerful voice. Breck Alan is also an authority on vocal health and a perfect choice for learning how to keep your voice healthy or repair a damaged voice. Breck also works with speaking professionals such as public speakers and teachers to develop a strong confident speaking voice. Breck Alan teaches from a private voice studio that also includes a professional in house recording studio. Breck is highly experienced at voice production and is a wonderful asset if you are considering making a professional recording. Breck is great for experienced singers looking for expert guidance but is also a wonderful choice for pure beginners.</p>",
+        "number_of_lectures": 8,
+        "price": 85,
+        "rating": null,
+        "image_url": null,
+        "image": "kid_singing.jpeg",
+        "date_added": "2021-11-10",
+        "time_added": "18:49:36.158",
+        "date_updated": "2021-11-10",
+        "time_updated": "19:41:26.217"
+    }
+}, {
+    "model": "courses.course",
+    "pk": 3,
+    "fields": {
+        "category": 9,
+        "created_by": 1,
+        "title": "Basic Drawing Classes",
+        "description": "<p>The basic drawing classes will help children to explore of art mediums like painting, coloring, sketching, and portrait art. It is a golden opportunity for art enthusiasts to learn from the professional and versatile artist online from the comfort of the home.</p>\r\n\r\n<p>These drawing classes will help children to learn different art techniques, including blending, shading, color contrasts which make it easier for kids to create beautiful art pieces. It will give them to learn how colors work, especially mixing primary colors and choosing the contrast color of their own.</p>\r\n\r\n<p>Enroll Now!</p>",
+        "prerequisite": "<p>This course is for beginners. You just need to bring the following items during the course:&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>Drawing book/papers</li>\r\n\t<li>Pencils</li>\r\n\t<li>Eraser</li>\r\n</ul>",
+        "learning_objectives": "<p>In this course we will learn,&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>Basic shapes drawing</li>\r\n\t<li>different art techniques</li>\r\n\t<li>color mixing</li>\r\n\t<li>choosing contrast color</li>\r\n</ul>",
+        "for_whom": "<p>This course is suitable for kids from age 10-18</p>",
+        "instructor_info": "<p>&nbsp;</p>\r\n\r\n<p>Pallak Aggarwal, the creative art teacher has experience of 9 years in the art profession. She is immensely passionate about art and creativity&nbsp;which helped her to make around 82 portraits . She has collection of charcoal and soft pastel collection for exhibition as well. She believes art is a passion and being passionate about it brings peace in life</p>",
+        "number_of_lectures": 4,
+        "price": 40,
+        "rating": null,
+        "image_url": null,
+        "image": "basics-of-drawing-pallak-aggarwal-art-classes-primary-image-uycvzkSjKQWhKmTf_750_500.jpeg",
+        "date_added": "2021-11-10",
+        "time_added": "19:58:37.890",
+        "date_updated": "2021-11-10",
+        "time_updated": "19:58:37.890"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 1,
+    "fields": {
+        "course_id": 1,
+        "course_date": "2022-01-11",
+        "course_start_time": "16:00:00",
+        "course_end_time": "17:30:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "16:07:12.615",
+        "date_updated": "2021-11-10",
+        "time_updated": "16:07:12.615"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 2,
+    "fields": {
+        "course_id": 1,
+        "course_date": "2022-01-13",
+        "course_start_time": "16:00:00",
+        "course_end_time": "17:30:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "16:13:16.403",
+        "date_updated": "2021-11-10",
+        "time_updated": "16:13:16.403"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 3,
+    "fields": {
+        "course_id": 1,
+        "course_date": "2022-01-15",
+        "course_start_time": "16:00:00",
+        "course_end_time": "17:30:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "16:14:07.656",
+        "date_updated": "2021-11-10",
+        "time_updated": "16:14:07.656"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 4,
+    "fields": {
+        "course_id": 1,
+        "course_date": "2022-01-17",
+        "course_start_time": "16:00:00",
+        "course_end_time": "17:30:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "16:14:51.376",
+        "date_updated": "2021-11-10",
+        "time_updated": "16:14:51.376"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 5,
+    "fields": {
+        "course_id": 1,
+        "course_date": "2022-01-19",
+        "course_start_time": "16:00:00",
+        "course_end_time": "17:30:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "16:15:17.359",
+        "date_updated": "2021-11-10",
+        "time_updated": "16:15:17.359"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 6,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-08",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:56:37.197",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:56:37.197"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 7,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-09",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:57:03.402",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:57:03.402"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 8,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-15",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:57:37.616",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:57:37.616"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 9,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-16",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:58:07.820",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:58:07.820"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 10,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-22",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:58:33.970",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:58:33.970"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 11,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-23",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:58:54.190",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:58:54.190"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 12,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2022-01-29",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:59:34.861",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:59:34.861"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 13,
+    "fields": {
+        "course_id": 2,
+        "course_date": "2021-11-28",
+        "course_start_time": "10:00:00",
+        "course_end_time": "11:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "IST",
+        "date_added": "2021-11-10",
+        "time_added": "18:59:56.094",
+        "date_updated": "2021-11-10",
+        "time_updated": "18:59:56.094"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 14,
+    "fields": {
+        "course_id": 3,
+        "course_date": "2022-02-10",
+        "course_start_time": "11:00:00",
+        "course_end_time": "13:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "20:00:22.866",
+        "date_updated": "2021-11-10",
+        "time_updated": "20:00:22.866"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 15,
+    "fields": {
+        "course_id": 3,
+        "course_date": "2022-02-11",
+        "course_start_time": "11:00:00",
+        "course_end_time": "13:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "20:00:52.609",
+        "date_updated": "2021-11-10",
+        "time_updated": "20:00:52.609"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 16,
+    "fields": {
+        "course_id": 3,
+        "course_date": "2022-02-12",
+        "course_start_time": "11:00:00",
+        "course_end_time": "13:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "20:01:16.310",
+        "date_updated": "2021-11-10",
+        "time_updated": "20:01:16.310"
+    }
+}, {
+    "model": "courses.courseschedule",
+    "pk": 17,
+    "fields": {
+        "course_id": 3,
+        "course_date": "2022-02-13",
+        "course_start_time": "11:00:00",
+        "course_end_time": "13:00:00",
+        "course_link": "https://zoom.us/test",
+        "course_timezone": "CET",
+        "date_added": "2021-11-10",
+        "time_added": "20:01:37.307",
+        "date_updated": "2021-11-10",
+        "time_updated": "20:01:37.307"
+    }
+}]

@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Discount
+from .models import Discount, UserProfile
 
-# Register your models here.
 
 class DiscountAdmin(admin.ModelAdmin):
     list_display = (
@@ -10,4 +9,8 @@ class DiscountAdmin(admin.ModelAdmin):
         'discount_amount_threshold',
     )
 
+
 admin.site.register(Discount, DiscountAdmin)
+
+
+admin.site.register(UserProfile)

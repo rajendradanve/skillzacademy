@@ -2,10 +2,8 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from courses.models import Course
-from user_profile.models import Discount
-from django.contrib.auth.models import User
+from user_profile.models import Discount, UserProfile
 from django.conf import settings
-from django.contrib.auth import get_user_model
 """
 Most of the logic and code taken from Boutique ADO checkout app
 from code institute
@@ -15,8 +13,9 @@ from code institute
 class Order(models.Model):
     order_number = models.CharField(default=uuid.uuid4().hex[:10].upper(),
                                     unique=True, max_length=10, editable=False)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True,
-                             null=True, related_name='orders')
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='orders')
     date = models.DateTimeField(auto_now_add=True)
     discount_percentage = models.PositiveIntegerField(null=True, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
