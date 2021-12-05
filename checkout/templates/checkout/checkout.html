@@ -51,13 +51,13 @@
                 <hr class="my-0">
                 <div class="row text-dark text-end">
                     <div class="col">
-                        {% if discount_delta == 0 %}
-                            <p class="my-0">Total: <s>${{total|floatformat:2}}</s></p>
-                            <p class="text-danger"> You got {{ discount_percentage}}% of discount.</p>
+                        {% if discount_flag %}
+                            {% if discount_delta == 0 %}
+                                <p class="my-0">Total: <s>${{total|floatformat:2}}</s></p>
+                                <p class="text-danger"> You got {{ discount_percentage}}% of discount.</p>
+                            {% endif %}
                         {% endif %}
-                        
-                        <p class="my-0">Total: <strong>${{ grand_total| floatformat:2 }}</strong></p>
-                        
+                        <p class="my-0">Total: <strong>${{ grand_total| floatformat:2 }}</strong></p>  
                     </div>
                 </div>
             </div>

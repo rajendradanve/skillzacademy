@@ -4,6 +4,8 @@ from django.db.models import Sum
 from courses.models import Course
 from user_profile.models import Discount, UserProfile
 from django.conf import settings
+# from bag.contexts import bag_contents
+
 """
 Most of the logic and code taken from Boutique ADO checkout app
 from code institute
@@ -30,9 +32,12 @@ class Order(models.Model):
         Check if discount is applicable
         """
         # Getting values of discount percentage and discount threshold amount.
-        discount = Discount.objects.filter(offer_name='Discount').first()
-        discount_percentage = discount.discount_percentage
-        discount_threshold = discount.discount_amount_threshold
+        # discount = Discount.objects.filter(offer_name='Discount').first()
+        # discount_percentage = discount.discount_percentage
+        # discount_threshold = discount.discount_amount_threshold
+        
+        # discount_percentage = bag_contents(request).discount_percentage
+        # discount_threshold = bag_contents(request).discount_threshold
 
         self.order_total = self.lineitems.aggregate(Sum('course_price'))[
             'course_price__sum'] or 0
