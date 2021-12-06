@@ -8,7 +8,6 @@ from bag.contexts import bag_contents
 from courses.models import Course
 from .models import OrderLineItem, Order
 from .forms import OrderForm
-from django.contrib.auth.models import User
 
 import stripe
 import json
@@ -65,7 +64,7 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
-                
+
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         else:
@@ -114,8 +113,15 @@ def checkout_success(request, order_number):
     user_email = None
     if request.user.is_authenticated:
         user_email = request.user.email
-        
+
     order = get_object_or_404(Order, order_number=order_number)
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+    else:
+        return redirect(reverse('account_signup'))
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}.  \
         A confirmation email will be sent to register email:  { user_email }')
