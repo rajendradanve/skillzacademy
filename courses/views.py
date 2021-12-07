@@ -3,12 +3,15 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Course, CourseSchedule, MainCategory, Category
 from django.db.models.functions import Lower
+from user_profile.models import UserProfile
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 
 def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
+    
     courses = Course.objects.all()
     query = None
     category = None
@@ -84,11 +87,21 @@ def course_detail(request, course_id):
     if 'bag' in request.session:
         if course_id in request.session['bag']:
             already_in_cart = True
-
+            
+    
+    
+    already_bought = False
+    if request.user.is_authenticated:
+        # Checking orders from logged in users and checking if course is already bought.
+        profile = get_object_or_404(UserProfile, user=request.user)
+        if profile.orders.filter(lineitems__course_id=course_id):
+            already_bought = True
+        
     context = {
         'course': course,
         'course_schedule_list': course_schedule_list,
-        'already_in_cart': already_in_cart
+        'already_in_cart': already_in_cart,
+        'already_bought': already_bought,
         
         
     }
