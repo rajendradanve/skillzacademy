@@ -8,6 +8,7 @@ from bag.contexts import bag_contents
 from courses.models import Course
 from .models import OrderLineItem, Order
 from .forms import OrderForm
+from user_profile.models import UserProfile
 
 import stripe
 import json
@@ -110,22 +111,22 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    user_email = None
-    if request.user.is_authenticated:
-        user_email = request.user.email
-
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
+        user_email = profile
+        print(user_email)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
     else:
+        message.info(request, 'Log in before you finish purchase')
         return redirect(reverse('account_signup'))
+    
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}.  \
-        A confirmation email will be sent to register email:  { user_email }')
-
+         A confirmation email will be sent to register email:  { user_email }')
+    
     if 'bag' in request.session:
         del request.session['bag']
 
