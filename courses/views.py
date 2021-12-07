@@ -5,14 +5,16 @@ from .models import Course, CourseSchedule, MainCategory, Category
 from django.db.models.functions import Lower
 from user_profile.models import UserProfile
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your views here.
 
 
 def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
-    
+ 
     courses = Course.objects.all()
+    
     query = None
     category = None
     categories = None
@@ -87,9 +89,7 @@ def course_detail(request, course_id):
     if 'bag' in request.session:
         if course_id in request.session['bag']:
             already_in_cart = True
-            
-    
-    
+
     already_bought = False
     if request.user.is_authenticated:
         # Checking orders from logged in users and checking if course is already bought.
