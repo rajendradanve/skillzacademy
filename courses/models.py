@@ -1,7 +1,7 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from django.utils.timezone import now
 
 
 class MainCategory(models.Model):
@@ -47,6 +47,7 @@ class Course(models.Model):
     instructor_info = RichTextField()
     number_of_lectures = models.PositiveIntegerField()
     price = models.PositiveIntegerField(null=False, blank=False, default=100)
+    start_date = models.DateField(default=now)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,
                                  blank=True)
 
@@ -57,18 +58,22 @@ class Course(models.Model):
     time_added = models.TimeField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
     time_updated = models.TimeField(auto_now=True)
+    course_timezone = models.CharField(max_length=100, default="CET")
+
+    def update_start_date(self):
+        self.start_date = self.courseschedulelist.order_by('course_date').first().course_date
+        self.save()
 
     def __str__(self):
         return self.title
 
 
 class CourseSchedule(models.Model):
-    course_id = models.ForeignKey('Course', on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='courseschedulelist')
     course_date = models.DateField()
     course_start_time = models.TimeField()
     course_end_time = models.TimeField()
     course_link = models.URLField(max_length=1024, null=False, blank=False)
-    course_timezone = models.CharField(max_length=100)
     date_added = models.DateField(auto_now_add=True)
     time_added = models.TimeField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
