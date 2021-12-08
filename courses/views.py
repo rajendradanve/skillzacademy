@@ -7,6 +7,8 @@ from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+import datetime
+
 # Create your views here.
 
 
@@ -14,7 +16,7 @@ def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
  
     courses = Course.objects.all()
-    
+
     query = None
     category = None
     categories = None
@@ -66,8 +68,15 @@ def all_courses(request):
             queries = Q(title__icontains=query) | Q(description__icontains=query)
             
             courses = courses.filter(queries)
-            
+    
+     
     current_sorting = f'{sort}_{direction}'
+    # remove out of date courses.
+    # compared courese start date and removed if date is passed
+    for course in courses:
+        course_start_date = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date').first().course_date
+        if course_start_date <= datetime.date.today():
+            courses = courses.exclude(pk=course.id)
     
     context = {
         'courses': courses,
@@ -84,6 +93,11 @@ def course_detail(request, course_id):
     
     course = get_object_or_404(Course, pk=course_id)
     course_schedule_list = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date')
+    
+    if course_schedule_list.first().course_date <= datetime.date.today():
+        return redirect(reverse('courses'))
+    
+    
     already_in_cart = False
     
     if 'bag' in request.session:
