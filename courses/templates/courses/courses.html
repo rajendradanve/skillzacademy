@@ -79,9 +79,10 @@
                                 <div class="col">
                                     <p class="small mt-1 mb-0">
                                         <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
-                                            <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
+                                            <i class="fas fa-tag me-1 mb-1"></i>{{course.category.friendly_name}}
                                         </a>
                                     </p> 
+                                    <p class="small"> Start Date: <span class="bg-dark text-white p-1 rounded">{{ course.start_date}}</span></p>
                                     <p class="lead mb-0 text-start font-weight-bold">${{ course.price }}</p>
                                     <!-- Rating is removed. Need to check logic for this
                                     {% if course.rating %}

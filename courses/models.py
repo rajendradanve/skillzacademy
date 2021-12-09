@@ -61,6 +61,7 @@ class Course(models.Model):
     course_timezone = models.CharField(max_length=100, default="CET")
 
     def update_start_date(self):
+        
         self.start_date = self.courseschedulelist.order_by('course_date').first().course_date
         self.save()
 
@@ -69,7 +70,8 @@ class Course(models.Model):
 
 
 class CourseSchedule(models.Model):
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='courseschedulelist')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,
+                                  related_name='courseschedulelist')
     course_date = models.DateField()
     course_start_time = models.TimeField()
     course_end_time = models.TimeField()

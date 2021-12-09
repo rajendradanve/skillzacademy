@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    # 'allauth.socialaccount', For future use
+    'allauth.socialaccount',
     'home',
     'courses',
     'bag',

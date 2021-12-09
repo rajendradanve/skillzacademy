@@ -15,8 +15,8 @@ import datetime
 def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
  
-    courses = Course.objects.all()
-
+    courses = Course.objects.filter(start_date__gt=datetime.date.today())
+    # courses = Course.objects.all()
     query = None
     category = None
     categories = None
@@ -73,10 +73,12 @@ def all_courses(request):
     current_sorting = f'{sort}_{direction}'
     # remove out of date courses.
     # compared courese start date and removed if date is passed
+    """
     for course in courses:
         course_start_date = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date').first().course_date
         if course_start_date <= datetime.date.today():
             courses = courses.exclude(pk=course.id)
+    """
     
     context = {
         'courses': courses,
