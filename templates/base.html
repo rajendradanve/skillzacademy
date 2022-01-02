@@ -72,14 +72,19 @@
       <ul class="list-inline list-unstyled text-center text-lg-end my-0">
         {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                  <li class="list-inline-item">
-                    <a class="nav-link text-dark" href="">
-                      <div class="text-center">
-                        <div><i class="fas fa-user-shield fa-lg"></i></div>
-                        <a href="{% url 'admin' %}"class="my-0">Admin Profile</a>
-                    </div>
-                  </a> 
-                  </li>
+                <li class="list-inline-item dropdown">
+                  <a class="nav-link text-dark" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-center">
+                      <div><i class="fas fa-user-shield fa-lg"></i></div>
+                      <p class="my-0">Admin</p>
+                  </div>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                    <li><a class="dropdown-item" href="{% url 'admin' %}">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                  </ul>
+                </li>
                 {% else %}
                 <li class="list-inline-item dropdown">
                   <a class="nav-link text-dark" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
