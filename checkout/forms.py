@@ -13,20 +13,18 @@ class OrderForm(forms.ModelForm):
         Add placeholder and classes, remove auto-generated lables and set 
         autofocus on first field
         """
-        
+
         super().__init__(*args, **kwargs)
-        
+
         placeholders = {
             'cardholder_full_name': 'Cardholder Full Name',
         }
-        
+
         self.fields['cardholder_full_name'].widget.attrs['autofocus'] = True
-        
+
         for field in self.fields:
             placeholder = f'{placeholders[field]} *'
-            
+
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
-        
-                
