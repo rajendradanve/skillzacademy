@@ -99,7 +99,7 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
-/* Allauth form formatting */
+/* Allauth form formatting. Taken from Codeinstitue botique ado mini project */
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */

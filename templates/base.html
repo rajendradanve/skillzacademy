@@ -98,17 +98,28 @@
                 </li>
                 {% endif %}
           {% else %}
-            <li class="list-inline-item"><a href="{% url 'account_signup' %}" class="nav-link">Register</a></li>
-            <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
+            <li class="list-inline-item"><a href="{% url 'account_signup' %}" class="nav-link text-dark">
+              <div class="text-center"> 
+                <i class="fas fa-user-plus fa-lg"></i>
+              </div>
+              <p class="my-0">
+                Sign Up
+              </p>
+            </a></li>
+            <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link text-dark">
+              <div class="text-center"> 
+                <i class="fas fa-user fa-lg"></i>
+              </div>
+              <p class="my-0">
+                Sign In
+              </p>
+              </a></li>
           {% endif %}
           <li class="list-inline-item">
             <a class="{% if grand_total %}text-info font-weight-bold{% else %} text-dark {% endif %} nav-link" href="{% url 'view_bag' %}">
-              
               <div class="text-center"> 
-                
-                <i class="fas fa-shopping-cart fa-lg">
-
-                </i></div>
+                <i class="fas fa-shopping-cart fa-lg"></i>
+              </div>
               <p class="my-0">
                 {% if grand_total %} 
                   ${{ grand_total | floatformat:2}}
@@ -174,7 +185,7 @@
 
   <!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
 
-    <footer class="footer py-2 mt-auto bg-light border-top">
+    <footer class="footer py-2 mt-auto bg-light border-top fixed-bottom">
       <ul class="nav justify-content-center border-bottom pb-2 mb-2">
         <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i class="fab fa-twitter-square fa-3x"></i></a></li>
         <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i class="fab fa-facebook-square fa-3x"></i></a></li>
