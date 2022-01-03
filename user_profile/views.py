@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from courses.models import Course, Category, MainCategory
-# Create your views here.
+from checkout.models import Order
+from .models import UserProfile
+from django.contrib import messages
 
 
 def profile(request):
@@ -40,5 +42,30 @@ def add_main_category(request):
 
 def purchase_history(request):
     """ Showing Purchase History of the Courses """
-    
-    return render(request, 'user_profile/purchase_history.html')
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+
+    template = 'user_profile/purchase_history.html'
+    context = {
+        'orders': orders,
+    }
+    return render(request, template, context)
+
+
+def purchase_history_details(request, order_number):
+    """ Showing purchase history details based on order number to the user """
+    order = get_object_or_404(Order, order_number=order_number)
+
+    messages.info(request, (
+        f'This is a past confirmation for order number {order_number}. '
+        'A confirmation email was sent on the order date.'
+    ))
+
+    template = 'checkout/checkout_success.html'
+
+    context = {
+        'order': order,
+        'from_profile': True,
+    }
+
+    return render(request, template, context)

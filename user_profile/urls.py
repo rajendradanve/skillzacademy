@@ -11,5 +11,7 @@ urlpatterns = [
          name='add_main_category'),
     path('purchase_history', views.purchase_history,
          name='purchase_history'),
+    path('purchase_history_details/<order_number>',
+         views.purchase_history_details, name='purchase_history_detail'),
     
     ]

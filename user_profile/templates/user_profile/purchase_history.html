@@ -16,7 +16,35 @@
             <div class="col">
               <div class="purchase-history table-responsive">
                   <table class="table table-borderless">
+                      <thead>
+                          <th>Order Number</th>
+                          <th>Date</th>
+                          <th>Courses</th>
+                          <th>Total Price</th>
+                      </thead>
                       
+                      <tbody>
+                        {% for order in orders %}
+                          <tr>
+                              <td>
+                                <a href="{% url 'purchase_history_details' order.order_number %}" title="{{ order.order_number }}">
+                                    {{ order.order_number}}
+                                </a>
+                              </td>
+                              <td>{{ order.date }}</td>
+                              <td>
+                                  <ul class="list-unstyled">
+                                      {% for item in order.lineitems.all %}
+                                      <li class="small">
+                                          {{ item.course.title }}
+                                      </li>
+                                      {% endfor %}
+                                  </ul>
+                              </td>
+                              <td>${{ order.grand_total}}</td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
                   </table>
               </div>
             </div>
