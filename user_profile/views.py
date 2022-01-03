@@ -17,6 +17,12 @@ def admin_profile(request):
     return render(request, 'user_profile/admin.html')
 
 
+def my_courses(request):
+    """ Showing List of Register Courses"""
+    
+    return render(request, 'user_profile/my_courses.html')
+     
+
 def add_course(request):
     """ Add new course"""
 
