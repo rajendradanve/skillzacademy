@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from courses.models import Course
-# Create your views here.
 
 
 def view_bag(request):

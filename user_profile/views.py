@@ -5,12 +5,6 @@ from .models import UserProfile
 from django.contrib import messages
 
 
-def profile(request):
-    """ To use profile of the normal user."""
-
-    return render(request, 'user_profile/profile.html')
-
-
 def admin_profile(request):
     """ Admin Profile Page"""
 
@@ -45,6 +39,9 @@ def add_course(request):
 
 def add_category(request):
     """ Add new category"""
+
+    if request.method == 'POST':
+        
         
     main_categories = MainCategory.objects.all()
     
