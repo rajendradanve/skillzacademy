@@ -6,11 +6,61 @@
     <div class="container content-placement mb-2">
         <div class="row">
             <div class="col">  
-                <h2 class="logo-font mb-4 text-center">Registered Courses</h2>  
+                <h2 class="logo-font mb-4 text-center">My Courses</h2>  
             </div>
         </div>
         <div class="row mt-2">
-           
+            {% for course in courses %}
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+             <div class="card h-100 shadow-sm">
+                 {% if course.image %}
+                 <a href="{% url 'course_detail' course.id %}">
+                     <img class="bd-placeholder-img card-img-top img-fluid border border-light" src="{{ course.image.url }}" alt="{{ course.name }}">
+                 </a>
+                 {% else %}
+                 <a href="{% url 'course_detail' course.id %}">
+                     <img class="bd-placeholder-img card-img-top img-fluid border border-light" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                 </a>
+                 {% endif %}
+                 <div class="card-body pb-0">
+                     <h6 class="mb-1">{{ course.title }}</h6>
+                     
+                 </div>
+                 <div class="card-footer bg-white pt-0 border-0 text-start">
+                     <div class="row">
+                         <div class="col">
+                             <p class="small mt-1 mb-0">
+                                 <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
+                                     <i class="fas fa-tag me-1 mb-1"></i>{{course.category.friendly_name}}
+                                 </a>
+                             </p> 
+                             <p class="small"> Start Date: <span class="bg-dark text-white p-1 rounded">{{ course.start_date}}</span></p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         {% if forloop.counter|divisibleby:1 %}
+             <div class="col-12 d-sm-none mb-5">
+                 <hr>
+             </div>
+         {% endif %}                        
+         {% if forloop.counter|divisibleby:2 %}
+             <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                 <hr>
+             </div>
+         {% endif %}
+         {% if forloop.counter|divisibleby:3 %}
+             <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                 <hr>
+             </div>
+         {% endif %}
+         {% if forloop.counter|divisibleby:4 %}
+             <div class="col-12 d-none d-xl-block mb-5">
+                 <hr>
+             </div>
+         {% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

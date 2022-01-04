@@ -19,9 +19,23 @@ def admin_profile(request):
 
 def my_courses(request):
     """ Showing List of Register Courses"""
+
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+    courses = []
+    for order in orders:
+        for item in order.lineitems.all():
+            courses.append(item.course)
+
+    template = 'user_profile/my_courses.html'
+
+    context = {
+
+        'courses': courses,
+    }
     
-    return render(request, 'user_profile/my_courses.html')
-     
+    return render(request, template, context)
+
 
 def add_course(request):
     """ Add new course"""

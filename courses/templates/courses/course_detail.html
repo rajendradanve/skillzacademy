@@ -66,7 +66,7 @@
                         {% if already_in_cart %}
                             <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'view_bag' %}">Go to cart</a>
                         {% elif already_bought %}
-                            <a class="btn btn-dark rounded-1 text-uppercase" href="">Go to bought courses</a>
+                            <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'my_courses' %}">My Courses</a>
                         {% else %}
                             <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
                         {% endif %}
