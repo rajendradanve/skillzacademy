@@ -41,10 +41,20 @@ def add_category(request):
     """ Add new category"""
 
     if request.method == 'POST':
+        friendly_name = request.POST['new-category']
+        name = friendly_name.lower().replace(" ", "_")
         
-        
+        form_data = {
+            'friendly_name': friendly_name,
+            'name': name,
+            'main_category': request.POST.get('main_category'),
+        }
+        category_form = Category(form_data)
+        if category_form.is_valid:
+            category_form.save()
+
     main_categories = MainCategory.objects.all()
-    
+
     context = {
         'main_categories': main_categories,
     }
