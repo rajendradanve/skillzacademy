@@ -17,6 +17,21 @@ class MainCategory(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
+    
+    def _generate_name(self):
+        """
+        generate name from the friendly name removing spaces and using lowercase
+        """
+        return self.friendly_name.lower().replace(' ', '_')
+    
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the order number
+        if it hasn't been set already.
+        """
+        if not self.name:
+            self.name = self._generate_name()
+        super().save(*args, **kwargs)
 
 
 class Category(models.Model):
@@ -31,9 +46,24 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def _generate_name(self):
+        """
+        generate name from the friendly name removing spaces and using lowercase
+        """
+        return self.friendly_name.lower().replace(' ', '_')
 
     def get_friendly_name(self):
         return self.friendly_name
+    
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the order number
+        if it hasn't been set already.
+        """
+        if not self.name:
+            self.name = self._generate_name()
+        super().save(*args, **kwargs)
 
 
 class Course(models.Model):
