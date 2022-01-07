@@ -6,6 +6,7 @@ from django.db.models.functions import Lower
 from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
+from .forms import CategoryForm, MainCategoryForm
 
 import datetime
 
@@ -79,6 +80,7 @@ def all_courses(request):
 
 
 def course_detail(request, course_id):
+    
     """ A view to show individual course details"""
 
     course = get_object_or_404(Course, pk=course_id)
@@ -110,3 +112,69 @@ def course_detail(request, course_id):
     }
 
     return render(request, 'courses/course_detail.html', context)
+
+
+def add_course(request):
+    """ Add new course"""
+
+    return render(request, 'user_profile/add_course.html')
+
+
+def add_category(request):
+    """ Add new category"""
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            friendly_name = request.POST['friendly_name']
+            name = request.POST['friendly_name'].lower().replace(' ',  '_')
+
+            if Category.objects.filter(friendly_name=friendly_name).exists() or Category.objects.filter(name=name).exists():
+                messages.warning(request,
+                                 (f'{friendly_name} already exists in the database. '
+                                  'Please enter another name'
+                                  ))
+                return redirect(reverse('add_category'))
+            else:
+                form.save()
+                messages.success(request,
+                                 (f'{friendly_name} added in the database.'))
+                return redirect('admin')
+
+    add_category_form = CategoryForm()
+    template = 'courses/add_category.html'
+    
+    context = {
+        'add_category_form': add_category_form,
+    }
+    return render(request, template, context)
+
+
+def add_main_category(request):
+    """ Add new main category"""
+    
+    if request.method == 'POST':
+        form = MainCategoryForm(request.POST)
+        if form.is_valid():
+            friendly_name = request.POST['friendly_name']
+            name = request.POST['friendly_name'].lower().replace(' ',  '_')
+
+            if MainCategory.objects.filter(friendly_name=friendly_name).exists() or Category.objects.filter(name=name).exists():
+                messages.warning(request,
+                                 (f'{friendly_name} already exists in the database. '
+                                  'Please enter another name'
+                                  ))
+                return redirect(reverse('add_main_category'))
+            else:
+                form.save()
+                messages.success(request,
+                                 (f'{friendly_name} added in the database.'))
+                return redirect('admin')
+
+    template = 'courses/add_main_category.html'
+    add_main_category_form = MainCategoryForm()
+    context = {
+        'add_main_category_form': add_main_category_form,
+        
+    }
+    return render(request, template, context)

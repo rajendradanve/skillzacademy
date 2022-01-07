@@ -3,7 +3,7 @@ from courses.models import Course, Category, MainCategory
 from checkout.models import Order
 from .models import UserProfile
 from django.contrib import messages
-from .forms import CategoryForm
+
 
 def admin_profile(request):
     """ Admin Profile Page"""
@@ -29,36 +29,6 @@ def my_courses(request):
     }
     
     return render(request, template, context)
-
-
-def add_course(request):
-    """ Add new course"""
-
-    return render(request, 'user_profile/add_course.html')
-
-
-def add_category(request):
-    """ Add new category"""
-
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('admin')
-
-    add_category_form = CategoryForm()
-    template = 'user_profile/add_category.html'
-    
-    context = {
-        'add_category_form': add_category_form,
-    }
-    return render(request, template, context)
-
-
-def add_main_category(request):
-    """ Add new main category"""
-
-    return render(request, 'user_profile/add_main_category.html')
 
 
 def purchase_history(request):
