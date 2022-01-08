@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container content-placement mb-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="logo-font mb-4 text-center">Add Main Category</h2>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col col-md-6 offset-md-3">
+            <form action="{% url 'add_main_category' %}" method="POST" class= "form mb-2" id="add-main-category-form">
+                {% csrf_token %}
+                {{ add_main_category_form|crispy}}
+                <div class="text-center">
+                    <a href="{% url 'admin' %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
+                    <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Add Main Category</button>
+                </div>    
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

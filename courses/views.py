@@ -6,7 +6,7 @@ from django.db.models.functions import Lower
 from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import CategoryForm, MainCategoryForm
+from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm
 
 import datetime
 
@@ -176,5 +176,46 @@ def add_main_category(request):
     context = {
         'add_main_category_form': add_main_category_form,
         
+    }
+    return render(request, template, context)
+
+
+def select_category(request):
+    """ Choose category to update"""
+
+    if request.method == 'POST':
+        category_id = request.POST['select-category']
+        return redirect('update_category', category_id=category_id)
+    
+    categories = Category.objects.all()
+    template = 'courses/select_category.html'
+
+    context = {
+        'categories': categories,
+    }
+    return render(request, template, context)
+
+
+def update_category(request, category_id):
+    """ Update category"""
+
+    category = get_object_or_404(Category, pk=category_id)
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, (f'{friendly_name} added in the database.'))
+            return redirect('admin')
+    else:
+        update_category_form = UpdateCategoryForm(instance=category)
+        messages.info(request, f'You are editing {category.friendly_name}')
+
+    template = 'courses/update_category.html'
+
+    context = {
+        'update_category_form': update_category_form,
+        'category': category,
     }
     return render(request, template, context)
