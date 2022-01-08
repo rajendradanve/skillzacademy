@@ -15,7 +15,7 @@ class CategoryForm(forms.ModelForm):
         self.fields['main_category'].choices = friendly_names
         self.fields['friendly_name'].label = 'Enter Category Name'
         self.fields['friendly_name'].widget.attrs['required'] = 'required'
-        self.fields['friendly_name'].widget.attrs['minlength'] = 5
+        self.fields['friendly_name'].widget.attrs['minlength'] = 4
         self.fields['friendly_name'].widget.attrs['maxlength'] = 100
         
 
@@ -33,7 +33,7 @@ class MainCategoryForm(forms.ModelForm):
 
         self.fields['friendly_name'].label = 'Enter Main Category Name'
         self.fields['friendly_name'].widget.attrs['required'] = 'required'
-        self.fields['friendly_name'].widget.attrs['minlength'] = 5
+        self.fields['friendly_name'].widget.attrs['minlength'] = 4
         self.fields['friendly_name'].widget.attrs['maxlength'] = 100
         self.fields['friendly_name'].widget.attrs['class'] = 'border-dark rounded-1'
 
@@ -52,7 +52,7 @@ class UpdateCategoryForm(forms.ModelForm):
         self.fields['main_category'].label = "Update Main Category"
         self.fields['friendly_name'].label = 'Update Category Name'
         self.fields['friendly_name'].widget.attrs['required'] = 'required'
-        self.fields['friendly_name'].widget.attrs['minlength'] = 5
+        self.fields['friendly_name'].widget.attrs['minlength'] = 4
         self.fields['friendly_name'].widget.attrs['maxlength'] = 100
 
         for field_name, field in self.fields.items():

@@ -220,16 +220,18 @@ def select_category(request):
 @login_required
 def update_category(request, category_id):
     """ Update category"""
-    
+
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can visit this page.')
         return redirect(reverse('home'))
-    
+
     category = get_object_or_404(Category, pk=category_id)
+    friendly_name = category.friendly_name
+    name = category.name
 
     if request.method == 'POST':
         update_category_form = UpdateCategoryForm(request.POST, instance=category)
-        
+
         if update_category_form.is_valid():
             update_category_form.save()
             messages.success(request, (
@@ -245,5 +247,39 @@ def update_category(request, category_id):
     context = {
         'update_category_form': update_category_form,
         'category': category,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_main_category(request, category_id):
+    """ Update category"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can visit this page.')
+        return redirect(reverse('home'))
+
+    
+    friendly_name = category.friendly_name
+    name = category.name
+
+    if request.method == 'POST':
+        update_category_form = UpdateCategoryForm(request.POST, instance=category)
+
+        if update_category_form.is_valid():
+            update_category_form.save()
+            messages.success(request, (
+                'You successfully updated category in the database.'
+                ))
+            return redirect('admin')
+    else:
+        update_category_form = UpdateCategoryForm(instance=category)
+        messages.info(request, f'You are editing {category.friendly_name}')
+
+    main_categories = MainCategory.objects.all()
+    template = 'courses/update_main_category.html'
+
+    context = {
+        'main_categories': main_categories,
     }
     return render(request, template, context)
