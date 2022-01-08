@@ -7,6 +7,7 @@ from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm
+from django.contrib.auth.decorators import login_required
 
 import datetime
 
@@ -114,14 +115,24 @@ def course_detail(request, course_id):
     return render(request, 'courses/course_detail.html', context)
 
 
+@login_required
 def add_course(request):
     """ Add new course"""
-
+        
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin visit this page.')
+        return redirect(reverse('home'))
+    
     return render(request, 'user_profile/add_course.html')
 
 
+@login_required
 def add_category(request):
     """ Add new category"""
+    
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin visit this page.')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -150,8 +161,13 @@ def add_category(request):
     return render(request, template, context)
 
 
+@login_required
 def add_main_category(request):
     """ Add new main category"""
+      
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin visit this page.')
+        return redirect(reverse('home'))
     
     if request.method == 'POST':
         form = MainCategoryForm(request.POST)
@@ -180,8 +196,13 @@ def add_main_category(request):
     return render(request, template, context)
 
 
+@login_required
 def select_category(request):
     """ Choose category to update"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can visit this page.')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         category_id = request.POST['select-category']
@@ -196,17 +217,24 @@ def select_category(request):
     return render(request, template, context)
 
 
+@login_required
 def update_category(request, category_id):
     """ Update category"""
-
+    
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can visit this page.')
+        return redirect(reverse('home'))
+    
     category = get_object_or_404(Category, pk=category_id)
 
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        update_category_form = UpdateCategoryForm(request.POST, instance=category)
         
-        if form.is_valid():
-            form.save()
-            messages.success(request, (f'{friendly_name} added in the database.'))
+        if update_category_form.is_valid():
+            update_category_form.save()
+            messages.success(request, (
+                'You successfully updated category in the database.'
+                ))
             return redirect('admin')
     else:
         update_category_form = UpdateCategoryForm(instance=category)

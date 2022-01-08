@@ -12,7 +12,7 @@
 
     <div class="row mt-2">
         <div class="col col-md-6 offset-md-3">
-            <form action="{% url 'update_category' %}" method="POST" class= "form mb-2" id="update-category-form">
+            <form action="{% url 'update_category' category.id %}" method="POST" class= "form mb-2" id="update-category-form">
                 {% csrf_token %}
                 {{ update_category_form|crispy }}
                 <div class="text-center">
