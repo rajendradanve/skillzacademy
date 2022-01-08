@@ -14,12 +14,16 @@
         <div class="col col-md-6 offset-md-3">
             <form action="{% url 'update_main_category' %}" method="POST" class= "form mb-2" id="update-main-category-form">
                 {% csrf_token %}
-                <label for="select-main-category">Select Main Category To Update</label>
+                <label for="select-main-category">Select Main Category To Update Name</label>
                 <select class="form-select border-dark rounded-1" name="select-main-category" id="select-main-category"  aria-label="Default select example">
                    {% for main_category in main_categories %}
                     <option value="{{ main_category.id }}">{{ main_category.friendly_name }}</option>
                     {% endfor %}
-                  </select>
+                </select>
+                <div class="form-group mt-2">
+                    <label for="new-main-category">Enter Name for Main Category</label>
+                    <input name="new-main-category" type="text" minlength="4" maxlength="100" id="new-main-category" class="form-control border-dark rounded-1" required >
+                </div>
                 <div class="text-center">
                     <a href="{% url 'admin' %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
                     <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Update Main Category</button>

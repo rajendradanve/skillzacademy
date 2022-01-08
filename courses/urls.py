@@ -11,6 +11,6 @@ urlpatterns = [
          name='update_category'),
     path('add/main_category/', views.add_main_category,
          name='add_main_category'),
-    path('update/main_category/<int:main_category_id>', views.update_main_category,
+    path('update/main_category/', views.update_main_category,
          name='update_main_category'),
     ]
