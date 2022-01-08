@@ -2,6 +2,13 @@ from django import forms
 from .models import Category, MainCategory, Course, CourseSchedule
 
 
+class AddCourse(forms.ModelForm):
+    class Meta:
+        model = Course
+        model2 = CourseSchedule
+        fields = ['category', 'title', 'description', 'prerequisite', 'learning_objectives', 'for_whom', 'instructor_info', 'number_of_lectures', 'price']
+
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category

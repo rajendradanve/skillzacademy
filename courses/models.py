@@ -86,8 +86,8 @@ class Course(models.Model):
 
     date_added = models.DateField(auto_now_add=True)
     time_added = models.TimeField(auto_now_add=True)
-    date_updated = models.DateField(auto_now=True)
-    time_updated = models.TimeField(auto_now=True)
+    date_updated = models.DateField()
+    time_updated = models.TimeField()
     course_timezone = models.CharField(max_length=100, default="CET")
 
     def update_start_date(self):
