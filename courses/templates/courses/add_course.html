@@ -3,7 +3,7 @@
 
 
 {% block content %} 
-    <div class="container content-placement mb-2">
+    <div class="container content-placement">
         <div class="row">
             <div class="col">
                 
@@ -13,7 +13,17 @@
             
         </div>
         <div class="row mt-2">
-           
+            <div class="col col-md-8 offset-md-2">
+                <form action="{% url 'add_course' %}" method="POST" class= "form mb-2" id="add-course-form">
+                    {% csrf_token %}
+                    
+                        {{ add_course_form|crispy }}
+                    <div class="text-center">
+                        <a href="{% url 'admin' %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
+                        <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Add Course</button>
+                    </div>    
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

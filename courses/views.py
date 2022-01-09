@@ -6,7 +6,7 @@ from django.db.models.functions import Lower
 from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm
+from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, AddCourseForm
 from django.contrib.auth.decorators import login_required
 
 import datetime
@@ -123,7 +123,13 @@ def add_course(request):
         messages.error(request, 'Sorry, only admin visit this page.')
         return redirect(reverse('home'))
     
-    return render(request, 'user_profile/add_course.html')
+    add_course_form = AddCourseForm()
+    template = 'courses/add_course.html'
+    
+    context = {
+        'add_course_form': add_course_form,
+    }
+    return render(request, template, context)
 
 
 @login_required
