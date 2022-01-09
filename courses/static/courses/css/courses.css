@@ -27,3 +27,7 @@
     cursor: pointer;
     text-decoration: none;
   }
+
+  form.ckeditorwidget {
+    width: 100%;
+  }
