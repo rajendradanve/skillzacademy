@@ -7,6 +7,10 @@ body {
     padding-top: 164px;
 }
 
+.content-placement-bottom {
+    margin-bottom: 164px;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -153,6 +157,7 @@ input[name='q']::placeholder {
 .allauth-form-inner-content a {
 	color: #17a2b8; /* text-info */
 }
+
 
 /* ----------------- Media Queries ------------------ */
 
