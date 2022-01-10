@@ -5,7 +5,6 @@ body {
 
 .content-placement {
     padding-top: 164px;
-    padding-bottom: 164px;
 }
 
 /* from Bulma */
@@ -33,6 +32,7 @@ a.category-badge > span.badge:hover {
 input[name='q']::placeholder {
     color: #aab7c4;
 }
+
 /* ------------------------------- bootstrap toasts */
 .message-container {
     position:fixed;
