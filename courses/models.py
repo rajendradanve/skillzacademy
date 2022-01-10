@@ -108,5 +108,5 @@ class CourseSchedule(models.Model):
     course_link = models.URLField(max_length=1024, null=False, blank=False)
     date_added = models.DateField(auto_now_add=True)
     time_added = models.TimeField(auto_now_add=True)
-    date_updated = models.DateField(auto_now=True)
-    time_updated = models.TimeField(auto_now=True)
+    date_updated = models.DateField()
+    time_updated = models.TimeField()

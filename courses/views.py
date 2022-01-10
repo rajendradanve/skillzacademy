@@ -6,9 +6,9 @@ from django.db.models.functions import Lower
 from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, AddCourseForm
+from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, AddCourseForm, AddCourseScheduleForm
 from django.contrib.auth.decorators import login_required
-
+from django.forms.models import modelformset_factory #model form for queryset
 import datetime
 
 
@@ -123,11 +123,24 @@ def add_course(request):
         messages.error(request, 'Sorry, only admin visit this page.')
         return redirect(reverse('home'))
     
-    add_course_form = AddCourseForm()
+    if request.method == 'POST':
+        add_course_form = AddCourseForm(request.POST)
+        
+        if add_course_form.is_valid():
+            add_course_form.save()
+            messages.success(request,
+                                 (f'Course added in the database.'))
+            return redirect('admin')
+    else:    
+        add_course_form = AddCourseForm()
+        add_course_schedule_form = AddCourseScheduleForm()
+        AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm, extra=0)
+        add_course_schedule_formset = AddCourseScheduleFormset()
     template = 'courses/add_course.html'
     
     context = {
         'add_course_form': add_course_form,
+        'add_course_schedule_formset': add_course_schedule_formset,
     }
     return render(request, template, context)
 
