@@ -2,6 +2,14 @@ from django import forms
 from .models import Category, MainCategory, Course, CourseSchedule
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
+
+
 class AddCourseForm(forms.ModelForm):
     class Meta:
         model = Course
@@ -23,11 +31,16 @@ class AddCourseForm(forms.ModelForm):
 class AddCourseScheduleForm(forms.ModelForm):
     class Meta:
         model = CourseSchedule
-        fields =  ['course_date', 'course_start_time', 'course_end_time', 'course_link']
+        fields = ['course_date', 'course_start_time', 'course_end_time', 'course_link']
+        widgets = {
+            'course_date': DateInput(),
+            'course_start_time': TimeInput(),
+            'course_end_time': TimeInput(),
+        }
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-  
+        
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
             
