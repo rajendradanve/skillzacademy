@@ -15,7 +15,7 @@ class AddCourseForm(forms.ModelForm):
         model = Course
         fields = ['category', 'title', 'description', 'prerequisite',
                          'learning_objectives', 'for_whom', 'instructor_info',
-                         'number_of_lectures', 'price']
+                         'number_of_lectures', 'price', 'image_url', 'image']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

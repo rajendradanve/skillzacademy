@@ -125,11 +125,12 @@ def add_course(request):
     
     if request.method == 'POST':
         add_course_form = AddCourseForm(request.POST)
+        add_course_schedule_formset =  modelformset_factory(request.POST)
         
-        if add_course_form.is_valid():
+        if add_course_form.is_valid() and add_course_schedule_formset.is_valid():
             add_course_form.save()
-            messages.success(request,
-                                 (f'Course added in the database.'))
+            add_course_schedule_formset.save()
+            messages.success(request, 'Course added in the database.')
             return redirect('admin')
     else:    
         add_course_form = AddCourseForm()

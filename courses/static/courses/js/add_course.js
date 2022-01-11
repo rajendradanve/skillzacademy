@@ -30,5 +30,4 @@ $(document).ready(function () {
 
 function disableOldDate(){
     let dateToday = new Date();
-    console.log(dateToday);
 }
