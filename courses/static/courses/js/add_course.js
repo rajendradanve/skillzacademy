@@ -29,12 +29,6 @@ $(document).ready(function () {
         });
 
 function disableOldDate(){
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let yyyy = today.getFullYear();
-    
-    today = dd + '/' + mm + '/' + yyyy;
-    console.log(today)
-    $('.dateinput').attr('min', today);
+    let dateToday = new Date();
+    console.log(dateToday);
 }
