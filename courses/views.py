@@ -135,7 +135,9 @@ def add_course(request):
         add_course_form = AddCourseForm()
         add_course_schedule_form = AddCourseScheduleForm()
         AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm, extra=0)
-        add_course_schedule_formset = AddCourseScheduleFormset()
+        obj = CourseSchedule.objects.none()
+        
+        add_course_schedule_formset = AddCourseScheduleFormset(queryset=obj)
     template = 'courses/add_course.html'
     
     context = {

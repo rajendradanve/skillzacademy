@@ -20,22 +20,23 @@
                     {% csrf_token %}
                     
                         {{ add_course_form|crispy }}
-                        {% for form in add_course_schedule_formset %}
+                        
                         <div class="row">
                             <div class="form-group col-md-3 mb-0">
-                                {{ form.course_date|as_crispy_field }}
+                                {{ add_course_schedule_formset.empty_form.course_date|as_crispy_field }}
                             </div>
                             <div class="form-group col-md-3 mb-0">
-                                {{ form.course_start_time|as_crispy_field }}
+                                {{ add_course_schedule_formset.empty_form.course_start_time|as_crispy_field }}
                             </div>
                             <div class="form-group col-md-3 mb-0">
-                                {{ form.course_end_time|as_crispy_field }}
+                                {{ add_course_schedule_formset.empty_form.course_end_time|as_crispy_field }}
                             </div>
                             <div class="form-group col-md-3 mb-0">
-                                {{ form.course_link|as_crispy_field }}
+                                {{ add_course_schedule_formset.empty_form.course_link|as_crispy_field }}
                             </div>
                         </div>
-                        {% endfor %}
+                        
+                      <button id="add-lecture" class="btn btn-sm btn-primary" type="button">Add Lecture</button>
                        
                     <div class="text-center">
                         <a href="{% url 'admin' %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
@@ -45,4 +46,14 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %} 
+    {{ block.super }}
+    
+    <script>
+        $('#add-lecture').click(function(event){
+            //add new empty form to add lecture
+        })
+    </script>
 {% endblock %}
