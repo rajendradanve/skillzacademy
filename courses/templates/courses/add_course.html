@@ -36,8 +36,9 @@
                         </div>
                     </div>
                 </div>
+                <div id="lecture-btn-group">
                 <button id="add-lecture" class="btn btn-sm btn-primary" type="button">Add Lecture</button>
-
+                </div>
                 <div class="text-center">
                     <a href="{% url 'admin' %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
                     <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Add Course</button>
@@ -52,12 +53,19 @@
 {{ block.super }}
 
 <script>
+    let click = 0
     $('#add-lecture').click(function (event) {
         //add new empty form to add lecture
         if (event) {
             event.preventDefault()
         }
+        click = click + 1
+        console.log(click)
         $('.empty-form').clone().appendTo('#course-schedule-form')
+        if(click == 1){
+            let removeBtnHtml = '<button id="remove-lecture" class="btn btn-sm btn-secondary mx-4" type="button">Remove Lecture</button>'
+            $('#add-lecture').after(removeBtnHtml)
+        }
     })
 </script>
 {% endblock %}
