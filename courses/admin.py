@@ -40,5 +40,4 @@ class CourseAdmin(admin.ModelAdmin):
   
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
-#admin.site.register(CourseSchedule, CourseScheduleAdmin)
 admin.site.register(MainCategory, MainCategoryAdmin)
