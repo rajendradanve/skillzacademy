@@ -149,23 +149,34 @@ def add_course_schedule(request, course_id):
 
     AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm)
     
-
     if request.method == 'POST':
-        new_course = Course.objects.filter(pk=course_id)
-        qs = CourseSchedule.objects.filter(course=new_course)
+        
+        new_course = Course.objects.get(pk=course_id)
+        qs = CourseSchedule.objects.filter(course__id=new_course.id)
         
         formset = AddCourseScheduleFormset(request.POST, queryset=qs)
         
+       
         if formset.is_valid():
+            """
             instances = formset.save(commit=False)
             for instance in instances:
+                print(instance)
+                instance.course_id = new_course.id
                 instance.save()
-
+                """
+            for form in formset:
+                instance = form.save(commit=False)
+                instance.course_id = new_course.id
+                instance.save()
             messages.success(request, 'Course Added Successfuly')
-            return redirect('admin')                    
-            
-        
-    add_course_schedule_formset = AddCourseScheduleFormset(request.POST)
+            return redirect('admin')
+        else:
+            print(formset.errors)
+            print(formset.non_form_errors())                    
+  
+    
+    add_course_schedule_formset = AddCourseScheduleFormset(queryset=CourseSchedule.objects.none())
     template = 'courses/add_course_schedule.html'
     context = {
         'add_course_schedule_formset': add_course_schedule_formset,

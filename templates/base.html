@@ -191,13 +191,33 @@
   <!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
 
     <footer class="footer py-1 bg-light border-top fixed-bottom">
-      <ul class="nav justify-content-center border-bottom pb-1 mb-1">
-        <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i class="fab fa-twitter-square fa-3x"></i></a></li>
-        <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i class="fab fa-facebook-square fa-3x"></i></a></li>
-        <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i class="fab fa-youtube-square fa-3x"></i></a></li>
-  
-      </ul>
-      <p class="text-center text-dark">&copy; {% now "Y" %} Skillz Academy</p>
+      <div class="row">
+        <div class="col col-md-4 d-flex justify-content-center my-auto">
+          <div>
+            <p>Subscribe To Our Newsletter</p>
+            <form action="">
+              <input type="email" id="subscription-email" name = "subscription-email" placeholder="Enter Your Email Address" size="50" required>
+            </form>
+          </div>
+          
+        </div>
+        <div class="col col-md-4">
+          <ul class="nav justify-content-center pb-1 mb-1">
+            <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i class="fab fa-twitter-square fa-3x"></i></a></li>
+            <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i class="fab fa-facebook-square fa-3x"></i></a></li>
+            <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i class="fab fa-youtube-square fa-3x"></i></a></li>
+          </ul>
+        </div>
+        <div class="col col-md-4 d-flex justify-content-center my-auto">
+          <h4>Contact Us</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="text-center text-dark">&copy; {% now "Y" %} Skillz Academy</p>
+        </div>
+      </div>
+ 
     </footer>
 
 

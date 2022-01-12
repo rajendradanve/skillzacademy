@@ -9,6 +9,7 @@ $(document).ready(function () {
                 click = click + 1;
                 //$('.empty-form').clone().appendTo('#course-schedule-form');
                 $('#course-schedule-form').children().last().clone().appendTo('#course-schedule-form');
+                
                 if (click == 1) {
                     let removeBtnHtml = '<button id="remove-lecture" class="btn btn-sm btn-secondary mx-4" type="button">Remove Lecture</button>';
                     $('#add-lecture').after(removeBtnHtml);
