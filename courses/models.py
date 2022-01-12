@@ -68,7 +68,6 @@ class Category(models.Model):
 
 class Course(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=254, null=False, blank=False)
     description = RichTextField()
     prerequisite = RichTextField()
@@ -84,10 +83,10 @@ class Course(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
-    date_added = models.DateField(auto_now_add=True)
-    time_added = models.TimeField(auto_now_add=True)
-    date_updated = models.DateField()
-    time_updated = models.TimeField()
+    date_added = models.DateField(auto_now_add=True, editable=False)
+    time_added = models.TimeField(auto_now_add=True, editable=False)
+    date_updated = models.DateField(default=now, blank=True)
+    time_updated = models.TimeField(default=now, blank=True)
     course_timezone = models.CharField(max_length=100, default="CET")
 
     def update_start_date(self):
@@ -106,7 +105,7 @@ class CourseSchedule(models.Model):
     course_start_time = models.TimeField()
     course_end_time = models.TimeField()
     course_link = models.URLField(max_length=1024, null=False, blank=False)
-    date_added = models.DateField(auto_now_add=True)
-    time_added = models.TimeField(auto_now_add=True)
-    date_updated = models.DateField()
-    time_updated = models.TimeField()
+    date_added = models.DateField(auto_now_add=True, editable=False)
+    time_added = models.TimeField(auto_now_add=True, editable=False)
+    date_updated = models.DateField(default=now, blank=True)
+    time_updated = models.TimeField(default=now, blank=True)

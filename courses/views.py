@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, AddCourseForm, AddCourseScheduleForm
 from django.contrib.auth.decorators import login_required
-from django.forms.models import modelformset_factory #model form for queryset
+from django.forms.models import modelformset_factory
 import datetime
 
 
@@ -118,27 +118,36 @@ def course_detail(request, course_id):
 @login_required
 def add_course(request):
     """ Add new course"""
-        
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only admin visit this page.')
+        messages.error(request, 'Sorry, only admin can visit this page.')
         return redirect(reverse('home'))
+
+    AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm)
+    add_course_form = AddCourseForm(request.POST or None)
+    obj = CourseSchedule.objects.none()
+    add_course_schedule_formset = AddCourseScheduleFormset(request.POST or None, queryset=obj)
     
     if request.method == 'POST':
-        add_course_form = AddCourseForm(request.POST)
-        add_course_schedule_formset =  modelformset_factory(request.POST)
-        
-        if add_course_form.is_valid() and add_course_schedule_formset.is_valid():
-            add_course_form.save()
-            add_course_schedule_formset.save()
+        if add_course_form.is_valid():
+            new_course = add_course_form.save(commit=False)
+            # add_new_course_schedule_formset = AddCourseScheduleFormset(request.POST, request.FILES)
+            new_course.save()
+            
+            """
+        if add_course_schedule_formset.is_valid():
+            
+            for form in add_course_schedule_formset:
+                form.save()
+"""
             messages.success(request, 'Course added in the database.')
             return redirect('admin')
-    else:    
-        add_course_form = AddCourseForm()
-        add_course_schedule_form = AddCourseScheduleForm()
-        AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm, extra=0)
-        obj = CourseSchedule.objects.none()
-        
-        add_course_schedule_formset = AddCourseScheduleFormset(queryset=obj)
+        else:
+            if add_course_form.is_valid():
+                print("form is valid")
+            
+            if not add_course_schedule_formset.is_valid():
+                print(add_course_schedule_formset.errors)
+ 
     template = 'courses/add_course.html'
     
     context = {

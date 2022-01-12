@@ -32,7 +32,6 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'category',
-        'created_by',
         'price',
         'rating',
         'image',
