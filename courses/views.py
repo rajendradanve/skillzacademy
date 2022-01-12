@@ -122,32 +122,19 @@ def add_course(request):
         messages.error(request, 'Sorry, only admin can visit this page.')
         return redirect(reverse('home'))
 
-    AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm)
-    add_course_form = AddCourseForm(request.POST or None)
-    obj = CourseSchedule.objects.none()
-    add_course_schedule_formset = AddCourseScheduleFormset(request.POST or None, queryset=obj)
-    
     if request.method == 'POST':
+        add_course_form = AddCourseForm(request.POST)
+        
         if add_course_form.is_valid():
-            new_course = add_course_form.save(commit=False)
-            # add_new_course_schedule_formset = AddCourseScheduleFormset(request.POST, request.FILES)
-            new_course.save()
-            
-            """
-        if add_course_schedule_formset.is_valid():
-            
-            for form in add_course_schedule_formset:
-                form.save()
-"""
-            messages.success(request, 'Course added in the database.')
-            return redirect('admin')
-        else:
-            if add_course_form.is_valid():
-                print("form is valid")
-            
-            if not add_course_schedule_formset.is_valid():
-                print(add_course_schedule_formset.errors)
- 
+            new_course = add_course_form.save()
+            new_course_id = new_course.id
+            return redirect('add_course_schedule', course_id=new_course_id)
+
+    add_course_form = AddCourseForm()
+    
+    add_course_schedule_formset = AddCourseScheduleFormset(
+        queryset=CourseSchedule.objects.none())
+    
     template = 'courses/add_course.html'
     
     context = {
@@ -156,6 +143,25 @@ def add_course(request):
     }
     return render(request, template, context)
 
+
+@login_required
+def add_course_schedule(request, course_id):
+    
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can visit this page.')
+        return redirect(reverse('home'))
+
+    AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm)
+    
+    #if request.method == 'POST':
+        
+        
+    add_course_schedule_formset = AddCourseScheduleFormset(request.POST)
+    template = 'courses/add_course_schedule.html'
+    context = {
+        'add_course_schedule_formset': add_course_schedule_formset,
+    }
+    return render(request, template, context)
 
 @login_required
 def add_category(request):
