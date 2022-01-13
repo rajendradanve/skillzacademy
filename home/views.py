@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import Subscription
+from django.contrib import messages
 # Create your views here.
 
 
@@ -10,7 +11,16 @@ def index(request):
 
 def subscribe(request):
 
-    if(reqest.method == 'POST'):
+    if(request.method == 'POST'):
         email = request.POST.get('subscription-email')
-        Subscription.create(email=email)
+        
+        if Subscription.objects.filter(email=email).exists():
+            messages.info(request, (f'{email} already exist in the subscription list'))
+        else:
+            Subscription.objects.create(email=email).save()
+            messages.success(request, (f'{email} added in the subscription list'))
+        
         return HttpResponseRedirect(request.path_info)
+    
+    
+    return redirect(request.META['HTTP_REFERER'])

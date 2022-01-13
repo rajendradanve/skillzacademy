@@ -198,7 +198,7 @@
         <div class="col col-md-6 d-flex justify-content-center my-auto">
           <div>
             <p class="text-center text-dark">Subscribe To Our Newsletter</p>
-            <form class="form-inline" action="" method="POST">
+            <form class="form-inline" action="{% url 'subscribe' %}" method="POST">
               {% csrf_token %}
               <input type="email" id="subscription-email" name = "subscription-email" placeholder="Enter Your Email Address" size="50" required>
               <button type="submit" class="btn btn-primary mb-2">Submit</button>
