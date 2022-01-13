@@ -79,8 +79,13 @@
                                         </a>
                                     </p> 
                                     <p class="small mt-2"> Start Date: <span class="bg-dark text-white p-1 rounded">{{ course.start_date}}</span></p>
-                                    <p class="lead mb-0 text-start font-weight-bold">${{ course.price }}</p>
-                                   
+                                    <p class="lead mb-0 text-end font-weight-bold">${{ course.price }}</p>
+                                    {% if request.user.is_superuser %}
+                                        <div class="mt-2 d-flex justify-content-around">
+                                            <a href="" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

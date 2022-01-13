@@ -157,12 +157,16 @@ def add_course_schedule(request, course_id):
         if formset.is_valid():
             formset.save()
             
-            messages.success(request, 'lecture added successfully')
-            return redirect('add_course_schedule', course_id=new_course.id)
+            if 'save-n-continue' in request.POST:
+                
+                messages.success(request, 'lecture added successfully')
+                return redirect('add_course_schedule', course_id=new_course.id)
+            elif 'save-n-exit' in request.POST:
+                messages.success(request, 'Course added successfully')
+                return redirect('admin')
         else:
-            print(f'error= {formset.errors}')
-      
-    formset = AddCourseScheduleFormset(instance=new_course)
+            formset = AddCourseScheduleFormset(instance=new_course)
+    
     template = 'courses/add_course_schedule.html'
     context = {
         'formset': formset,
