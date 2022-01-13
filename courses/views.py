@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, AddCourseForm, AddCourseScheduleForm
 from django.contrib.auth.decorators import login_required
-from django.forms.models import modelformset_factory
+from django.forms import inlineformset_factory
 import datetime
 
 
@@ -146,40 +146,26 @@ def add_course_schedule(request, course_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can visit this page.')
         return redirect(reverse('home'))
-
-    AddCourseScheduleFormset = modelformset_factory(CourseSchedule, form=AddCourseScheduleForm)
     
+    new_course = Course.objects.get(pk=course_id)
+    
+    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule, form=AddCourseScheduleForm, extra=1)
+   
     if request.method == 'POST':
         
-        new_course = Course.objects.get(pk=course_id)
-        qs = CourseSchedule.objects.filter(course__id=new_course.id)
-        
-        formset = AddCourseScheduleFormset(request.POST, queryset=qs)
-        
-       
+        formset = AddCourseScheduleFormset(request.POST, instance=new_course)
         if formset.is_valid():
-            """
-            instances = formset.save(commit=False)
-            for instance in instances:
-                print(instance)
-                instance.course_id = new_course.id
-                instance.save()
-                """
-            for form in formset:
-                instance = form.save(commit=False)
-                instance.course_id = new_course.id
-                instance.save()
-            messages.success(request, 'Course Added Successfuly')
-            return redirect('admin')
+            formset.save()
+            
+            messages.success(request, 'lecture added successfully')
+            return redirect('add_course_schedule', course_id=new_course.id)
         else:
-            print(formset.errors)
-            print(formset.non_form_errors())                    
-  
-    
-    add_course_schedule_formset = AddCourseScheduleFormset(queryset=CourseSchedule.objects.none())
+            print(f'error= {formset.errors}')
+      
+    formset = AddCourseScheduleFormset(instance=new_course)
     template = 'courses/add_course_schedule.html'
     context = {
-        'add_course_schedule_formset': add_course_schedule_formset,
+        'formset': formset,
         'course_id': course_id
     }
     return render(request, template, context)

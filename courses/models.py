@@ -74,9 +74,9 @@ class Course(models.Model):
     learning_objectives = RichTextField()
     for_whom = RichTextField()
     instructor_info = RichTextField()
-    number_of_lectures = models.PositiveIntegerField()
+    number_of_lectures = models.PositiveIntegerField(default=0)
     price = models.PositiveIntegerField(null=False, blank=False, default=100)
-    start_date = models.DateField(default=now)
+    start_date = models.DateField(null=True, blank=True)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,
                                  blank=True)
 
@@ -89,6 +89,9 @@ class Course(models.Model):
     time_updated = models.TimeField(default=now, blank=True)
     course_timezone = models.CharField(max_length=100, default="CET")
 
+    def update_number_of_lectures(self):
+        self.number_of_lectures = self.courseschedulelist.count()
+    
     def update_start_date(self):
         
         self.start_date = self.courseschedulelist.order_by('course_date').first().course_date

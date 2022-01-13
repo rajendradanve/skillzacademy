@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'home/index.html')
 
 def subscribe(request):
-    
+
     if(reqest.method == 'POST'):
         email = request.POST.get('subscription-email')
         Subscription.create(email=email)

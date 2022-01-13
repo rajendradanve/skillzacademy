@@ -1,6 +1,6 @@
 from django import forms
 from .models import Category, MainCategory, Course, CourseSchedule
-
+from crispy_forms.helper import FormHelper
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -15,7 +15,7 @@ class AddCourseForm(forms.ModelForm):
         model = Course
         fields = ['category', 'title', 'description', 'prerequisite',
                          'learning_objectives', 'for_whom', 'instructor_info',
-                         'number_of_lectures', 'price', 'image_url', 'image']
+                         'price', 'image_url', 'image']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,7 +40,8 @@ class AddCourseScheduleForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+        self.helper = FormHelper()
+        self.helper.render_hidden_fields = True
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
             
