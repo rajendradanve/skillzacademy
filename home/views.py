@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import Subscription
 from django.contrib import messages
+from .forms import ContactForm
 
-
-def index(request):
-    """ A view to return the index page"""
+def home(request):
+    """ A view to return the home page"""
     
     return render(request, 'home/index.html')
 
@@ -27,8 +27,18 @@ def subscribe(request):
 
 
 def contact(request):
-    
-    
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message submitted successfully. We will come back to you as soon as possible.')
+        
+        return request('home')
+    form = ContactForm()
+
     template = 'home/contact_us.html'
-    
-    return render(request, template)
+    context = {
+        'form': form
+        }
+    return render(request, template, context)

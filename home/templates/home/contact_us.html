@@ -8,10 +8,18 @@
 {% block content %} 
 <div class="container content-placement content-placement-bottom">
     <div class="row">
-        <div class="col">
-            <hr>
-            <h2 class="logo-font mb-4">Contact Us</h2>
-            <hr>
+        
+        <div class="col col-md-6 offset-md-3">
+           
+            <h2 class="logo-font mb-4 text-center">Contact Us</h2>
+            <form action="{% url 'contact'}" method="POST">
+                {% csrf_token %}
+                     {{ form|crispy }}
+                     <div class="text-center">    
+                        <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Send</button>
+                    </div>    
+                    
+             </form>
         </div>
         
     </div>
