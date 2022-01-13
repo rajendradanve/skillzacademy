@@ -24,36 +24,39 @@
     </li>
     {% if request.user.is_authenticated %}
         {% if request.user.is_superuser %}
-            <li class="list-inline-item">
-                <a class="text-dark nav-link d-block d-lg-none" href="">
+            <li class="list-inline-item dropdown">">
+                <a class="text-dark nav-link d-block d-lg-none" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-center">
                         <div><i class="fas fa-user-shield fa-lg"></i></div>
-                        <p class="my-0">Admin Profile</p>
-                    </div>
-                </a> </li>
+                      <p class="my-0">Admin</p>
+                  </div>
+                </a> 
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                    <li><a class="dropdown-item" href="{% url 'admin' %}">Managment</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                  </ul>
+            </li>
         {% else %}
             <li class="list-inline-item dropdown">
                 <a class="nav-link text-dark d-block d-lg-none" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="text-center">
                         <div><i class="fas fa-user fa-lg"></i></div>
-                        <p class="my-0">My Account</p>
+                        <p class="my-0">My Profile</p>
                     </div>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                    <li><a class="dropdown-item" href="#">My Learning</a></li>
-                    <li><a class="dropdown-item" href="#">My Teaching</a></li>
-                    <li><a class="dropdown-item" href="#">Purchase History</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                    <li><a class="dropdown-item" href="{% url 'my_courses' %}">My Courses</a></li>
+                    <li><a class="dropdown-item" href="{% url 'purchase_history' %}">Purchase History</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                 </ul>
             </li>
         {% endif %}
     {% else %}
-        <li class="list-inline-item"><a href="{% url 'account_signup' %}" class="nav-link d-block d-lg-none">Register</a></li>
-        <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link d-block d-lg-none">Login</a></li>
+        <li class="list-inline-item"><a href="{% url 'account_signup' %}" class="nav-link d-block d-lg-none">Sign Up</a></li>
+        <li class="list-inline-item"><a href="{% url 'account_login' %}" class="nav-link d-block d-lg-none">Sign In</a></li>
     {% endif %}
     <li class="list-inline-item">
         <a class="nav-link text-dark d-block d-lg-none" href="{% url 'view_bag' %}">

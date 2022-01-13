@@ -34,16 +34,10 @@
                     </a>
                 </p> 
                 <p class="lead mb-1 text-start font-weight-bold">${{ course.price }}</p>
-                <!-- Rating code is removed temporarily
-                {% if course.rating %}
-                <small class="text-muted"><i class="fas fa-star mr-1"></i> {{ course.rating }} / 5</small>
-                {% else %}
-                <small class="text-muted">No Rating</small>
-                {% endif %}
-                -->
+
                 <hr>
 
-                <p>Course {% if course.number_of_lectures > 1 %}Start{% endif %} Date:
+                <p>Course {% if course.courseschedulelist.all.count > 1 %}Start{% endif %} Date:
                     <strong class="p-2 bg-success text-white rounded-1">
                         {% with course_schedule_list|first as course_start %}
                         {{ course_start.course_date|date:"d M, Y"}}

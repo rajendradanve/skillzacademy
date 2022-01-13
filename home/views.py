@@ -31,10 +31,13 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            
             form.save()
             messages.success(request, 'Your message submitted successfully. We will come back to you as soon as possible.')
-        
-        return request('home')
+            return request('home')
+        else:
+            print(form.errors)
+            
     form = ContactForm()
 
     template = 'home/contact_us.html'

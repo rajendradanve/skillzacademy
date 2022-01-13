@@ -123,13 +123,16 @@ def add_course(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        add_course_form = AddCourseForm(request.POST)
+        add_course_form = AddCourseForm(request.POST, request.FILES)
         
         if add_course_form.is_valid():
             new_course = add_course_form.save()
             new_course_id = new_course.id
             return redirect('add_course_schedule', course_id=new_course_id)
-
+        else:
+            
+            messages.error(request, 'Failed to add course. Check all values are filed correctly.')
+            
     add_course_form = AddCourseForm()
     
     template = 'courses/add_course.html'
@@ -165,7 +168,10 @@ def add_course_schedule(request, course_id):
                 messages.success(request, 'Course added successfully')
                 return redirect('admin')
         else:
-            formset = AddCourseScheduleFormset(instance=new_course)
+            
+                messages.error(request, 'Something went wrong. Please try again')
+            
+    formset = AddCourseScheduleFormset(instance=new_course)
     
     template = 'courses/add_course_schedule.html'
     context = {
