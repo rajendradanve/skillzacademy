@@ -333,3 +333,16 @@ def update_main_category(request):
         'main_categories': main_categories,
     }
     return render(request, template, context)
+
+
+@login_required
+def delete_course(request, course_id):
+    """ Delete a Course """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can update database')
+        return redirect(reverse('home'))
+    
+    course = get_object_or_404(Course, pk=course_id)
+    course.delete()
+    messages.success(request, 'course deleted successfully')
+    return redirect(reverse('courses'))

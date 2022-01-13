@@ -26,16 +26,18 @@ def subscribe(request):
     return redirect(request.META['HTTP_REFERER'])
 
 
-def contact(request):
+def contact_us(request):
 
     if request.method == 'POST':
+       # print(request.POST)
         form = ContactForm(request.POST)
         if form.is_valid():
-            
+            print("form valid")
             form.save()
             messages.success(request, 'Your message submitted successfully. We will come back to you as soon as possible.')
-            return request('home')
+            return redirect(reverse('home'))
         else:
+            print("form not valid")
             print(form.errors)
             
     form = ContactForm()
