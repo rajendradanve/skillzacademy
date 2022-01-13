@@ -90,11 +90,13 @@ class Course(models.Model):
     course_timezone = models.CharField(max_length=100, default="CET")
 
     def update_number_of_lectures(self):
-        self.number_of_lectures = self.courseschedulelist.count()
-    
-    def update_start_date(self):
+        if self.courseschedulelist.count() > 0:
+            self.number_of_lectures = self.courseschedulelist.count()
+        self.save()
         
-        self.start_date = self.courseschedulelist.order_by('course_date').first().course_date
+    def update_start_date(self):
+        if self.courseschedulelist.order_by('course_date').count()>0:
+            self.start_date = self.courseschedulelist.order_by('course_date').first().course_date
         self.save()
 
     def __str__(self):

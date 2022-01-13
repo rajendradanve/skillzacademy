@@ -2,14 +2,11 @@ $(document).ready(function () {
             
             let click = 0
             $('#add-lecture').click(function (event) {
-                //add new empty form to add lecture
-                
+            
                 click = click + 1;
                 
                 //cloneMore('.empty-form:last');
                 
-                
-             
                 if (click == 1) {
                     let removeBtnHtml = '<button id="remove-lecture" class="btn btn-sm btn-secondary mx-4" type="button">Remove Lecture</button>';
                     $('#add-lecture').after(removeBtnHtml);
@@ -23,7 +20,7 @@ $(document).ready(function () {
                 if (click == 0) {
                     $('#remove-lecture').remove();
                 }
-                $('#course-schedule-form').children().last().remove()
+                //$('#course-schedule-form').children().last().remove()
 
                 let total = $('#id_form-TOTAL_FORMS').val();
                 total--;

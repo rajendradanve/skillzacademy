@@ -16,7 +16,7 @@ def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
 
     courses = Course.objects.filter(start_date__gt=datetime.date.today())
-
+   
     query = None
     category = None
     categories = None

@@ -6,7 +6,7 @@
 
 
 {% block content %} 
-    <div class="container-fluid content-placement mb-5">
+    <div class="container-fluid content-placement content-placement-bottom">
 
         <div class="row">
             <div class="col-auto text-center mt-2 mx-auto">
@@ -35,10 +35,6 @@
                             <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                             <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                             <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                            <!-- Rating is removed for current scope
-                            <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                            <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
-                            -->
                             <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A-Z)</option>
                             <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title (Z-A)</option>
                             <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
@@ -58,6 +54,7 @@
                </div>
                <div class="row">
                    {% for course in courses %}
+                   
                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 shadow-sm">
                         {% if course.image %}
@@ -81,7 +78,7 @@
                                             <i class="fas fa-tag me-1 mb-1"></i>{{course.category.friendly_name}}
                                         </a>
                                     </p> 
-                                    <p class="small"> Start Date: <span class="bg-dark text-white p-1 rounded">{{ course.start_date}}</span></p>
+                                    <p class="small mt-2"> Start Date: <span class="bg-dark text-white p-1 rounded">{{ course.start_date}}</span></p>
                                     <p class="lead mb-0 text-start font-weight-bold">${{ course.price }}</p>
                                    
                                 </div>

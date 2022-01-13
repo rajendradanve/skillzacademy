@@ -22,13 +22,4 @@ def update_on_delete(sender, instance, **kwargs):
     Update start date of the course
     """
     instance.course.update_start_date()
-    instance.update_number_of_lectures()
-
-
-@receiver(post_delete, sender=Course)
-def delete_course(sender, instance, **kwargs):
-    """ 
-    delete course line items if course is deleted
-    """
-    instance.course.courseschedulelist.filter(course_id=instance.id).delete
     
