@@ -12,7 +12,6 @@ def update_on_save(sender, instance, created, **kwargs):
     Update start date of the course
     """
     instance.course.update_start_date()
-    instance.course.update_number_of_lectures()
     
 
 

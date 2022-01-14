@@ -74,25 +74,17 @@ class Course(models.Model):
     learning_objectives = RichTextField()
     for_whom = RichTextField()
     instructor_info = RichTextField()
-    number_of_lectures = models.PositiveIntegerField(default=0)
+    
     price = models.PositiveIntegerField(null=False, blank=False, default=100)
     start_date = models.DateField(null=True, blank=True)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,
-                                 blank=True)
-
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     date_added = models.DateField(auto_now_add=True, editable=False)
     time_added = models.TimeField(auto_now_add=True, editable=False)
-    date_updated = models.DateField(default=now, blank=True)
-    time_updated = models.TimeField(default=now, blank=True)
-    course_timezone = models.CharField(max_length=100, default="CET")
+    date_updated = models.DateField(blank=True, null=True)
+    time_updated = models.TimeField(blank=True, null=True)
+    timezone = models.CharField(max_length=100, default="CET")
 
-    def update_number_of_lectures(self):
-        if self.courseschedulelist.count() > 0:
-            self.number_of_lectures = self.courseschedulelist.count()
-        self.save()
         
     def update_start_date(self):
         if self.courseschedulelist.order_by('course_date').count()>0:
@@ -112,5 +104,5 @@ class CourseSchedule(models.Model):
     course_link = models.URLField(max_length=1024, null=False, blank=False)
     date_added = models.DateField(auto_now_add=True, editable=False)
     time_added = models.TimeField(auto_now_add=True, editable=False)
-    date_updated = models.DateField(default=now, blank=True)
-    time_updated = models.TimeField(default=now, blank=True)
+    date_updated = models.DateField(blank=True, null=True)
+    time_updated = models.TimeField(default=now, null=True)

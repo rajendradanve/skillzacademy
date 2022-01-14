@@ -10,8 +10,9 @@
 
     <div class="row">
         <div class="col d-flex justify-content-end">
-            <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update</a>
-            <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update Course Details</a>
+            <a href="{% url 'add_course_schedule' course.id %}" class="btn btn-primary me-2">Update Course Schedule</a>
+            <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a>
         </div>
     </div>
 
@@ -117,6 +118,7 @@
                 <div class="col-10 offset-md-1 tab-pane fade" id="nav-course-schedule" role="tabpanel" aria-labelledby="nav-about-tab">
                   
                     <p>Below is the detail schedule of the course</p>
+                    <p> Course Schedule is according to {{ course.timezone }}</p>
                     <table class="table table-bordered table-responsive text-center ">
                         <thead>
                             <tr>

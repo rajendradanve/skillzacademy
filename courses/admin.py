@@ -33,7 +33,6 @@ class CourseAdmin(admin.ModelAdmin):
         'title',
         'category',
         'price',
-        'rating',
         'image',
     )
   
