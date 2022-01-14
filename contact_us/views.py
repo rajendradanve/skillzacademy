@@ -13,14 +13,14 @@ def contact_us(request):
             print("form valid")
             form.save()
             messages.success(request, 'Your message submitted successfully. We will come back to you as soon as possible.')
-            return redirect(reverse('home'))
+            return redirect('home')
         else:
             print("form not valid")
             print(form.errors)
             
     form = ContactForm()
 
-    template = 'home/contact_us.html'
+    template = 'contact_us/contact_us.html'
     context = {
         'form': form
         }
