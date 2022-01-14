@@ -106,3 +106,7 @@ class CourseSchedule(models.Model):
     time_added = models.TimeField(auto_now_add=True, editable=False)
     date_updated = models.DateField(blank=True, null=True)
     time_updated = models.TimeField(default=now, null=True)
+
+    def update_timestamp(self):
+        self.date_updated = now()
+        self.save()
