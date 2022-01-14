@@ -1,6 +1,7 @@
 from django import forms
 from .models import Category, MainCategory, Course, CourseSchedule
 from crispy_forms.helper import FormHelper
+from ckeditor.widgets import CKEditorWidget
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -10,7 +11,8 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
 
 
-class AddCourseForm(forms.ModelForm):
+class CourseForm(forms.ModelForm):
+    
     class Meta:
         model = Course
         fields = ['category', 'title', 'description', 'prerequisite',
@@ -23,12 +25,12 @@ class AddCourseForm(forms.ModelForm):
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
         self.fields['category'].choices = friendly_names
-
+        self.fields['description']
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
 
 
-class AddCourseScheduleForm(forms.ModelForm):
+class CourseScheduleForm(forms.ModelForm):
     class Meta:
         model = CourseSchedule
         fields = ['course_date', 'course_start_time', 'course_end_time', 'course_link']

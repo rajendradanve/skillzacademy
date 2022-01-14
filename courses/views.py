@@ -6,7 +6,7 @@ from django.db.models.functions import Lower
 from user_profile.models import UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, AddCourseForm, AddCourseScheduleForm
+from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, CourseForm, CourseScheduleForm
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
 import datetime
@@ -123,22 +123,22 @@ def add_course(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        add_course_form = AddCourseForm(request.POST, request.FILES)
+        form = CourseForm(request.POST, request.FILES)
         
-        if add_course_form.is_valid():
-            new_course = add_course_form.save()
+        if form.is_valid():
+            new_course = form.save()
             new_course_id = new_course.id
             return redirect('add_course_schedule', course_id=new_course_id)
         else:
             
             messages.error(request, 'Failed to add course. Check all values are filed correctly.')
             
-    add_course_form = AddCourseForm()
+    form = CourseForm()
     
     template = 'courses/add_course.html'
 
     context = {
-        'add_course_form': add_course_form,
+        'form': form,
     }
     return render(request, template, context)
 
@@ -152,7 +152,7 @@ def add_course_schedule(request, course_id):
     
     new_course = Course.objects.get(pk=course_id)
     
-    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule, form=AddCourseScheduleForm, extra=1)
+    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule, form=CourseScheduleForm, extra=1)
    
     if request.method == 'POST':
         
@@ -346,3 +346,29 @@ def delete_course(request, course_id):
     course.delete()
     messages.success(request, 'course deleted successfully')
     return redirect(reverse('courses'))
+
+
+@login_required
+def update_course(request, course_id):
+    """ Update course data """
+    course = get_object_or_404(Course, pk=course_id)
+    
+    if request.method == 'POST':
+        form = CouresForm(request.POST, request.FILES, instance=course)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated course!')
+            return redirect(reverse('course_detail', args=[course.id]))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form information is correct.')
+    
+    else:
+        form = CourseForm(instance=course)
+          
+    template = 'courses/update_course.html'
+
+    context = {
+        'form': form,
+        'course': course,
+    }
+    return render(request, template, context)
