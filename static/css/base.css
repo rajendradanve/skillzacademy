@@ -4,7 +4,7 @@ body {
 }
 
 .content-placement {
-    padding-top: 164px;
+    padding-top: 128px;
 }
 
 .content-placement-bottom {
@@ -175,7 +175,7 @@ input[name='q']::placeholder {
 @media (max-width: 992px) {
 
     .content-placement {
-        padding-top: 131px;
+        padding-top: 96px;
     }
 
 }
