@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container-fluid content-placement content-placement-bottom">
-
+{% if request.user.is_superuser %}
     <div class="row">
         <div class="col d-flex justify-content-end">
             <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update Course Details</a>
@@ -15,6 +15,7 @@
             <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a>
         </div>
     </div>
+    {% endif %}
 
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
@@ -63,7 +64,7 @@
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
-                            <span class="text-uppercase">Keep Learning</span>
+                            <span class="text-uppercase">Go Back</span>
                         </a>
                         {% if already_in_cart %}
                             <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'view_bag' %}">Go to cart</a>

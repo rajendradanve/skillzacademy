@@ -39,14 +39,14 @@ class CourseScheduleForm(forms.ModelForm):
             'course_start_time': TimeInput(),
             'course_end_time': TimeInput(),
         }
-        
+       
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.render_hidden_fields = True
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
-            
+            field.widget.attrs['required'] = 'required'
             
 class CategoryForm(forms.ModelForm):
     class Meta:
