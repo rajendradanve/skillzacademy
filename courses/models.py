@@ -80,9 +80,8 @@ class Course(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     date_added = models.DateField(auto_now_add=True, editable=False)
-    time_added = models.TimeField(auto_now_add=True, editable=False)
     date_updated = models.DateField(blank=True, null=True)
-    time_updated = models.TimeField(blank=True, null=True)
+    
     timezone = models.CharField(max_length=100, default="CET")
 
         
@@ -103,10 +102,5 @@ class CourseSchedule(models.Model):
     course_end_time = models.TimeField()
     course_link = models.URLField(max_length=1024, null=False, blank=False)
     date_added = models.DateField(auto_now_add=True, editable=False)
-    time_added = models.TimeField(auto_now_add=True, editable=False)
     date_updated = models.DateField(blank=True, null=True)
-    time_updated = models.TimeField(default=now, null=True)
-
-    def update_timestamp(self):
-        self.date_updated = now()
-        self.save()
+    

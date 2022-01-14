@@ -25,6 +25,8 @@ class CourseScheduleAdminInline(admin.TabularInline):
         'course_start_time',
         'course_end_time',
         'course_link',
+        'date_added',
+        'date_updated',
     )
     
 class CourseAdmin(admin.ModelAdmin):
@@ -34,6 +36,8 @@ class CourseAdmin(admin.ModelAdmin):
         'category',
         'price',
         'image',
+        'date_added',
+        'date_updated',
     )
   
   
