@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'bag',
     'user_profile',
     'checkout',
+    'contact_us',
 
     # Allauth social media provider USE_TZ = True
     # 'allauth.socialaccount.providers.facebook',
