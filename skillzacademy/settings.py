@@ -121,11 +121,11 @@ CKEDITOR_CONFIGS = {
         'skin': 'moono',
         # 'skin': 'office2013',
         'toolbar_Basic': [
-            ['Source', '-', 'Bold', 'Italic']
+            ['Bold', 'Italic']
         ],
         'toolbar_YourCustomToolbarConfig': [
             {'name': 'document', 'items': ['Source']},
-            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
             {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
             
@@ -133,9 +133,9 @@ CKEDITOR_CONFIGS = {
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote','-',
                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
             '/',
-            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
             {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'Iframe']},
+             'items': ['Image', 'Flash', 'Table', 'Smiley', 'SpecialChar']},
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
         ],
@@ -151,19 +151,22 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
-            'div',
+            #'div',
             'autolink',
-            'autoembed',
-            'embedsemantic',
-            'autogrow',
+            #'autoembed',
+            #'embedsemantic',
+            #'autogrow',
             # 'devtools',
             'widget',
             'lineutils',
-            'clipboard',
-            'dialog',
-            'dialogui',
-            'elementspath'
+            #'clipboard',
+            #'dialog',
+            #'dialogui',
+            #'elementspath'
         ]),
+        'removePlugins': 'exportpdf',
+        'height': 150,
+        
     }
 }
 
