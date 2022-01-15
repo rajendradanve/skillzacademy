@@ -3,6 +3,7 @@ from .models import Category, MainCategory, Course, CourseSchedule
 from crispy_forms.helper import FormHelper
 from ckeditor.widgets import CKEditorWidget
 
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -47,7 +48,8 @@ class CourseScheduleForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
             field.widget.attrs['required'] = 'required'
-            
+
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category

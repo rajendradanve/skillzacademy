@@ -370,5 +370,6 @@ def update_course(request, course_id):
     context = {
         'form': form,
         'course': course,
+        'from': 'update',
     }
     return render(request, template, context)
