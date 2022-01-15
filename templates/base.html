@@ -194,13 +194,21 @@
         <div class="col col-md-3 d-flex justify-content-center my-auto">
           <a href="{% url 'contact_us' %}" class="text-dark"><h4>Contact Us</h4></a>
         </div>
-        <div class="col col-md-6 d-flex justify-content-center my-auto">
-          <div>
-            <p class="text-center text-dark">Subscribe To Our Newsletter</p>
+        <div class="col col-md-6 d-flex justify-content-center">
+          <div class="row">
+            <div class="col">
+              <p class="text-center text-dark">Subscribe To Our Newsletter</p>
+            </div>
+            
             <form class="form-inline" action="{% url 'subscribe' %}" method="POST">
               {% csrf_token %}
-              <input type="email" id="subscription-email" name = "subscription-email" placeholder="Enter Your Email Address" size="50" required>
-              <button type="submit" class="btn btn-primary mb-2">Submit</button>
+              <div class="text-center">
+                <input class="m-2 " type="email" id="subscription-email" name = "subscription-email" placeholder="Enter Your Email Address" size="50" required>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+              </div>
+              
+                
+              
             </form>
           </div>
           
