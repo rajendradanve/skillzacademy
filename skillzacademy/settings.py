@@ -55,13 +55,13 @@ INSTALLED_APPS = [
     # Allauth social media provider USE_TZ = True
     # 'allauth.socialaccount.providers.facebook',
     # 'allauth.socialaccount.providers.google',
-    
+
     # Other libraries
     'ckeditor',
     'crispy_forms',
     'crispy_bootstrap5',
     'storages',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -95,9 +95,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'courses.contexts.categories_list',  # included contexts.py from courses app to be available entire site
-                'bag.contexts.bag_contents', # included contexts.py from bag app to be available entire site
-                
+                'courses.contexts.categories_list',
+                # included contexts.py from courses app to be available entire site
+                'bag.contexts.bag_contents',
+                # included contexts.py from bag app to be available entire site
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -117,7 +118,8 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-# ck editor config taken from https://django-ckeditor.readthedocs.io/en/latest/#optional-customizing-ckeditor-editor
+# ck editor config taken from
+# https://django-ckeditor.readthedocs.io/en/latest/#optional-customizing-ckeditor-editor
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -130,11 +132,13 @@ CKEDITOR_CONFIGS = {
             {'name': 'document', 'items': ['Source']},
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
             {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript',
+                       '-', 'RemoveFormat']},
+
             {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote','-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                       'Blockquote','-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',
+                       'JustifyBlock']},
             '/',
             {'name': 'links', 'items': ['Link', 'Unlink']},
             {'name': 'insert',
@@ -169,11 +173,11 @@ CKEDITOR_CONFIGS = {
         ]),
         'removePlugins': 'exportpdf',
         'height': 150,
-        
+
     }
 }
 
-# Settings for all auth 
+# Settings for all auth
 # Setting taken from https://django-allauth.readthedocs.io/en/latest/advanced.html
 SITE_ID = 1
 
@@ -200,14 +204,15 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-    
-else: 
+
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
 
 
 
