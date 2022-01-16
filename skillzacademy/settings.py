@@ -170,7 +170,8 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-# Settings for all auth
+# Settings for all auth 
+# Setting taken from https://django-allauth.readthedocs.io/en/latest/advanced.html
 SITE_ID = 1
 
 ACCOUNT_FORMS = {'signup': 'user_profile.forms.CustomSignupForm'}

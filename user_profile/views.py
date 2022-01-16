@@ -16,13 +16,16 @@ def my_courses(request):
 
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
+    
     courses = []
     for order in orders:
+        print(f'order = {order}')
         for item in order.lineitems.all():
+            print(f'order item = {item}')
             courses.append(item.course)
 
     template = 'user_profile/my_courses.html'
-
+ 
     context = {
 
         'courses': courses,
