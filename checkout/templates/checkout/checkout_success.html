@@ -12,7 +12,8 @@
                 <hr>
                 <h2 class="logo-font mb-4">Thank You</h2>
                 <hr>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ user_email }}</strong>.</p>
+                <p class="text-black">Your order information is below. A confirmation email will be sent to
+                    <strong>{{ user_email }}</strong>.</p>
             </div>
         </div>
 
@@ -46,14 +47,14 @@
                         </div>
                     </div>
                     {% for item in order.lineitems.all %}
-                    <div class="row">
-                        <div class="col col-md-4">
-                            <p class="small mb-0 text-dark font-weight-bold">{{ item.course.title }}</p>
+                        <div class="row">
+                            <div class="col col-md-4">
+                                <p class="small mb-0 text-dark font-weight-bold">{{ item.course.title }}</p>
+                            </div>
+                            <div class="col col-md-8">
+                                <p class="small mb-0">${{ item.course_price }}</p>
+                            </div>
                         </div>
-                        <div class="col col-md-8">
-                            <p class="small mb-0">${{ item.course_price }}</p>
-                        </div>
-                    </div>
                     {% endfor %}
                     <div class="row">
                         <div class="col">
@@ -61,22 +62,22 @@
                         </div>
                     </div>
                     {% if discount_flag and discount_delta == 0 %}
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Order Total</p>
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <p class="mb-0 text-black font-weight-bold">Order Total</p>
+                            </div>
+                            <div class="col-12 col-md-8 text-md-right">
+                                <p class="mb-0">${{ order.order_total }}</p>
+                            </div>
                         </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">${{ order.order_total }}</p>
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <p class="mb-0 text-black font-weight-bold">Discount:</p>
+                            </div>
+                            <div class="col-12 col-md-8 text-md-right">
+                                <p class="mb-0">{{ discount_percentage }}%</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Discount:</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ discount_percentage }}%</p>
-                        </div>
-                    </div>
                     {% endif %}
 
                     <div class="row">
@@ -91,24 +92,23 @@
             </div>
         </div>
         <div class="row">
-			<div class="col-12 col-lg-7 text-right">
+            <div class="col-12 col-lg-7 text-right">
                 {% if from_profile %}
-                <a href="{% url 'purchase_history' %}" class="btn btn-dark rounded-0 my-2">
-					<span class="icon mr-2">
-						<i class="fas fa-angle-left"></i>
-					</span>
-					<span class="text-uppercase">Back to Purchase History</span>
-				</a>
+                    <a href="{% url 'purchase_history' %}" class="btn btn-dark rounded-0 my-2">
+                        <span class="icon mr-2">
+                            <i class="fas fa-angle-left"></i>
+                        </span>
+                        <span class="text-uppercase">Back to Purchase History</span>
+                    </a>
                 {% else %}
-                <a href="{% url 'courses' %}" class="btn btn-dark rounded-0 my-2">
-					<span class="icon mr-2">
-						<i class="fas fa-gifts"></i>
-					</span>
-					<span class="text-uppercase">Don't stop learning. Check some more courses!</span>
-				</a>
+                    <a href="{% url 'courses' %}" class="btn btn-dark rounded-0 my-2">
+                        <span class="icon mr-2">
+                            <i class="fas fa-gifts"></i>
+                        </span>
+                        <span class="text-uppercase">Don't stop learning. Check some more courses!</span>
+                    </a>
                 {% endif %}
-				
-			</div>
-		</div>
+            </div>
+        </div>
     </div>
 {% endblock %}
