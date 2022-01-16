@@ -9,6 +9,7 @@
                 <h2 class="logo-font mb-4 text-center">My Courses</h2>  
             </div>
         </div>
+        {% if courses.count > 0 %}
         <div class="row mt-2">
             {% for course in courses %}
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -62,5 +63,15 @@
          {% endif %}
             {% endfor %}
         </div>
+        {% else %}
+        <div class="row mt-2">
+            <div class="col col-md-8 offset-md-2 text-center">
+                <h6>You have not purchased any course yet.</h6>
+                <a href="{% url 'courses' %}" class="btn btn-dark mt-2">Explore Courses</a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}
+
+

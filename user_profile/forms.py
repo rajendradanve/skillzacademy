@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
  
  
 class CustomSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
+    first_name = forms.CharField(max_length=30, label='First Name', widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(max_length=30, label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     
     class Meta:
         model = User()
