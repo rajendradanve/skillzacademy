@@ -1,16 +1,18 @@
+"""
+Most of the logic and code taken from Boutique ADO checkout app
+from code institute
+"""
 import uuid
 from django.db import models
 from django.db.models import Sum
 from courses.models import Course
 from user_profile.models import Discount, UserProfile
 
-"""
-Most of the logic and code taken from Boutique ADO checkout app
-from code institute
-"""
-
 
 class Order(models.Model):
+    """
+    Create Order model
+    """
     order_number = models.CharField(default=uuid.uuid4().hex[:10].upper(),
                                     unique=True, max_length=10, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
@@ -29,10 +31,7 @@ class Order(models.Model):
         update grand_total each time a line item is added.
         Check if discount is applicable
         """
-        """
-        Below code is repeating and same as in context.py in the checkout.
-        Any way to combine this together ?
-        """
+
         discount_percentage = 0
         discount_threshold = 0
         discount_flag = False
@@ -59,6 +58,9 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """
+    Create OrderLineItem model
+    """
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='lineitems')

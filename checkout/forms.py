@@ -1,16 +1,21 @@
-# Taken from Botique ADO project from code institute.
+"""
+Taken from Botique ADO project from code institute.
+"""
 from django import forms
 from .models import Order
 
 
 class OrderForm(forms.ModelForm):
+    """
+    Create order form from the Order model
+    """
     class Meta:
         model = Order
         fields = ('cardholder_full_name',)
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholder and classes, remove auto-generated lables and set 
+        Add placeholder and classes, remove auto-generated lables and set
         autofocus on first field
         """
 

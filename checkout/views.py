@@ -1,3 +1,7 @@
+"""
+View for checkout app
+"""
+import json
 from django.shortcuts import (render, redirect, reverse,
                               get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
@@ -5,17 +9,17 @@ from django.contrib import messages
 from django.conf import settings
 import stripe
 from bag.contexts import bag_contents
+from user_profile.models import UserProfile
 from courses.models import Course
 from .models import OrderLineItem, Order
 from .forms import OrderForm
-from user_profile.models import UserProfile
-
-import stripe
-import json
 
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Checking issue with project
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -30,7 +34,9 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-
+    """
+    checkout view
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('home'))
 
@@ -115,18 +121,18 @@ def checkout_success(request, order_number):
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
         user_email = profile
-        
+
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
     else:
-        message.info(request, 'Log in before you finish purchase')
+        messages.info(request, 'Log in before you finish purchase')
         return redirect(reverse('account_signup'))
-    
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}.  \
          A confirmation email will be sent to register email:  { user_email }')
-    
+
     if 'bag' in request.session:
         del request.session['bag']
 
