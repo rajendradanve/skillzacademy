@@ -2,158 +2,160 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
+    <link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid content-placement content-placement-bottom">
-{% if request.user.is_superuser %}
-    <div class="row">
-        <div class="col d-flex justify-content-end">
-            <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update Course Details</a>
-            <a href="{% url 'add_course_schedule' course.id %}" class="btn btn-primary me-2">Update Course Schedule</a>
-            <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a>
-        </div>
-    </div>
-    {% endif %}
-
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
-            <div class="image-container my-5">
-                {% if course.image %}
-                <img class="card-img-top img-fluid " src="{{ course.image.url }}" alt="{{ course.name }}">
-                {% else %}
-                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
-                {% endif %}
+    <div class="container-fluid content-placement content-placement-bottom">    
+        {% if request.user.is_superuser %}
+        <div class="row mt-4">
+            <div class="col d-flex justify-content-end">
+                <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update Course Details</a>
+                <a href="{% url 'update_course_schedule' course.id %}" class="btn btn-primary me-2">Update Course Schedule</a>
+                <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="course-details-container mb-5 mt-md-5 ms-lg-4">
-                <h3 class="mb-2">{{ course.title }}</h3>
-                <p class="small mt-1 mb-0">
-                    <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
-                        <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
-                    </a>
-                </p> 
-                <p class="lead mb-1 text-start font-weight-bold">${{ course.price }}</p>
+        {% endif %}
 
-                <hr>
-
-                <p>Course {% if course.courseschedulelist.all.count > 1 %}Start{% endif %} Date:
-                    <strong class="p-2 bg-success text-white rounded-1">
-                        {% with course_schedule_list|first as course_start %}
-                        {{ course_start.course_date|date:"d M, Y"}}
-                        {% endwith %}
-                    </strong>
-                </p>
-                
-                <p class="text-muted">For detail schedule see information below </p>
-                
-                <p>Number of Classes: <strong class="p-2 ms-2">{{ course_schedule_list.count }}</strong></p>
-                <div class="col-12 mt-3">
-                    <form action="{% url 'add_to_bag' course.id %}" class="form" method="POST">
-                        {% csrf_token %}
-                        {% if already_in_cart %}
-                            <p class="text-info">This course is already added to your cart</p>
-                        {% endif %}
-                        {% if already_bought %}
-                            <p class="text-info">You already bought this course</p>
-                            <p class="text-info">You will see course meeting link in course schedule</p>
-                        {% endif %}
-                        <a href="{% url 'courses' %}" class="btn rounded-1 border border-1 border-dark">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Go Back</span>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
+                <div class="image-container my-5">
+                    {% if course.image %}
+                    <img class="card-img-top img-fluid " src="{{ course.image.url }}" alt="{{ course.name }}">
+                    {% else %}
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="course-details-container mb-5 mt-md-5 ms-lg-4">
+                    <h3 class="mb-2">{{ course.title }}</h3>
+                    <p class="small mt-1 mb-0">
+                        <a href="{% url 'courses' %}?category={{course.category.name}}" class="text-muted">
+                            <i class="fas fa-tag me-1"></i>{{course.category.friendly_name}}
                         </a>
-                        {% if already_in_cart %}
-                            <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'view_bag' %}">Go to cart</a>
-                        {% elif already_bought %}
-                            <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'my_courses' %}">My Courses</a>
-                        {% else %}
-                            <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
-                        {% endif %}
-                        <input type="hidden" name = "redirect_url" value="{{request.path}}">
-                    </form>
+                    </p>
+                    <p class="lead mb-1 text-start font-weight-bold">${{ course.price }}</p>
+
+                    <hr>
+
+                    <p>Course {% if course.courseschedulelist.all.count > 1 %}Start{% endif %} Date:
+                        <strong class="p-2 bg-success text-white rounded-1">
+                            {% with course_schedule_list|first as course_start %}
+                            {{ course_start.course_date|date:"d M, Y"}}
+                            {% endwith %}
+                        </strong>
+                    </p>
+
+                    <p class="text-muted">For detail schedule see information below </p>
+
+                    <p>Number of Classes: <strong class="p-2 ms-2">{{ course_schedule_list.count }}</strong></p>
+                    <div class="col-12 mt-3">
+                        <form action="{% url 'add_to_bag' course.id %}" class="form" method="POST">
+                            {% csrf_token %}
+                            {% if already_in_cart %}
+                                <p class="text-info">This course is already added to your cart</p>
+                            {% endif %}
+                            {% if already_bought %}
+                                <p class="text-info">You already bought this course</p>
+                                <p class="text-info">You will see course meeting link in course schedule</p>
+                            {% endif %}
+                            <a href="{% url 'courses' %}" class="btn rounded-1 border border-1 border-dark">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Go Back</span>
+                            </a>
+                            {% if already_in_cart %}
+                                <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'view_bag' %}">Go to cart</a>
+                            {% elif already_bought %}
+                                <a class="btn btn-dark rounded-1 text-uppercase" href="{% url 'my_courses' %}">My Courses</a>
+                            {% else %}
+                                <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
+                            {% endif %}
+                                <input type="hidden" name="redirect_url" value="{{request.path}}">
+                        </form>
+                    </div>
                 </div>
-                
             </div>
         </div>
 
-    </div>
+        <div class="row">
+            <div class="col bg-light border border-bottom mb-5">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about"
+                            role="tab" aria-controls="nav-about-tab" aria-selected="true">About Course</a>
+                        <a class="nav-item nav-link" id="nav-learning-objective-tab" data-bs-toggle="tab"
+                            href="#nav-learning-objective" role="tab" aria-controls="nav-learning-objective-tab"
+                            aria-selected="false">Learning Objectives</a>
+                        <a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-prerequisite"
+                            role="tab" aria-controls="nav-prerequisite-tab" aria-selected="false">Prerequisite</a>
+                        <a class="nav-item nav-link" id="nav-forwho-tab" data-bs-toggle="tab" href="#nav-for-who"
+                            role="tab" aria-controls="nav-forwho-tab" aria-selected="false">For Who</a>
+                        <a class="nav-item nav-link" id="nav-course-schedule-tab" data-bs-toggle="tab"
+                            href="#nav-course-schedule" role="tab" aria-controls="nav-course-schedule-tab" aria-selected="false">Course
+                            Schedule</a>
+                        <a class="nav-item nav-link" id="nav-instructor-tab" data-bs-toggle="tab" href="#nav-instructor"
+                            role="tab" aria-controls="nav-instructor-tab" aria-selected="false">Instructor</a>
+                    </div>
+                </nav>
+                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    <div class="col-10 offset-md-1 tab-pane fade show active" id="nav-about" role="tabpanel"
+                        aria-labelledby="nav-about-tab">
+                        {{ course.description | safe }}
+                    </div>
+                    <div class="col-10 offset-md-1 tab-pane fade" id="nav-learning-objective" role="tabpanel"
+                        aria-labelledby="nav-learning-objective-tab">
+                        {{ course.learning_objectives | safe }}
+                    </div>
+                    <div class="col-10 offset-md-1 tab-pane fade" id="nav-prerequisite" role="tabpanel"
+                        aria-labelledby="nav-prerequisite-tab">
+                        {{ course.prerequisite | safe }}
+                    </div>
+                    <div class="col-10 offset-md-1 tab-pane fade" id="nav-for-who" role="tabpanel"
+                        aria-labelledby="nav-forwho-tab">
+                        {{ course.for_whom | safe }}
+                    </div>
+                    <div class="col-10 offset-md-1 tab-pane fade" id="nav-course-schedule" role="tabpanel"
+                        aria-labelledby="nav-course-schedule-tab">
 
-    <div class="row">
-        <div class="col bg-light border border-bottom mb-5">
-            <nav>
-                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about"
-                        role="tab" aria-controls="nav-home" aria-selected="true">About Course</a>
-                    <a class="nav-item nav-link" id="nav-learning-objective-tab" data-bs-toggle="tab"
-                        href="#nav-learning-objective" role="tab" aria-controls="nav-profile"
-                        aria-selected="false">Learning Objectives</a>
-                    <a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-prerequisite"
-                        role="tab" aria-controls="nav-contact" aria-selected="false">Prerequisite</a>
-                    <a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-for-who"
-                        role="tab" aria-controls="nav-contact" aria-selected="false">For Who</a>
-                    <a class="nav-item nav-link" id="nav-course-schedule-tab" data-bs-toggle="tab"
-                        href="#nav-course-schedule" role="tab" aria-controls="nav-about" aria-selected="false">Course
-                        Schedule</a>
-                    <a class="nav-item nav-link" id="nav-instructor-tab" data-bs-toggle="tab" href="#nav-instructor"
-                        role="tab" aria-controls="nav-about" aria-selected="false">Instructor</a>
-                </div>
-            </nav>
-            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                <div class="col-10 offset-md-1 tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-home-tab">
-                    {{ course.description | safe }}
-                </div>
-                <div class="col-10 offset-md-1 tab-pane fade" id="nav-learning-objective" role="tabpanel"
-                    aria-labelledby="nav-profile-tab">
-                    {{ course.learning_objectives | safe }}
-                </div>
-                <div class="col-10 offset-md-1 tab-pane fade" id="nav-prerequisite" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    {{ course.prerequisite | safe }}
-                </div>
-                <div class="col-10 offset-md-1 tab-pane fade" id="nav-for-who" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    {{ course.for_whom | safe }}
-                </div>
-                <div class="col-10 offset-md-1 tab-pane fade" id="nav-course-schedule" role="tabpanel" aria-labelledby="nav-about-tab">
-                  
-                    <p>Below is the detail schedule of the course</p>
-                    <p> Course Schedule is according to {{ course.timezone }}</p>
-                    <table class="table table-bordered table-responsive text-center ">
-                        <thead>
-                            <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Start Time</th>
-                                <th scope="col">End Time</th>
-                                {% if already_bought or request.user.is_superuser %}
+                        <p>Below is the detail schedule of the course</p>
+                        <p> Course Schedule is according to {{ course.timezone }}</p>
+                        <table class="table table-bordered table-responsive text-center ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Start Time</th>
+                                    <th scope="col">End Time</th>
+                                    {% if already_bought or request.user.is_superuser %}
                                     <th scope="col">Meeting Link</th>
-                                {% endif %}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for course_schedule in course_schedule_list %}
-                            <tr>
-                                <td>{{ course_schedule.course_date|date:"d M, Y" }}</td>
-                                <td>{{course_schedule.course_start_time}}</td>
-                                <td>{{course_schedule.course_end_time}}</td>
-                                {% if already_bought or request.user.is_superuser %}
-                                    <td><a href="{{ course_schedule.course_link }}"
-                                        target="_blank" class="btn btn-success">Meeting Link</a></td>
-                                {% endif %}
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    
-                </div>
-                <div class="col-10 offset-md-1 tab-pane fade" id="nav-instructor" role="tabpanel" aria-labelledby="nav-about-tab">
-                    {{ course.instructor_info | safe }}
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for course_schedule in course_schedule_list %}
+                                <tr>
+                                    <td>{{ course_schedule.course_date|date:"d M, Y" }}</td>
+                                    <td>{{course_schedule.course_start_time}}</td>
+                                    <td>{{course_schedule.course_end_time}}</td>
+                                    {% if already_bought or request.user.is_superuser %}
+                                    <td><a href="{{ course_schedule.course_link }}" target="_blank"
+                                            class="btn btn-success">Meeting Link</a></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-10 offset-md-1 tab-pane fade" id="nav-instructor" role="tabpanel"
+                        aria-labelledby="nav-instructor-tab">
+                        {{ course.instructor_info | safe }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-</div>
 
+    </div>
 {% endblock %}

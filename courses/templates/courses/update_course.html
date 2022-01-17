@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container content-placement content-placement-bottom">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col">
 
             <h2 class="logo-font mb-1 text-center">Edit Course</h2>
@@ -17,14 +17,16 @@
     </div>
     <div class="row mt-2">
         <div class="col col-md-10 offset-md-1">
-            <form action="{% url 'update_course' course.id %}" method="POST" class="form mb-2" id="add-course-form" enctype="multipart/form-data">
+            <form action="{% url 'update_course' course.id %}" method="POST" class="form mb-2" id="add-course-form"
+                enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.text | safe }}
                 {{ form.media }}
                 {{ form|crispy }}
-               
+
                 <div class="text-center">
-                    <a href="{% url 'course_detail' course.id %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
+                    <a href="{% url 'course_detail' course.id %}"
+                        class="btn rounded-1 border border-1 border-dark">Cancel</a>
                     <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Next</button>
                 </div>
             </form>

@@ -1,22 +1,25 @@
+"""
+Views for Courses app
+"""
+import datetime
 from django.shortcuts import redirect, render, get_object_or_404, reverse
 from django.contrib import messages
 from django.db.models import Q
-from .models import Course, CourseSchedule, MainCategory, Category
-from django.db.models.functions import Lower
-from user_profile.models import UserProfile
-from django.contrib.auth.models import User
-from django.utils import timezone
-from .forms import CategoryForm, MainCategoryForm, UpdateCategoryForm, CourseForm, CourseScheduleForm
 from django.contrib.auth.decorators import login_required
+from django.db.models.functions import Lower
 from django.forms import inlineformset_factory
-import datetime
+from user_profile.models import UserProfile
+from .models import Course, CourseSchedule, MainCategory, Category
+from .forms import (CategoryForm, MainCategoryForm, UpdateCategoryForm,
+                    CourseForm, CourseScheduleForm)
+
 
 
 def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
 
     courses = Course.objects.filter(start_date__gt=datetime.date.today())
-   
+
     query = None
     category = None
     categories = None
@@ -34,39 +37,37 @@ def all_courses(request):
                 courses = courses.annotate(lower_title=Lower('title'))
             if sortkey == 'category':
                 sortkey = 'category__name'
-            
+
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-                    
+
             courses = courses.order_by(sortkey)
-        
+
         # sorting based on categories in main-nav items
-  
+
         if 'category' in request.GET:
             category = request.GET['category']
             courses = courses.filter(category__name=category)
             categories = Category.objects.filter(name=category)
 
-    # sorting based on all courses for top main-nav item
+        # sorting based on all courses for top main-nav item
         if 'main_category' in request.GET:
             main_category = request.GET['main_category']
-            
             categories = Category.objects.filter(main_category__name=main_category)
-            
             courses = courses.filter(category__in=categories)
- 
+
     if request.GET:
         if 'q' in request.GET:
-            
+
             query = request.GET['q']
             if not query:
                 messages.error(request, "Please enter search criteria!")
                 return redirect(reverse('courses'))
             # Created queries with 'or' condition
             queries = Q(title__icontains=query) | Q(description__icontains=query)
-            
+
             courses = courses.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -81,11 +82,12 @@ def all_courses(request):
 
 
 def course_detail(request, course_id):
-    
+
     """ A view to show individual course details"""
 
     course = get_object_or_404(Course, pk=course_id)
-    course_schedule_list = CourseSchedule.objects.filter(course_id__pk=course.id).order_by('course_date')
+    course_schedule_list = CourseSchedule.objects.filter(
+        course_id__pk=course.id).order_by('course_date')
 
     if course_schedule_list.first().course_date <= datetime.date.today():
         return redirect(reverse('courses'))
@@ -108,8 +110,6 @@ def course_detail(request, course_id):
         'course_schedule_list': course_schedule_list,
         'already_in_cart': already_in_cart,
         'already_bought': already_bought,
-
-
     }
 
     return render(request, 'courses/course_detail.html', context)
@@ -124,17 +124,16 @@ def add_course(request):
 
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             new_course = form.save()
             new_course_id = new_course.id
             return redirect('add_course_schedule', course_id=new_course_id)
         else:
-            
             messages.error(request, 'Failed to add course. Check all values are filed correctly.')
-            
+
     form = CourseForm()
-    
+
     template = 'courses/add_course.html'
 
     context = {
@@ -145,38 +144,79 @@ def add_course(request):
 
 @login_required
 def add_course_schedule(request, course_id):
-
+    """
+    method to add course schedule
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can visit this page.')
         return redirect(reverse('home'))
-    
-    new_course = Course.objects.get(pk=course_id)
-    
-    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule, form=CourseScheduleForm, extra=1)
-   
+
+    course = Course.objects.get(pk=course_id)
+
+    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule,
+                                                     form=CourseScheduleForm, extra=1)
+
     if request.method == 'POST':
-        
-        formset = AddCourseScheduleFormset(request.POST, instance=new_course)
+
+        formset = AddCourseScheduleFormset(request.POST, instance=course)
         if formset.is_valid():
             formset.save()
-            
-            if 'save-n-continue' in request.POST:
+
+            if 'save-n-add' in request.POST:
                 
-                messages.success(request, 'lecture added successfully')
-                return redirect('add_course_schedule', course_id=new_course.id)
-            elif 'save-n-exit' in request.POST:
-                messages.success(request, 'Course added successfully')
-                return redirect('admin')
+                return redirect('add_course_schedule', course_id=course.id)
+            elif 'save-n-view' in request.POST:
+                messages.success(request, 'Course updated successfully')
+                return redirect('course_detail', course_id=course.id)
         else:
-            
-                messages.error(request, 'Something went wrong. Please try again')
-            
-    formset = AddCourseScheduleFormset(instance=new_course)
-    
+
+            messages.error(request, 'Something went wrong. Please try again')
+
+    formset = AddCourseScheduleFormset(instance=course)
+
     template = 'courses/add_course_schedule.html'
     context = {
         'formset': formset,
-        'course_id': course_id
+        'course_id': course_id,
+        'from_course_detail': False,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_course_schedule(request, course_id):
+    """
+    method to update course schedule
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can visit this page.')
+        return redirect(reverse('home'))
+
+    course = Course.objects.get(pk=course_id)
+
+    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule,
+                                                     form=CourseScheduleForm, extra=0)
+
+    if request.method == 'POST':
+        formset = AddCourseScheduleFormset(request.POST, instance=course)
+        
+        if formset.is_valid():
+            formset.save()
+
+            if 'save-n-add' in request.POST:
+                return redirect('add_course_schedule', course_id=course.id)
+            elif 'save-n-view' in request.POST:
+                messages.success(request, 'Course schedule update successfully')
+                return redirect('course_detail', course_id=course.id)
+            else:
+                messages.error(request, 'Something went wrong. Please try again')
+                
+    formset = AddCourseScheduleFormset(instance=course)
+    template = 'courses/add_course_schedule.html'
+    context = {
+        'formset': formset,
+        'course_id': course_id,
+        'from_course_detail': True,
     }
     return render(request, template, context)
 
@@ -184,7 +224,7 @@ def add_course_schedule(request, course_id):
 @login_required
 def add_category(request):
     """ Add new category"""
-    
+
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin visit this page.')
         return redirect(reverse('home'))
@@ -195,7 +235,8 @@ def add_category(request):
             friendly_name = request.POST['friendly_name']
             name = request.POST['friendly_name'].lower().replace(' ',  '_')
 
-            if Category.objects.filter(friendly_name=friendly_name).exists() or Category.objects.filter(name=name).exists():
+            if Category.objects.filter(friendly_name=friendly_name).exists(
+                ) or Category.objects.filter(name=name).exists():
                 messages.warning(request,
                                  (f'{friendly_name} already exists in the database. '
                                   'Please enter another name'
@@ -209,7 +250,7 @@ def add_category(request):
 
     add_category_form = CategoryForm()
     template = 'courses/add_category.html'
-    
+
     context = {
         'add_category_form': add_category_form,
     }
@@ -219,18 +260,19 @@ def add_category(request):
 @login_required
 def add_main_category(request):
     """ Add new main category"""
-      
+
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin visit this page.')
         return redirect(reverse('home'))
-    
+
     if request.method == 'POST':
         form = MainCategoryForm(request.POST)
         if form.is_valid():
             friendly_name = request.POST['friendly_name']
             name = request.POST['friendly_name'].lower().replace(' ',  '_')
 
-            if MainCategory.objects.filter(friendly_name=friendly_name).exists() or Category.objects.filter(name=name).exists():
+            if MainCategory.objects.filter(friendly_name=friendly_name).exists(
+                ) or Category.objects.filter(name=name).exists():
                 messages.warning(request,
                                  (f'{friendly_name} already exists in the database. '
                                   'Please enter another name'
@@ -246,7 +288,7 @@ def add_main_category(request):
     add_main_category_form = MainCategoryForm()
     context = {
         'add_main_category_form': add_main_category_form,
-        
+
     }
     return render(request, template, context)
 
@@ -262,7 +304,7 @@ def select_category(request):
     if request.method == 'POST':
         category_id = request.POST['select-category']
         return redirect('update_category', category_id=category_id)
-    
+
     categories = Category.objects.all()
     template = 'courses/select_category.html'
 
@@ -281,8 +323,6 @@ def update_category(request, category_id):
         return redirect(reverse('home'))
 
     category = get_object_or_404(Category, pk=category_id)
-    friendly_name = category.friendly_name
-    name = category.name
 
     if request.method == 'POST':
         update_category_form = UpdateCategoryForm(request.POST, instance=category)
@@ -315,18 +355,15 @@ def update_main_category(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        main_category_id_to_update = request.POST['select-main-category']
-        new_name = request.POST['new-main-category']
-        
-        main_category_to_update = MainCategory.objects.filter(pk=main_category_id_to_update).update(friendly_name = new_name)
-        
+        MainCategory.objects.filter(pk=request.POST['select-main-category']
+                                    ).update(friendly_name=request.POST['new-main-category'])
         messages.success(request, (
             'You successfully updated category name in the database.'
             ))
         return redirect('admin')
     else:
         main_categories = MainCategory.objects.all()
-        
+
     template = 'courses/update_main_category.html'
 
     context = {
@@ -341,18 +378,18 @@ def delete_course(request, course_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can update database')
         return redirect(reverse('home'))
-    
+
     course = get_object_or_404(Course, pk=course_id)
     course.delete()
-    messages.success(request, 'course deleted successfully')
-    return redirect(reverse('courses'))
+    messages.success(request, (f'{ course.title }deleted successfully'))
+    return redirect(reverse('admin'))
 
 
 @login_required
 def update_course(request, course_id):
     """ Update course data """
     course = get_object_or_404(Course, pk=course_id)
-    
+
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
@@ -360,11 +397,12 @@ def update_course(request, course_id):
             messages.success(request, 'Successfully updated course!')
             return redirect(reverse('course_detail', args=[course.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form information is correct.')
-    
+            messages.error(request, 'Failed to update product. Please ensure the form \
+                information is correct.')
+
     else:
         form = CourseForm(instance=course)
-          
+
     template = 'courses/update_course.html'
 
     context = {

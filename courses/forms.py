@@ -1,7 +1,6 @@
 from django import forms
 from .models import Category, MainCategory, Course, CourseSchedule
 from crispy_forms.helper import FormHelper
-from ckeditor.widgets import CKEditorWidget
 from .widgets import CustomClearableFileInput
 
 
@@ -20,10 +19,10 @@ class CourseForm(forms.ModelForm):
         fields = ['category', 'title', 'description', 'prerequisite',
                          'learning_objectives', 'for_whom', 'instructor_info',
                          'price', 'image']
-    
+
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
@@ -31,6 +30,7 @@ class CourseForm(forms.ModelForm):
 
         self.fields['category'].choices = friendly_names
         self.fields['price'].label = 'Price in $'
+        
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
 

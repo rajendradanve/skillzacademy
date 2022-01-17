@@ -1,14 +1,18 @@
+"""
+Models MainCategories, Categories, Courses, CourseSchedule
+"""
 from django.db import models
-from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-from django.utils.timezone import now
 
 
 class MainCategory(models.Model):
+    """
+    MainCategories model
+    """
 
-    class Meta: 
+    class Meta:
         verbose_name_plural = 'Main Categories'
-        
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -17,13 +21,13 @@ class MainCategory(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
-    
+
     def _generate_name(self):
         """
         generate name from the friendly name removing spaces and using lowercase
         """
         return self.friendly_name.lower().replace(' ', '_')
-    
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number
@@ -35,10 +39,13 @@ class MainCategory(models.Model):
 
 
 class Category(models.Model):
-    
-    class Meta: 
+    """
+    Category model
+    """
+
+    class Meta:
         verbose_name_plural = 'Categories'
-        
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=False, blank=True)
     main_category = models.ForeignKey('MainCategory', null=False, blank=False,
@@ -46,7 +53,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def _generate_name(self):
         """
         generate name from the friendly name removing spaces and using lowercase
@@ -55,7 +62,7 @@ class Category(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
-    
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number
@@ -67,6 +74,9 @@ class Category(models.Model):
 
 
 class Course(models.Model):
+    """
+    Model for Course details.
+    """
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     title = models.CharField(max_length=254, null=False, blank=False)
     description = RichTextField()
@@ -74,17 +84,16 @@ class Course(models.Model):
     learning_objectives = RichTextField()
     for_whom = RichTextField()
     instructor_info = RichTextField()
-    
     price = models.PositiveIntegerField(null=False, blank=False, default=100)
     start_date = models.DateField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     date_added = models.DateField(auto_now_add=True, editable=False)
     date_updated = models.DateField(blank=True, null=True)
-    
+
     timezone = models.CharField(max_length=100, default="CET")
 
-        
+
     def update_start_date(self):
         if self.courseschedulelist.order_by('course_date').count()>0:
             self.start_date = self.courseschedulelist.order_by('course_date').first().course_date
@@ -95,6 +104,9 @@ class Course(models.Model):
 
 
 class CourseSchedule(models.Model):
+    """
+    Model for Course Lectures details.
+    """
     course = models.ForeignKey(Course, on_delete=models.CASCADE,
                                   related_name='courseschedulelist')
     course_date = models.DateField()

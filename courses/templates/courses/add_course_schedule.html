@@ -1,78 +1,82 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'courses/css/add_courses.css' %}">
+    <link rel="stylesheet" href="{% static 'courses/css/add_courses.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container content-placement content-placement-bottom">
-    <div class="row">
-        <div class="col">
-
-            <h2 class="logo-font mb-4 text-center">Add Course</h2>
-
+    <div class="container content-placement content-placement-bottom">
+        <div class="row mt-4">
+            <div class="col">
+                
+                <h2 class="logo-font mb-4 text-center">
+                    {% if from_course_detail %} 
+                        Update Course Schedule 
+                    {% else %}
+                        Add Course Schedule
+                    {% endif %}
+                </h2>
+            </div>
         </div>
+        <div class="row mt-2">
+            <div class="col col-md-10 offset-md-1">
+                <form action="{% if from_course_detail %} {% url 'update_course_schedule' course_id %} {% else %} {% url 'add_course_schedule' course_id %} {% endif %}" method="POST" class="form mb-2"
+                    id="add-course-form">
+                    {% csrf_token %}
+                    {{ formset.management_form}}
+                    <div id="course-schedule-form">
+                        {% for form in formset %}
+                            <div class="empty-form">
+                                <div class="row">
+                                    {% for hidden in form.hidden_fields %}
+                                        {{ hidden }}
+                                    {% endfor %}
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{ form.course_date|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{ form.course_start_time|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{ form.course_end_time|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{ form.course_link|as_crispy_field }}
+                                    </div>
 
-    </div>
-    <div class="row mt-2">
-        <div class="col col-md-10 offset-md-1">
-            <form action="{% url 'add_course_schedule' course_id %}" method="POST" class="form mb-2" id="add-course-form">
-                {% csrf_token %}
-                {{ formset.management_form}}
-                <div id="course-schedule-form">
-                    {% for form in formset %}
-                    
-                        <div class="empty-form">
-                            <div class="row">
-                                {% for hidden in form.hidden_fields %}
-                                    {{ hidden }}
-                                {% endfor %}
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-3 mb-0">
-                                    {{ form.course_date|as_crispy_field }}
-                                    
                                 </div>
-                                <div class="form-group col-md-3 mb-0">
-                                    {{ form.course_start_time|as_crispy_field }}
-                                </div>
-                                <div class="form-group col-md-3 mb-0">
-                                    {{ form.course_end_time|as_crispy_field }}
-                                </div>
-                                <div class="form-group col-md-3 mb-0">
-                                    {{ form.course_link|as_crispy_field }}
-                                </div>
+                               
+                                    {% if forloop.counter != 1 %}
+                                        <div class="row">
+                                            <div class="col-3">
+                                                {{ form.DELETE|as_crispy_field }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                 
                             </div>
-                            {% if from %}
-                            {% if forloop.counter != 1 %}
-                            <div class="row">
-                                <div class="col-3">
-                                    {{ form.DELETE|as_crispy_field }}
-                                    
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endif %}
-                        </div>
-
-                    {% endfor %}
-
-                    
-                </div>
-                <div id="lecture-btn-group text-center">
-                
-                </div>
-                <div class="row">
-                    <div class="col col-md-6 offset-md-3 d-flex justify-content-center">
-                        <a href="{% url 'add_course' %}" class="btn rounded-1 border border-1 border-dark">Go Back</a>
-                        <button name="save-n-continue" id="add-lecture" class="btn btn-primary mx-3" type="submit">Save and Add More</button>
-                        <button name="save-n-exit" id="add-lecture" class="btn btn-primary" type="submit">Save and Exit</button>
+                        {% endfor %}
                     </div>
-                </div>
-                
-            </form>
+                    <div id="lecture-btn-group text-center">
+
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-6 offset-md-3 d-flex justify-content-center">
+                            {% if not from_course_detail %}
+                                <a href="{% url 'delete_course' course_id %}" class="btn rounded-1 border border-1 border-dark me-3">Delete & Go Back</a>
+                            {% endif %}
+                                <button name="save-n-add" id="add-lecture" class="btn btn-primary me-3" type="submit">Save
+                                & Add</button>
+                            
+                            <button name="save-n-view" id="add-lecture" class="btn btn-primary" type="submit">Save &
+                                View</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
