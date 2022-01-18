@@ -129,21 +129,20 @@ CKEDITOR_CONFIGS = {
         ],
         'toolbar_YourCustomToolbarConfig': [
             # {'name': 'document', 'items': ['Source']},
-            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
-            {'name': 'basicstyles',
+             {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript',
-                       '-', 'RemoveFormat']},
-
+                       '-', 'RemoveFormat']}, 
+             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'Smiley', 'SpecialChar']},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
                        'Blockquote','-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',
                        'JustifyBlock']},
-            '/',
             {'name': 'links', 'items': ['Link', 'Unlink']},
-            {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'Smiley', 'SpecialChar']},
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'styles', 'items': ['Styles', 'Format']},
+            {'name': 'styles', 'items': ['Font', 'FontSize']},
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
@@ -171,7 +170,9 @@ CKEDITOR_CONFIGS = {
             #'elementspath'
         ]),
         'removePlugins': 'exportpdf',
-        'height': 150,
+        'height': 200,
+         'width': '100%',
+         'contentsCss': 'img {max-width: 100%;height: auto! important;}',
 
     }
 }

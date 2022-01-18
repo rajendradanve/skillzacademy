@@ -1,6 +1,7 @@
 
 body {
     font-family: 'Lato';
+    
 }
 
 .content-placement {
@@ -203,7 +204,7 @@ input[name='q']::placeholder {
 @media (max-width: 992px) {
 
     .content-placement {
-        padding-top: 96px;
+        padding-top: 80px;
     }
 
 }

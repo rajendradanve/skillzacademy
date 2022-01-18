@@ -18,7 +18,7 @@
     <div class="row mt-2">
         <div class="col col-md-10 offset-md-1">
             <form action="{% url 'update_course' course.id %}" method="POST" class="form mb-2" id="add-course-form"
-                enctype="multipart/form-data">
+            enctype=”multipart/form-data”>
                 {% csrf_token %}
                 {{ form.text | safe }}
                 {{ form.media }}

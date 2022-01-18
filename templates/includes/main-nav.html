@@ -1,17 +1,19 @@
-<div class="collapse navbar-collapse" id="main-nav">
+<div class="collapse navbar-collapse mx-1 shadow" id="main-nav">
 
-    <ul class="navbar-nav w-auto mx-auto">
-
+    <ul class="navbar-nav w-auto mx-4">
+        <li class="nav-item">
+            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="{% url 'home' %}" id="home">
+                Skillz Academy
+            </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="all-courses-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 All Courses
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-courses-link">
+            <div class="dropdown-menu border-0 shadow" aria-labelledby="all-courses-link">
                 <a href="{% url 'courses'%}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <!-- currently no rating is used. To be implemented in future
-                <a href="" class="dropdown-item ">By Rating</a>
-
-                -->
+              
                 <a href="{% url 'courses'%}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
                 <a href="{% url 'courses' %}" class="dropdown-item">All Courses</a>
             </div>
@@ -23,7 +25,7 @@
             <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="{{main_category.name}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{main_category.friendly_name}}
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="{{main_category.name}}">
+            <div class="dropdown-menu border-0 shadow" aria-labelledby="{{main_category.name}}">
                 {% for category in categories %}
                 
                     {% if category.main_category.name == main_category.name %}
