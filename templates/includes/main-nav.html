@@ -1,14 +1,14 @@
-<div class="collapse navbar-collapse mx-1 shadow" id="main-nav">
+<div class="collapse navbar-collapse" id="main-nav">
 
-    <ul class="navbar-nav w-auto mx-4">
-        <li class="nav-item">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="{% url 'home' %}" id="home">
-                Skillz Academy
+    <ul class="navbar-nav mx-auto ">
+        <li class="nav-item d-lg-none">
+            <a class="logo-font font-weight-bold nav-link text-dark me-4 ms-md-4" href="{% url 'home' %}" id="home">
+                Home
             </a>
         </li>
         <li><hr class="dropdown-divider"></li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="all-courses-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-dark me-4 ms-md-4" href="#" id="all-courses-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 All Courses
             </a>
             <div class="dropdown-menu border-0 shadow" aria-labelledby="all-courses-link">
@@ -22,7 +22,7 @@
         {% for main_category in main_categories %}
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-dark mr-5" href="#" id="{{main_category.name}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-dark me-4 ms-md-4" href="#" id="{{main_category.name}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{main_category.friendly_name}}
             </a>
             <div class="dropdown-menu border-0 shadow" aria-labelledby="{{main_category.name}}">

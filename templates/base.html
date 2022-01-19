@@ -146,7 +146,7 @@
     <div class="row bg-white">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
           aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -186,7 +186,7 @@
   </div>
   {% endif %}
 
-<div class="container">
+
   <!--Block to add page content-->
 
   {% block content %}
@@ -198,7 +198,7 @@
     <div class="row">
       <div class="col col-md-3 d-flex justify-content-center my-auto">
         <a href="{% url 'contact_us' %}" class="text-dark text-decoration-none mx-2">
-          <h4>Contact Us</h4>
+          <h4 class="display-6">Contact Us</h4>
         </a>
       </div>
       <div class="col col-md-6 d-flex justify-content-center">
@@ -210,7 +210,7 @@
             <div class="text-center">
               <input class="m-2 " type="email" id="subscription-email" name="subscription-email"
                 placeholder="Enter Your Email Address" size="50" required>
-              <button type="submit" class="btn btn-primary mb-2">Submit</button>
+              <button type="submit" class="btn btn-primary btn-sm mb-2">Submit</button>
             </div>
 
           </form>
@@ -221,11 +221,11 @@
       <div class="col col-md-3 my-auto">
         <ul class="nav justify-content-center pb-1 mb-1">
           <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i
-                class="fab fa-twitter-square fa-3x"></i></a></li>
+                class="fab fa-twitter-square fa-2x"></i></a></li>
           <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i
-                class="fab fa-facebook-square fa-3x"></i></a></li>
+                class="fab fa-facebook-square fa-2x"></i></a></li>
           <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i
-                class="fab fa-youtube-square fa-3x"></i></a></li>
+                class="fab fa-youtube-square fa-2x"></i></a></li>
         </ul>
       </div>
 
@@ -237,7 +237,7 @@
     </div>
 
   </footer>
-</div>
+
   <!--Extra JS which can in run after page is loaded-->
   {% block postloadjs %}
   <script>
