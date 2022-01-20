@@ -2,96 +2,100 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 
 <div id="carouselCaptions" class="carousel slide content-placement" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{ MEDIA_URL }}education.jpeg" class="d-block w-100 carousel-img" alt="education image">
-        <div class="carousel-caption caption-bg d-none d-md-block shadow">
-          <div class="text-center">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ MEDIA_URL }}education.jpeg" class="d-block w-100 carousel-img" alt="education image">
+      <div class="carousel-caption caption-bg d-none d-md-block shadow">
+        <div class="text-center">
           <h3>Needs Extra Help To Succeed?</h3>
           <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
         </div>
-        </div>
-        <div class="carousel-caption d-block d-md-none">
-          <div class="text-center">
-          <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
-        </div>
-        </div>
       </div>
-      <div class="carousel-item">
-        <img src="{{ MEDIA_URL }}painting-with-brush.jpeg" class="d-block w-100 carousel-img" alt="painting with brush">
-        <div class="carousel-caption caption-bg d-none d-md-block">
-          <h3>Want To Develop Hobby Or Learn New?</h3>
+      <div class="carousel-caption d-block d-md-none">
+        <div class="text-center">
           <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
-        </div>
-        <div class="carousel-caption d-block d-md-none">
-          <div class="text-center">
-          <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
-        </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{ MEDIA_URL }}old-man-learning.jpeg" class="d-block w-100 carousel-img" alt="old man learning">
-        <div class="carousel-caption caption-bg d-none d-md-block">
-          <h3>Age Is Just A Number</h3>
-          <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
-        </div>
-        <div class="carousel-caption d-block d-md-none">
-          <div class="text-center">
-          <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
-        </div>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="carousel-item">
+      <img src="{{ MEDIA_URL }}painting-with-brush.jpeg" class="d-block w-100 carousel-img" alt="painting with brush">
+      <div class="carousel-caption caption-bg d-none d-md-block">
+        <h3>Want To Develop Hobby Or Learn New?</h3>
+        <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
+      </div>
+      <div class="carousel-caption d-block d-md-none">
+        <div class="text-center">
+          <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ MEDIA_URL }}old-man-learning.jpeg" class="d-block w-100 carousel-img" alt="old man learning">
+      <div class="carousel-caption caption-bg d-none d-md-block">
+        <h3>Age Is Just A Number</h3>
+        <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
+      </div>
+      <div class="carousel-caption d-block d-md-none">
+        <div class="text-center">
+          <a href="{% url 'courses' %}" class="btn btn-primary">Explore Skillz Academy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
-  <!-- Marketing messaging and featurettes -->
+<!-- Marketing messaging and featurettes -->
 
-  <div class="container marketing">
+<div class="container marketing content-placement-bottom">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        
-        <img src="{{ MEDIA_URL }}online_class.jpeg" class="bd-placeholder-img shadow border border-light"  alt="Live classes image">
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-4">
 
-        <h5 class="my-3">Live Classes</h5>
-        <p> Live and interactive classes with activities to make learning more fun</p>
-   
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <img src="{{ MEDIA_URL }}ProfessionalWoman.jpeg" class="bd-placeholder-img shadow border border-light" alt="Professional Women image">
+      <img src="{{ MEDIA_URL }}online_class.jpeg" class="bd-placeholder-img shadow border border-light"
+        alt="Live classes image">
 
-        <h5 class="my-3">Expert Instructors</h5>
-        <p>Expert instructors from around the globe offering your favourite classes</p>
-        
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <img src="{{ MEDIA_URL }}small_class.jpeg" class="bd-placeholder-img shadow border border-light" alt="Small classes image">
+      <h5 class="my-3">Live Classes</h5>
+      <p> Live and interactive classes with activities to make learning more fun</p>
 
-        <h5 class="my-3">Small Batch Size</h5>
-        <p>Small batch size to ensure more engagement and attention</p>
-       
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <img src="{{ MEDIA_URL }}ProfessionalWoman.jpeg" class="bd-placeholder-img shadow border border-light"
+        alt="Professional Women image">
 
-  </div><!-- /.container -->
+      <h5 class="my-3">Expert Instructors</h5>
+      <p>Expert instructors from around the globe offering your favourite classes</p>
+
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <img src="{{ MEDIA_URL }}small_class.jpeg" class="bd-placeholder-img shadow border border-light"
+        alt="Small classes image">
+
+      <h5 class="my-3">Small Batch Size</h5>
+      <p>Small batch size to ensure more engagement and attention</p>
+
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
 {% endblock %}

@@ -68,8 +68,79 @@ This website can be used by
 
 ## **User Goals**
 
-**Goad for Non-register Users**
+**Goal for Non-register Users**
+
+*   Simple webpage layout
+*   Get a basic idea about from the home page what is this website about. 
+*   Visible important categories and dropdown sub categories to find courses easily.
+*   Getting all information about the course before buying it. 
+
 
 **Goal for Register Users**
 
+*   Good and simple page layout for all pages which is suitable for all kinds of users.
+*   Able to explore courses same as non-register user.  
+*   Buy courses with simple payment process.
+*   See all purchase history about the courses. 
+*   Page to view all paid courses to access meeting link.
+
 **Goal for Admin**
+
+*   Admin has similar goals as register user but has some extra functionality
+*   Admin shall ableto add/ edit/ delete course
+*   Admin can add / edit main categories and categories
+*   Admin has possibility add/edit discount and offer for the user.
+
+
+--------To be verified---------------
+# **Credits**
+
+**Images**
+
+The main page library image is taken from [Pexels](https://www.pexels.com/photo/row-of-books-in-shelf-256541/)
+
+**Text**
+
+Text for the added book is mostly taken from [Amazon](https://www.amazon.com/).
+
+Ideas for book categories, age groups are taken from [Book Depository](https://www.bookdepository.com/).
+**Code**
+
+- [W3schools](https://www.w3schools.com/) 
+
+  Used in general to solve issues related to HTML and CSS.
+ 
+- [Materializecss](https://materializecss.com/)
+
+  Mostly materializecss card component is used for this website. 
+
+- [Jquery](https://jquery.com/)
+
+  jquery code is used as required by materializecss.
+
+- [MDN Resources](https://developer.mozilla.org/en-US/docs/Web/Reference)
+
+    MDS resources are used to get more understanding of some concepts and some regular help
+
+- [Google Fonts](https://fonts.google.com/)
+   
+   Roboto font link from google fonts used all over the site.
+
+- HTML and CSS for star rating is taken from this [Youtube Video](https://www.youtube.com/watch?v=zDHC4r5eCdY)
+
+
+
+# **Acknowledgements**
+
+I would like to thank:
+
+- My mentor Akshat Garg for his encouragement and valuable comments for this project. 
+Thanks to his guidance and tips to improve my code.
+
+- Lessons from code mainly mini projects on backend development institute helped a lot during this project. Used regularly to check if I am following the correct method of coding.
+
+- Help from in the Slack community.
+
+- Code Institute Tutor support .
+
+Should you have any queries please reach me at rajendradanve@gmail.com.

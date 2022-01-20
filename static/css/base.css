@@ -1,8 +1,22 @@
 
+html {
+    box-sizing: border-box;
+    height: 100vh; /* Allows the h-100 and vertical centering to work */
+    scroll-behavior: smooth;
+  }
+
 body {
     font-family: 'Lato';
-   
+    height: 100vh;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }
 
 .content-placement {
     padding-top: 128px;
@@ -260,7 +274,7 @@ input[name='q']::placeholder {
 @media (max-width: 400px) {
 
     .content-placement-bottom {
-        margin-bottom: 310px;
+        padding-bottom: 200px;
     }
 }
 

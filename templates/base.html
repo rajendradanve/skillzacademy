@@ -46,7 +46,7 @@
 </head>
 
 <body>
-  <header class="fixed-top">
+  <header class="container-fluid fixed-top">
     <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
       <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-lg-start">
         <a href="{% url 'home' %}" class="nav-link main-logo-link">
@@ -146,7 +146,7 @@
     <div class="row bg-white">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
           aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -194,7 +194,7 @@
 
   <!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
 
-  <footer class="py-1 bg-light border-top sticky-bottom">
+  <footer class="footer pt-3 bg-light border-top">
     <div class="row">
      <div class="col col-md-6 my-auto ">
       
@@ -203,7 +203,7 @@
         {% csrf_token %}
         <input type="email" id="subscription-email" name="subscription-email"
         placeholder="Enter Your Email Address" size="50" required>
-      <button type="submit" class="btn btn-primary btn-sm mb-2">Submit</button>
+      <button type="submit" class="btn btn-primary btn-sm my-2">Submit</button>
       </form>
      </div>
      <div class="col col-md-4 d-flex justify-content-center my-auto">
