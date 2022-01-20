@@ -196,39 +196,32 @@
 
   <footer class="footer py-1 bg-light border-top fixed-bottom">
     <div class="row">
-      <div class="col col-md-3 d-flex justify-content-center my-auto">
+     <div class="col col-md-6 my-auto ">
+      
+      <form action="{% url 'subscribe' %}" method="POST">
+        <p class="text-center text-dark mb-0">Subscribe To Our Newsletter</p>
+        {% csrf_token %}
+        <input type="email" id="subscription-email" name="subscription-email"
+        placeholder="Enter Your Email Address" size="50" required>
+      <button type="submit" class="btn btn-primary btn-sm mb-2">Submit</button>
+      </form>
+     </div>
+     <div class="col col-md-4 d-flex justify-content-center my-auto">
+      <ul class="nav justify-content-center pb-1 mb-1">
+        <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i
+              class="fab fa-twitter-square fa-2x"></i></a></li>
+        <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i
+              class="fab fa-facebook-square fa-2x"></i></a></li>
+        <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i
+              class="fab fa-youtube-square fa-2x"></i></a></li>
+      </ul>
+     </div>
+     <div class="col col-md-2 d-flex justify-content-center my-auto">
         <a href="{% url 'contact_us' %}" class="text-dark text-decoration-none mx-2">
-          <h6>Contact Us</h6>
+          <h5>Contact Us</h5>
         </a>
-      </div>
-      <div class="col col-md-6 d-flex justify-content-center">
-        <div class="row">
-          <div class="col-10 offset-1">
-          <p class="text-center text-dark">Subscribe To Our Newsletter</p>
-          <form class="form-inline" action="{% url 'subscribe' %}" method="POST">
-            {% csrf_token %}
-            <div class="text-center">
-              <input class="m-2 " type="email" id="subscription-email" name="subscription-email"
-                placeholder="Enter Your Email Address" size="50" required>
-              <button type="submit" class="btn btn-primary btn-sm mb-2">Submit</button>
-            </div>
-
-          </form>
-        </div>
-        </div>
-
-      </div>
-      <div class="col col-md-3 my-auto">
-        <ul class="nav justify-content-center pb-1 mb-1">
-          <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i
-                class="fab fa-twitter-square fa-2x"></i></a></li>
-          <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i
-                class="fab fa-facebook-square fa-2x"></i></a></li>
-          <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i
-                class="fab fa-youtube-square fa-2x"></i></a></li>
-        </ul>
-      </div>
-
+ 
+     </div>
     </div>
     <div class="row">
       <div class="col">
@@ -240,12 +233,11 @@
 
   <!--Extra JS which can in run after page is loaded-->
   {% block postloadjs %}
-  <script>
-    $(document).ready(function () {
-      $('.toast').toast('show');
-    });
-  </script>
-
+    <script>
+      $(document).ready(function () {
+        $('.toast').toast('show');
+      });
+    </script>
   {% endblock %}
 </body>
 
