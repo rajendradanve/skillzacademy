@@ -393,6 +393,7 @@ def update_course(request, course_id):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
+            print(f'file= {request.FILES}')
             form.save()
             messages.success(request, 'Successfully updated course!')
             return redirect(reverse('course_detail', args=[course.id]))

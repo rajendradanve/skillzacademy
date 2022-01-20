@@ -5,6 +5,9 @@ from django.dispatch import receiver
 
 
 class Discount(models.Model):
+    """
+    Discount form
+    """
     offer_name = models.CharField(max_length=100)
     discount_percentage = models.PositiveIntegerField()
     discount_amount_threshold = models.PositiveIntegerField()

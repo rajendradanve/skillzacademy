@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container content-placement content-placement-bottom">
+    <div class="row mt-4">
+        <div class="col">
+            {% if form_flag == 'update' %}
+            <h2 class="logo-font mb-4 text-center">Update Discount</h2>
+            {% else%}
+            <h2 class="logo-font mb-4 text-center">Add Discount</h2>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col col-md-6 offset-md-3">
+            <form action="{% url 'discount' %}" method="POST" class="form mb-2"
+                id="update-category-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <a href="{% url 'admin' %}" class="btn rounded-1 border border-1 border-dark">Cancel</a>
+                    <button type="submit" class="btn btn-dark rounded-1 my-2 ms-2">Add Discount</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
