@@ -388,11 +388,16 @@ def delete_course(request, course_id):
 @login_required
 def update_course(request, course_id):
     """ Update course data """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can update database')
+        return redirect(reverse('home'))
+    
     course = get_object_or_404(Course, pk=course_id)
 
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
+            print("form is valid")
             print(f'file= {request.FILES}')
             form.save()
             messages.success(request, 'Successfully updated course!')
