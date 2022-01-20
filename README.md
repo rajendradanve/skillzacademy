@@ -51,12 +51,12 @@ Users can go through different categories which will show him list of courses. U
 
 ##  **Project Goals**
 The goal of this website to connect instructor and intrested students.
-Though currently there are many websites which shows recorded videos, it is always better to learn live and ask questions to live instructor. 
+Though currently there are many websites which shows recorded videos, it is always better to learn live and ask questions to live instructor.
+Currently market is so demanding and people wanted to learn something new, upgrade themselves or want to change the path and relax by learning new hobbies. 
 Users of this site can explore different courses based on their intrest.
 Website is showing different categories to find the course easily.
 Course details provides all the required information to the user and based on this informaition user can buy the course. Only register user can bought the course and they will get meeting links in the the course detail page. 
 Admin has possibility to add, edit different categories. Add, edit, and delete course. 
-
 
 
 ## **Targeted Audience**
