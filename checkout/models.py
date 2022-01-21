@@ -14,7 +14,7 @@ class Order(models.Model):
     Create Order model
     """
     order_number = models.CharField(default=uuid.uuid4().hex[:10].upper(),
-                                    unique=True, max_length=10, editable=False)
+                                    max_length=10, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='orders')
@@ -25,6 +25,7 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
     cardholder_full_name = models.CharField(max_length=32, null=False)
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def update_total(self):
         """

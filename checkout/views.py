@@ -25,6 +25,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
+            'username': request.user
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -53,6 +54,7 @@ def checkout(request):
         order_form = OrderForm(form_data)
 
         if order_form.is_valid():
+            
             order = order_form.save()
 
             for course_id in bag:

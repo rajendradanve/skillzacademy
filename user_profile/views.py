@@ -23,9 +23,9 @@ def my_courses(request):
     orders = profile.orders.all()
     courses = []
     for order in orders:
-        print(f'order = {order}')
+        
         for item in order.lineitems.all():
-            print(f'order item = {item}')
+            
             courses.append(item.course)
 
     template = 'user_profile/my_courses.html'
@@ -82,8 +82,6 @@ def discount(request):
         return redirect('home')
     
     discount0 = Discount.objects.first()
-    
-    print(f'discount={discount0}')
     
     if request.method == 'POST':
         if discount:

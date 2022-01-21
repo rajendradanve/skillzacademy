@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="content-placement content-placement-bottom mx-4">
+    <div class="content-placement mx-4">
         <div class="row">
             <div class="col">
                 <hr>
@@ -74,14 +74,14 @@
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-end">
-                                    <a href="{% url 'courses' %}" class="btn rounded-0 btn-lg border-dark border-1 me-2">
+                                    <a href="{% url 'courses' %}" class="btn rounded-0 btn-lg border-dark border-1 me-2 mt-2">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase">Keep Learning</span>
                                     </a>
                                     <a href="{% if request.user.is_authenticated %}{% url 'checkout' %}{% else %}{% url 'account_signup' %}{% endif %}"
-                                        class="btn btn-dark rounded-0 btn-lg">
+                                        class="btn btn-dark rounded-0 btn-lg mt-2">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon"><i class="fas fa-lock"></i></span>
                                     </a>
@@ -91,7 +91,7 @@
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your cart is empty. Keep shopping to find a course! </p>
-                    <a href="{% url 'courses' %}" class="btn btn-dark rounded-1 btn-lg">
+                    <a href="{% url 'courses' %}" class="btn btn-dark rounded-1 btn-lg mt-2">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>

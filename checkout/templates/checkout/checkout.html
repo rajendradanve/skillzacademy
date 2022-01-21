@@ -8,7 +8,7 @@
 
 
 {% block content %}
-    <div class="container content-placement content-placement-bottom">
+    <div class="content-placement">
         <div class="row">
             <div class="col">
                 <hr>
@@ -18,7 +18,7 @@
 
         </div>
         <div class="row">
-            <div class="col col-lg-6">
+            <div class="col-12 col-lg-6 order-lg-last mb-5">
                 <p class="text-muted">Order Summary</p>
                 <div class="row">
                     <div class="col-7 offset-2">
@@ -34,7 +34,7 @@
                     <div class="col-2 mb-1">
                         <a href="{% url 'course_detail' item.course.id %}">
                             {% if item.course.image %}
-                            <img src="{{ item.course.image.url}}" alt="{{item.course.name}}" class="img-fluid w-100 ">
+                            <img src="{{ item.course.image.url}}" alt="{{item.course.title}}" class="img-fluid w-100 ">
                             {% else %}
                             <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}" class="w-100">
                             {% endif %}
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col col-lg-6">
+            <div class="col-12 col-lg-6">
                 <p class="text-muted ms-2">Fill out the payment details to complete your order</p>
 
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
@@ -74,13 +74,13 @@
                     </fieldset>
 
                     <div class="submit-button text-end mt-5 mb-2">
-                        <a href="{% url 'view_bag' %}" class="btn rounded-0 border-dark border-1 me-2">
+                        <a href="{% url 'view_bag' %}" class="btn rounded-0 border-dark border-1 me-2 mt-2">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="font-weight-bold">Adjust Bag</span>
                         </a>
-                        <button id="submit-button" class="btn btn-dark rounded-0">
+                        <button id="submit-button" class="btn btn-dark rounded-0 mt-2">
                             <span class="font-weight-bolt">Complete Order</span>
                             <span class="icon">
                                 <i class="fas fa-lock"></i>

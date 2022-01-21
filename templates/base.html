@@ -47,13 +47,13 @@
 
 <body>
   <header class="container-fluid fixed-top">
-    <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+    <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex w-100">
       <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-lg-start">
         <a href="{% url 'home' %}" class="nav-link main-logo-link">
           <h2 class="logo-font text-dark my-0">Skillz Academy</h2>
         </a>
       </div>
-      <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+      <div class="col-12 col-lg-4 my-auto py-1">
         <form action="{% url 'courses' %}" method="GET">
           <div class="input-group">
             <input type="text" name="q" class="form-control border border-dark rounded-0 " placeholder="Search Courses">
@@ -192,7 +192,8 @@
   {% block content %}
   {% endblock %}
 </main>
-  <!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
+  
+<!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
 
   <footer class="container-fluid footer pt-3 bg-light border-top">
     <div class="row">

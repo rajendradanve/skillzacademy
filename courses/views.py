@@ -95,9 +95,13 @@ def course_detail(request, course_id):
     already_in_cart = False
 
     if 'bag' in request.session:
-        if course_id in request.session['bag']:
+        print(f'addedcourse {request.session["bag"]}')
+        if str(course_id) in request.session['bag']:
             already_in_cart = True
-
+            print(course_id)
+    
+    print(already_in_cart)
+    
     already_bought = False
     if request.user.is_authenticated:
         # Checking orders from logged in users and checking if course is already bought.
@@ -397,8 +401,6 @@ def update_course(request, course_id):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
-            print("form is valid")
-            print(f'file= {request.FILES}')
             form.save()
             messages.success(request, 'Successfully updated course!')
             return redirect(reverse('course_detail', args=[course.id]))

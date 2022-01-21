@@ -131,7 +131,7 @@ CKEDITOR_CONFIGS = {
             # {'name': 'document', 'items': ['Source']},
              {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript',
-                       '-', 'RemoveFormat']}, 
+                       '-', 'RemoveFormat']},
              {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
             {'name': 'insert',
