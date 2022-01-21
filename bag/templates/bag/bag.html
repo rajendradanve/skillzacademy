@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="content-placement content-placement-bottom">
+    <div class="content-placement content-placement-bottom mx-4">
         <div class="row">
             <div class="col">
                 <hr>
@@ -26,7 +26,7 @@
                             {% for item in bag_items %}
 
                                 <tr>
-                                    <td class="p-3 text-center d-flex flex-column">
+                                    <td class="p-3 text-center d-flex">
                                         <h5 class="my-0"><strong>{{ item.course.title}}</strong></h5>
                                         <div class="text-center">
                                             {% if item.course.image %}

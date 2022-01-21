@@ -186,26 +186,32 @@
   </div>
   {% endif %}
 
-
+<main class = "container-fluid main-block">
   <!--Block to add page content-->
 
   {% block content %}
   {% endblock %}
-
+</main>
   <!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
 
-  <footer class="footer pt-3 bg-light border-top">
+  <footer class="container-fluid footer pt-3 bg-light border-top">
     <div class="row">
-     <div class="col col-md-6 my-auto ">
+     <div class="col col-md-6 my-auto d-flex flex-column">
       
-      <form action="{% url 'subscribe' %}" method="POST">
+      <form id="subscribe-form" class="mx-auto" action="{% url 'subscribe' %}" method="POST">
         <p class="text-center text-dark mb-0">Subscribe To Our Newsletter</p>
         {% csrf_token %}
         <input type="email" id="subscription-email" name="subscription-email"
-        placeholder="Enter Your Email Address" size="50" required>
+        placeholder="Enter Your Email Address" size="30" required>
       <button type="submit" class="btn btn-primary btn-sm my-2">Submit</button>
       </form>
      </div>
+     <div class="col col-md-2 d-flex justify-content-center my-auto">
+      <a href="{% url 'contact_us' %}" class="text-dark text-decoration-none mx-2">
+        <h5>Contact Us</h5>
+      </a>
+
+   </div>
      <div class="col col-md-4 d-flex justify-content-center my-auto">
       <ul class="nav justify-content-center pb-1 mb-1">
         <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i
@@ -216,12 +222,7 @@
               class="fab fa-youtube-square fa-2x"></i></a></li>
       </ul>
      </div>
-     <div class="col col-md-2 d-flex justify-content-center my-auto">
-        <a href="{% url 'contact_us' %}" class="text-dark text-decoration-none mx-2">
-          <h5>Contact Us</h5>
-        </a>
- 
-     </div>
+    
     </div>
     <div class="row">
       <div class="col">
