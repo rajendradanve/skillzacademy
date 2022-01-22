@@ -8,7 +8,7 @@
 
 
 {% block content %}
-    <div class="content-placement">
+    <div class="content-placement my-4">
         <div class="row">
             <div class="col">
                 <hr>
@@ -34,9 +34,9 @@
                     <div class="col-2 mb-1">
                         <a href="{% url 'course_detail' item.course.id %}">
                             {% if item.course.image %}
-                            <img src="{{ item.course.image.url}}" alt="{{item.course.title}}" class="img-fluid w-100 ">
+                            <img src="{{ item.course.image.url}}" alt="{{item.course.title}}" class="img-fluid w-100 border border-1">
                             {% else %}
-                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}" class="w-100">
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}" class="w-100 border border-1">
                             {% endif %}
                         </a>
                     </div>

@@ -98,9 +98,7 @@ def course_detail(request, course_id):
         
         if course_id in request.session['bag']:
             already_in_cart = True
-            print(course_id)
-    
-    print(already_in_cart)
+
     
     already_bought = False
     if request.user.is_authenticated:

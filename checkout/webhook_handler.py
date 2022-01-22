@@ -51,15 +51,15 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
-        print(f'stripe intent= {intent}')
+        
         billing_details = intent.charges.data[0].billing_details
         grand_total = round(intent.charges.data[0].amount/100, 2)
-        print(f'billing_details={billing_details}')
+        
         username = intent.metadata.username
         profile = UserProfile.objects.get(user__email=username)
         order_exists = False
         attempt = 1
-        print(f'profile = {profile}')
+        
         while attempt <=5:
             try:
                 order = Order.objects.get(
@@ -69,15 +69,15 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 order_exists = True
-                print(f'attempt={attempt} + order = {order.order_number}')
+                
                 break
             except Order.DoesNotExist:
                 attempt += 1
-                print(f'attempt = {attempt}')
+                
                 time.sleep(1)
 
         if order_exists:
-            print(f'Order exists after while={order}')
+            
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]}| SUCCESS: \
@@ -100,13 +100,13 @@ class StripeWH_Handler:
                                                         course=course,)
                     order_line_item.save()
             except Exception as e:
-                print(e)
+                
                 if order:
                     order.delete()
                 return HttpResponse(content=f'Webhook received: {event["type"]}|\
                     ERROR: {e}',status=500)
         self._send_confirmation_email(order)
-        print(f'Order exists2nd={order}')
+        
         return HttpResponse(content=f'Webhook received: {event["type"]}',status=200)
 
     def handle_payment_intent_payment_failed(self, event):
