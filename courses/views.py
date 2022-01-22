@@ -95,8 +95,8 @@ def course_detail(request, course_id):
     already_in_cart = False
 
     if 'bag' in request.session:
-        print(f'addedcourse {request.session["bag"]}')
-        if str(course_id) in request.session['bag']:
+        
+        if course_id in request.session['bag']:
             already_in_cart = True
             print(course_id)
     

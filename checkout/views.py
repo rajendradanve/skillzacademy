@@ -23,9 +23,11 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        print("user email: ")
+        print(request.user.email)
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            'username': request.user
+            'username': request.user.email,
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -51,12 +53,16 @@ def checkout(request):
             'cardholder_full_name': request.POST['cardholder_full_name'],
         }
 
+        print(f'name ={request.POST["cardholder_full_name"]}')
+        
         order_form = OrderForm(form_data)
-
+        
         if order_form.is_valid():
             
-            order = order_form.save()
-
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.save()
             for course_id in bag:
                 try:
                     course = get_object_or_404(Course, pk=course_id)
@@ -73,14 +79,13 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
-
+            print(f'order from checkout view {order.order_number}')
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with data. \
                 Please double check your information.')
     else:
-
         bag = request.session.get('bag', [])
         if not bag:
             messages.error(request,
@@ -127,6 +132,7 @@ def checkout_success(request, order_number):
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
+        
     else:
         messages.info(request, 'Log in before you finish purchase')
         return redirect(reverse('account_signup'))

@@ -8,16 +8,14 @@ from django.db.models import Sum
 from courses.models import Course
 from user_profile.models import Discount, UserProfile
 
-
 class Order(models.Model):
     """
     Create Order model
     """
-    order_number = models.CharField(default=uuid.uuid4().hex[:10].upper(),
-                                    max_length=10, editable=False)
+    order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
-                                     related_name='orders')
+                                      related_name='orders')                        
     date = models.DateTimeField(auto_now_add=True)
     discount_percentage = models.PositiveIntegerField(null=True, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
@@ -26,6 +24,12 @@ class Order(models.Model):
                                       null=False, default=0)
     cardholder_full_name = models.CharField(max_length=32, null=False)
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+
+    def _generate_order_number(self):
+        """
+        Generate unique order number
+        """
+        return uuid.uuid4().hex.upper()
 
     def update_total(self):
         """
@@ -56,6 +60,15 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.order_number)
+    
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the order number
+        if it hasn't been set already.
+        """
+        if not self.order_number:
+            self.order_number = self._generate_order_number()
+        super().save(*args, **kwargs)
 
 
 class OrderLineItem(models.Model):

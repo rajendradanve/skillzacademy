@@ -20,7 +20,7 @@ def webhook(request):
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
-    print('inside webhook')
+    
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, wh_secret
@@ -34,7 +34,6 @@ def webhook(request):
     except Exception as e:
         return HttpResponse(content=e, status=400)
 
-    print("in the payment")
     # Set up a webhook handler
     handler = StripeWH_Handler(request)
 

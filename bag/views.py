@@ -22,7 +22,7 @@ def add_to_bag(request, course_id):
 
     bag = request.session.get('bag', [])
 
-    bag.append(course_id)
+    bag.append(course.id)
     
     request.session['bag'] = bag
     messages.success(request, f'Added {course.title} to your bag')
@@ -35,7 +35,7 @@ def remove_course_from_bag(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     bag = request.session.get('bag', [])
 
-    bag.remove(course_id)
+    bag.remove(course.id)
 
     request.session['bag'] = bag
     messages.success(request, f'Removed {course.title} from your bag')

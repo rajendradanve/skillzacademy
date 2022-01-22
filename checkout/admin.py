@@ -19,13 +19,13 @@ class OrderAdmin(admin.ModelAdmin):
     """
     inlines = (OrderLineItemAdminInline,)
     readonly_fields = ('order_number', 'date', 'user_profile',
-                       'discount_percentage', 'order_total', 'grand_total',)
+                       'discount_percentage', 'order_total', 'grand_total', 'cardholder_full_name', 'stripe_pid')
 
     fields = ('order_number', 'date', 'user_profile', 'discount_percentage',
-              'order_total', 'grand_total',)
+              'order_total', 'grand_total', 'cardholder_full_name', 'stripe_pid')
 
     list_display = ('order_number', 'date', 'user_profile',
-                    'discount_percentage', 'order_total', 'grand_total',)
+                    'grand_total', 'cardholder_full_name', 'stripe_pid')
 
     ordering = ('-date',)
 

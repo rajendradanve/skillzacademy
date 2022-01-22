@@ -47,7 +47,7 @@ card.addEventListener('change', function (event) {
 });
 
 // Handle form submit
-var form = document.getElementById('payment-form');
+let form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
@@ -57,20 +57,22 @@ form.addEventListener('submit', function(ev) {
     $('#loading-overlay').fadeToggle(100);
 
     // From using {% csrf_token %} in the form
-    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-    var postData = {
+    let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    let postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
     };
-    var url = '/checkout/cache_checkout_data/';
+    let url = '/checkout/cache_checkout_data/';
+    
+    let cardholder_name = $.trim($("input[name=cardholder_full_name]").val());
 
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
-                card: card,  
-                billing_detail: {
-                    name: $.trim(form.full_name.value)
-                }
+                billing_details: {
+                    name: cardholder_name,
+                },
+                card: card,
             },
         }).then(function(result) {
             if (result.error) {
@@ -94,5 +96,6 @@ form.addEventListener('submit', function(ev) {
     }).fail(function () {
         // just reload the page, the error will be in django messages
         location.reload();
-    })
+    });
+    
 });
