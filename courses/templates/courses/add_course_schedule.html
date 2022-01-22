@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'courses/css/add_courses.css' %}">
+<link rel="stylesheet" href="{% static 'courses/css/add_courses.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="container content-placement my-4">
         <div class="row mt-4">
             <div class="col">
-                
+
                 <h2 class="logo-font mb-4 text-center">
-                    {% if from_course_detail %} 
-                        Update Course Schedule 
+                    {% if from_course_detail %}
+                        Update Course Schedule
                     {% else %}
                         Add Course Schedule
                     {% endif %}
@@ -20,8 +20,9 @@
         </div>
         <div class="row mt-2">
             <div class="col col-md-10 offset-md-1">
-                <form action="{% if from_course_detail %} {% url 'update_course_schedule' course_id %} {% else %} {% url 'add_course_schedule' course_id %} {% endif %}" method="POST" class="form mb-2"
-                    id="add-course-form">
+                <form
+                    action="{% if from_course_detail %} {% url 'update_course_schedule' course_id %} {% else %} {% url 'add_course_schedule' course_id %} {% endif %}"
+                    method="POST" class="form mb-2" id="add-course-form">
                     {% csrf_token %}
                     {{ formset.management_form}}
                     <div id="course-schedule-form">
@@ -47,15 +48,15 @@
                                     </div>
 
                                 </div>
-                               
-                                    {% if forloop.counter != 1 %}
-                                        <div class="row">
-                                            <div class="col-3">
-                                                {{ form.DELETE|as_crispy_field }}
-                                            </div>
+
+                                {% if forloop.counter != 1 %}
+                                    <div class="row">
+                                        <div class="col-3">
+                                            {{ form.DELETE|as_crispy_field }}
                                         </div>
-                                    {% endif %}
-                                
+                                    </div>
+                                {% endif %}
+
                             </div>
                         {% endfor %}
                     </div>
@@ -65,11 +66,12 @@
                     <div class="row">
                         <div class="col col-md-6 offset-md-3 d-flex justify-content-center">
                             {% if not from_course_detail %}
-                                <a href="{% url 'delete_course' course_id %}" class="btn rounded-1 border border-1 border-dark me-3">Delete & Go Back</a>
+                                <a href="{% url 'delete_course' course_id %}"
+                                    class="btn rounded-1 border border-1 border-dark me-3">Delete & Go Back</a>
                             {% endif %}
-                                <button name="save-n-add" id="add-lecture" class="btn btn-primary me-3" type="submit">Save
+                            <button name="save-n-add" id="add-lecture" class="btn btn-primary me-3" type="submit">Save
                                 & Add</button>
-                            
+
                             <button name="save-n-view" id="add-lecture" class="btn btn-primary" type="submit">Save &
                                 View</button>
                         </div>

@@ -95,11 +95,10 @@ def course_detail(request, course_id):
     already_in_cart = False
 
     if 'bag' in request.session:
-        
+
         if course_id in request.session['bag']:
             already_in_cart = True
 
-    
     already_bought = False
     if request.user.is_authenticated:
         # Checking orders from logged in users and checking if course is already bought.
@@ -165,7 +164,7 @@ def add_course_schedule(request, course_id):
             formset.save()
 
             if 'save-n-add' in request.POST:
-                
+
                 return redirect('add_course_schedule', course_id=course.id)
             elif 'save-n-view' in request.POST:
                 messages.success(request, 'Course updated successfully')
@@ -201,7 +200,7 @@ def update_course_schedule(request, course_id):
 
     if request.method == 'POST':
         formset = AddCourseScheduleFormset(request.POST, instance=course)
-        
+
         if formset.is_valid():
             formset.save()
 
@@ -212,7 +211,7 @@ def update_course_schedule(request, course_id):
                 return redirect('course_detail', course_id=course.id)
             else:
                 messages.error(request, 'Something went wrong. Please try again')
-                
+
     formset = AddCourseScheduleFormset(instance=course)
     template = 'courses/add_course_schedule.html'
     context = {
@@ -393,7 +392,7 @@ def update_course(request, course_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can update database')
         return redirect(reverse('home'))
-    
+
     course = get_object_or_404(Course, pk=course_id)
 
     if request.method == 'POST':

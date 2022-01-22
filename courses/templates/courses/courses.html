@@ -6,133 +6,133 @@
 
 
 {% block content %}
-<div class="container-fluid content-placement my-4">
-    <div class="row">
-        <div class="col-auto text-center mt-2 mx-auto">
-            <h2 class="logo-font">Courses</h2>
-            {% for c in current_categories %}
-                <a class="category-badge text-decoration-none" href="{% url 'courses' %}?category={{ c.name }}">
-                    <span
-                        class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
-                </a>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col col-md-10 offset-md-1">
-            <hr class="mb-1">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="coureses-container col-10 offset-1">
-            <div class="row mt-1 mb-2">
-
-                <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                    <div class="sort-select-wrapper">
-                        <select id="sort-selector"
-                            class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...
-                            </option>
-                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price
-                                (low to high)</option>
-                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price
-                                (high to low)</option>
-                            <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title
-                                (A-Z)</option>
-                            <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title
-                                (Z-A)</option>
-                            <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>
-                                Category (A-Z)</option>
-                            <option value="category_desc"
-                                {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 order-md-first">
-                    <p class="text-muted mt-3 text-center text-md-start">
-                        {% if search_term or current_categories or current_sorting != 'None_None' %}
-                        <span class="small"><a href="{% url 'courses' %}">Courses Home</a> | </span>
-                        {% endif %}
-                        {{ courses|length }} courses{% if search_term %} found for
-                        <strong>"{{ search_term }}"</strong>{% endif %}
-                    </p>
-                </div>
-
-            </div>
-            <div class="row">
-                {% if courses|length == 0 %}
-                <div class="col col-md-6 offset-md-3">
-                    <h4 class=text-center>Currently no courses available in this category.</h4>
-                    <div class="text-center mt-4"><a href="{% url 'courses' %}" class="btn btn-dark">Explore Other Courses</a>
-                    </div>
-                    </div>
-                {% endif %}
-                {% for course in courses %}
-
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card h-100 shadow-sm">
-                        {% if course.image %}
-                        <a href="{% url 'course_detail' course.id %}">
-                            <img class="bd-placeholder-img card-img-top img-fluid border border-light"
-                                src="{{ course.image.url }}" alt="{{ course.title }}">
-                        </a>
-                        {% else %}
-                        <a href="{% url 'course_detail' course.id %}">
-                            <img class="bd-placeholder-img card-img-top img-fluid border border-light"
-                                src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
-                        </a>
-                        {% endif %}
-                        <div class="card-body pb-0">
-                            <h6 class="mb-1">{{ course.title }}</h6>
-
-                        </div>
-                        <div class="card-footer bg-white pt-0 border-0 text-start">
-                            <div class="row">
-                                <div class="col">
-                                    <p class="small mt-1 mb-0">
-                                        <a href="{% url 'courses' %}?category={{course.category.name}}"
-                                            class="text-muted">
-                                            <i class="fas fa-tag me-1 mb-1"></i>{{course.category.friendly_name}}
-                                        </a>
-                                    </p>
-                                    <p class="small mt-2"> Start Date: <span
-                                            class="bg-success text-white p-1 rounded">{{ course.start_date}}</span></p>
-                                    <p class="lead mb-0 text-end font-weight-bold">${{ course.price }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:1 %}
-                <div class="col-12 d-sm-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:3 %}
-                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-xl-block mb-5">
-                    <hr>
-                </div>
-                {% endif %}
+    <div class="container-fluid content-placement my-4">
+        <div class="row">
+            <div class="col-auto text-center mt-2 mx-auto">
+                <h2 class="logo-font">Courses</h2>
+                {% for c in current_categories %}
+                    <a class="category-badge text-decoration-none" href="{% url 'courses' %}?category={{ c.name }}">
+                        <span
+                            class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                    </a>
                 {% endfor %}
             </div>
         </div>
+        <div class="row">
+            <div class="col col-md-10 offset-md-1">
+                <hr class="mb-1">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="coureses-container col-10 offset-1">
+                <div class="row mt-1 mb-2">
+
+                    <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                        <div class="sort-select-wrapper">
+                            <select id="sort-selector"
+                                class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...
+                                </option>
+                                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price
+                                    (low to high)</option>
+                                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price
+                                    (high to low)</option>
+                                <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title
+                                    (A-Z)</option>
+                                <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title
+                                    (Z-A)</option>
+                                <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>
+                                    Category (A-Z)</option>
+                                <option value="category_desc"
+                                    {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-first">
+                        <p class="text-muted mt-3 text-center text-md-start">
+                            {% if search_term or current_categories or current_sorting != 'None_None' %}
+                                <span class="small"><a href="{% url 'courses' %}">Courses Home</a> | </span>
+                            {% endif %}
+                            {{ courses|length }} courses{% if search_term %} found for
+                            <strong>"{{ search_term }}"</strong>{% endif %}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    {% if courses|length == 0 %}
+                        <div class="col col-md-6 offset-md-3">
+                            <h4 class=text-center>Currently no courses available in this category.</h4>
+                            <div class="text-center mt-4"><a href="{% url 'courses' %}" class="btn btn-dark">Explore Other
+                                    Courses</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% for course in courses %}
+
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card h-100 shadow-sm">
+                                {% if course.image %}
+                                <a href="{% url 'course_detail' course.id %}">
+                                    <img class="bd-placeholder-img card-img-top img-fluid border border-light"
+                                        src="{{ course.image.url }}" alt="{{ course.title }}">
+                                </a>
+                                {% else %}
+                                <a href="{% url 'course_detail' course.id %}">
+                                    <img class="bd-placeholder-img card-img-top img-fluid border border-light"
+                                        src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                                </a>
+                                {% endif %}
+                                <div class="card-body pb-0">
+                                    <h6 class="mb-1">{{ course.title }}</h6>
+
+                                </div>
+                                <div class="card-footer bg-white pt-0 border-0 text-start">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="small mt-1 mb-0">
+                                                <a href="{% url 'courses' %}?category={{course.category.name}}"
+                                                    class="text-muted">
+                                                    <i class="fas fa-tag me-1 mb-1"></i>{{course.category.friendly_name}}
+                                                </a>
+                                            </p>
+                                            <p class="small mt-2"> Start Date: <span
+                                                    class="bg-success text-white p-1 rounded">{{ course.start_date}}</span></p>
+                                            <p class="lead mb-0 text-end font-weight-bold">${{ course.price }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:1 %}
+                            <div class="col-12 d-sm-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:4 %}
+                            <div class="col-12 d-none d-xl-block mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-
 {% endblock %}
+
 {% block postloadjs %}
-{{block.super}}
-<script src="{% static 'courses/js/courses.js' %}"></script>
+    {{block.super}}
+    <script src="{% static 'courses/js/courses.js' %}"></script>
 {% endblock %}

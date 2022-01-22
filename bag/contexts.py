@@ -1,3 +1,4 @@
+""" Context which is available throughout the project """
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
 from user_profile.models import Discount
@@ -6,21 +7,21 @@ from courses.models import Course
 
 
 def bag_contents(request):
-    # Getting values of discount percentage and discount threshold amount.
+
+    """ Getting values of discount percentage and discount threshold amount."""
     discount_percentage = 0
     discount_threshold = 0
     discount_delta = 0
     discount_flag = False
-    
+
     if Discount.objects.filter(offer_flag=True).exists():
         discount_flag = True
         discount = Discount.objects.filter(offer_flag=True).first()
         discount_percentage = discount.discount_percentage
         discount_threshold = discount.discount_amount_threshold
-        
+
     bag_items = []
     total = 0
-    course_count = 0
 
     # created bag session variable if not exist.
     bag = request.session.get('bag', [])

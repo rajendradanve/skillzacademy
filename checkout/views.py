@@ -52,9 +52,9 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
-        
+
         if order_form.is_valid():
-            
+
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -75,7 +75,7 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
-            
+
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         else:
@@ -128,7 +128,7 @@ def checkout_success(request, order_number):
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
-        
+
     else:
         messages.info(request, 'Log in before you finish purchase')
         return redirect(reverse('account_signup'))

@@ -1,90 +1,87 @@
 <ul class="list-inline my-auto">
-<li class="list-inline-item ms-2">
-    <a class="text-dark nav-link d-block d-lg-none" href="#" id="mobile-search" role="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <div class="text-center">
-            <div><i class="fas fa-search fa-lg"></i></div>
-            <p class="my-0">Search</p>
-        </div>
-    </a>
-    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
-        <form action="{% url 'courses' %}" method="GET">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control border border-dark rounded-0  "
-                    placeholder="Search Courses">
-                <div class="input-group-append">
-                    <button class="form-control btn btn-dark border border-dark rounded-0 " type="submit">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </button>
-                </div>
+    <li class="list-inline-item ms-2">
+        <a class="text-dark nav-link d-block d-lg-none" href="#" id="mobile-search" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="text-center">
+                <div><i class="fas fa-search fa-lg"></i></div>
+                <p class="my-0">Search</p>
             </div>
-        </form>
-    </div>
-</li>
-{% if request.user.is_authenticated %}
-    {% if request.user.is_superuser %}
-        <li class="list-inline-item dropdown mx-3">
-            <a class="text-dark nav-link d-block d-lg-none" href="#" id="navbarDropdownAdmin" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="text-center">
-                    <div><i class="fas fa-user-shield fa-lg"></i></div>
-                    <p class="my-0">Admin</p>
+        </a>
+        <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
+            <form action="{% url 'courses' %}" method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control border border-dark rounded-0  "
+                        placeholder="Search Courses">
+                    <div class="input-group-append">
+                        <button class="form-control btn btn-dark border border-dark rounded-0 " type="submit">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-                <li><a class="dropdown-item" href="{% url 'admin' %}">Managment</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-            </ul>
-        </li>
+            </form>
+        </div>
+    </li>
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+            <li class="list-inline-item dropdown mx-3">
+                <a class="text-dark nav-link d-block d-lg-none" href="#" id="navbarDropdownAdmin" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-center">
+                        <div><i class="fas fa-user-shield fa-lg"></i></div>
+                        <p class="my-0">Admin</p>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                    <li><a class="dropdown-item" href="{% url 'admin' %}">Managment</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                </ul>
+            </li>
+        {% else %}
+            <li class="list-inline-item dropdown mx-3">
+                <a class="nav-link text-dark d-block d-lg-none" href="#" id="navbarDropdownProfile" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-center">
+                        <div><i class="fas fa-user fa-lg"></i></div>
+                        <p class="my-0">My Profile</p>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                    <li><a class="dropdown-item" href="{% url 'my_courses' %}">My Courses</a></li>
+                    <li><a class="dropdown-item" href="{% url 'purchase_history' %}">Purchase History</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                </ul>
+            </li>
+        {% endif %}
     {% else %}
-        <li class="list-inline-item dropdown mx-3">
-            <a class="nav-link text-dark d-block d-lg-none" href="#" id="navbarDropdownProfile" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="text-center">
-                    <div><i class="fas fa-user fa-lg"></i></div>
-                    <p class="my-0">My Profile</p>
-                </div>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                <li><a class="dropdown-item" href="{% url 'my_courses' %}">My Courses</a></li>
-                <li><a class="dropdown-item" href="{% url 'purchase_history' %}">Purchase History</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-            </ul>
-        </li>
-    {% endif %}
-{% else %}
-
-   
         <li class="list-inline-item ms-2">
             <a href="{% url 'account_signup' %}" class="nav-link d-block d-lg-none text-dark dropdown-item">
                 <div class="text-center">
                     <i class="fas fa-user-plus fa-lg"></i>
-                  </div>
-                  <p class="my-0">
-                Sign Up  
-                  </p>
+                </div>
+                <p class="my-0">
+                    Sign Up
+                </p>
             </a>
         </li>
         <li class="list-inline-item ms-2">
             <a href="{% url 'account_login' %}" class="nav-link d-block text-dark d-lg-none">
                 <div class="text-center">
                     <i class="fas fa-user fa-lg"></i>
-                  </div>
-                  <p class="my-0">
-                Sign In
-                  </p>
+                </div>
+                <p class="my-0">
+                    Sign In
+                </p>
             </a>
         </li>
-   
-{% endif %}
+    {% endif %}
     <li class="list-inline-item ms-2">
         <a class="nav-link text-dark d-block d-lg-none" href="{% url 'view_bag' %}">
             <div class="text-center"> <i class="fas fa-shopping-cart fa-lg"></i></div>

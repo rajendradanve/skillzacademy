@@ -2,28 +2,31 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
+<link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid content-placement my-4">    
+    <div class="container-fluid content-placement my-4">
         {% if request.user.is_superuser %}
-        <div class="row mt-4">
-            <div class="col d-flex justify-content-end">
-                <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update Course Details</a>
-                <a href="{% url 'update_course_schedule' course.id %}" class="btn btn-primary me-2">Update Course Schedule</a>
-                <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a>
+            <div class="row mt-4">
+                <div class="col d-flex justify-content-end">
+                    <a href="{% url 'update_course' course.id %}" class="btn btn-primary me-2">Update Course Details</a>
+                    <a href="{% url 'update_course_schedule' course.id %}" class="btn btn-primary me-2">Update Course
+                        Schedule</a>
+                    <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a>
+                </div>
             </div>
-        </div>
         {% endif %}
 
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
                 <div class="image-container my-5">
                     {% if course.image %}
-                    <img class="card-img-top img-fluid border border-1 shadow" src="{{ course.image.url }}" alt="{{ course.title }}">
+                        <img class="card-img-top img-fluid border border-1 shadow" src="{{ course.image.url }}"
+                            alt="{{ course.title }}">
                     {% else %}
-                    <img class="card-img-top img-fluid border border-1 shadow" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                        <img class="card-img-top img-fluid border border-1 shadow" src="{{ MEDIA_URL }}noimage.png"
+                            alt="{{ course.title }}">
                     {% endif %}
                 </div>
             </div>
@@ -36,17 +39,14 @@
                         </a>
                     </p>
                     <p class="lead mb-1 text-start font-weight-bold">${{ course.price }}</p>
-
                     <hr>
-
                     <p>Course {% if course.courseschedulelist.all.count > 1 %}Start{% endif %} Date:
                         <strong class="p-2 bg-success text-white rounded-1">
                             {% with course_schedule_list|first as course_start %}
-                            {{ course_start.course_date|date:"d M, Y"}}
+                                {{ course_start.course_date|date:"d M, Y"}}
                             {% endwith %}
                         </strong>
                     </p>
-
                     <p class="text-muted">For detail schedule see information below </p>
 
                     <p>Number of Classes: <strong class="p-2 ms-2">{{ course_schedule_list.count }}</strong></p>
@@ -73,7 +73,7 @@
                             {% else %}
                                 <input type="submit" value="Add to cart" class="btn btn-dark rounded-1 text-uppercase">
                             {% endif %}
-                                <input type="hidden" name="redirect_url" value="{{request.path}}">
+                            <input type="hidden" name="redirect_url" value="{{request.path}}">
                         </form>
                     </div>
                 </div>
@@ -91,10 +91,11 @@
                             aria-selected="false">Learning Objectives</a>
                         <a class="nav-item nav-link" id="nav-prerequisite-tab" data-bs-toggle="tab" href="#nav-prerequisite"
                             role="tab" aria-controls="nav-prerequisite-tab" aria-selected="false">Prerequisite</a>
-                        <a class="nav-item nav-link" id="nav-forwho-tab" data-bs-toggle="tab" href="#nav-for-who"
-                            role="tab" aria-controls="nav-forwho-tab" aria-selected="false">For Who</a>
+                        <a class="nav-item nav-link" id="nav-forwho-tab" data-bs-toggle="tab" href="#nav-for-who" role="tab"
+                            aria-controls="nav-forwho-tab" aria-selected="false">For Who</a>
                         <a class="nav-item nav-link" id="nav-course-schedule-tab" data-bs-toggle="tab"
-                            href="#nav-course-schedule" role="tab" aria-controls="nav-course-schedule-tab" aria-selected="false">Course
+                            href="#nav-course-schedule" role="tab" aria-controls="nav-course-schedule-tab"
+                            aria-selected="false">Course
                             Schedule</a>
                         <a class="nav-item nav-link" id="nav-instructor-tab" data-bs-toggle="tab" href="#nav-instructor"
                             role="tab" aria-controls="nav-instructor-tab" aria-selected="false">Instructor</a>
@@ -135,15 +136,15 @@
                             </thead>
                             <tbody>
                                 {% for course_schedule in course_schedule_list %}
-                                <tr>
-                                    <td>{{ course_schedule.course_date|date:"d M, Y" }}</td>
-                                    <td>{{course_schedule.course_start_time}}</td>
-                                    <td>{{course_schedule.course_end_time}}</td>
-                                    {% if already_bought or request.user.is_superuser %}
-                                    <td><a href="{{ course_schedule.course_link }}" target="_blank"
-                                            class="btn btn-success">Meeting Link</a></td>
-                                    {% endif %}
-                                </tr>
+                                    <tr>
+                                        <td>{{ course_schedule.course_date|date:"d M, Y" }}</td>
+                                        <td>{{course_schedule.course_start_time}}</td>
+                                        <td>{{course_schedule.course_end_time}}</td>
+                                        {% if already_bought or request.user.is_superuser %}
+                                        <td><a href="{{ course_schedule.course_link }}" target="_blank"
+                                                class="btn btn-success">Meeting Link</a></td>
+                                        {% endif %}
+                                    </tr>
                                 {% endfor %}
                             </tbody>
                         </table>

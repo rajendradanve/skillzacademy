@@ -30,32 +30,34 @@
                 </div>
                 <hr class="my-1">
                 {% for item in bag_items %}
-                <div class="row">
-                    <div class="col-2 mb-1">
-                        <a href="{% url 'course_detail' item.course.id %}">
-                            {% if item.course.image %}
-                            <img src="{{ item.course.image.url}}" alt="{{item.course.title}}" class="img-fluid w-100 border border-1">
-                            {% else %}
-                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}" class="w-100 border border-1">
-                            {% endif %}
-                        </a>
+                    <div class="row">
+                        <div class="col-2 mb-1">
+                            <a href="{% url 'course_detail' item.course.id %}">
+                                {% if item.course.image %}
+                                <img src="{{ item.course.image.url}}" alt="{{item.course.title}}"
+                                    class="img-fluid w-100 border border-1">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}"
+                                    class="w-100 border border-1">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <p class="my-0"><strong>{{item.course.title }}</strong></p>
+                        </div>
+                        <div class="col-3 text-end">
+                            <p class="my-0 small text-muted">${{ item.course.price}}</p>
+                        </div>
                     </div>
-                    <div class="col-7">
-                        <p class="my-0"><strong>{{item.course.title }}</strong></p>
-                    </div>
-                    <div class="col-3 text-end">
-                        <p class="my-0 small text-muted">${{ item.course.price}}</p>
-                    </div>
-                </div>
                 {% endfor %}
                 <hr class="my-0">
                 <div class="row text-dark text-end">
                     <div class="col">
                         {% if discount_flag %}
-                        {% if discount_delta == 0 %}
-                        <p class="my-0">Total: <s>${{total|floatformat:2}}</s></p>
-                        <p class="text-danger"> You got {{ discount_percentage}}% of discount.</p>
-                        {% endif %}
+                            {% if discount_delta == 0 %}
+                                <p class="my-0">Total: <s>${{total|floatformat:2}}</s></p>
+                                <p class="text-danger"> You got {{ discount_percentage}}% of discount.</p>
+                            {% endif %}
                         {% endif %}
                         <p class="my-0">Total: <strong>${{ grand_total| floatformat:2 }}</strong></p>
                     </div>
@@ -113,8 +115,8 @@
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-{{ stripe_public_key| json_script:"id_stripe_public_key" }}
-{{ client_secret| json_script:"id_client_secret" }}
-<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+    {{ block.super }}
+    {{ stripe_public_key| json_script:"id_stripe_public_key" }}
+    {{ client_secret| json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

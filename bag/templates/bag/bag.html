@@ -25,50 +25,50 @@
                             </thead>
                             {% for item in bag_items %}
 
-                                <tr>
-                                    <td class="p-3 text-center d-flex">
-                                        <h5 class="my-0"><strong>{{ item.course.title}}</strong></h5>
-                                        <div class="text-center">
-                                            {% if item.course.image %}
-                                                <img src="{{ item.course.image.url}}" alt="{{item.course.title}}"
-                                                class="img-fluid rounded mt-2 w-25 ">
-                                            {% else %}
-                                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}"
-                                                class="img-fluid rounded mt-2 w-25 ">
-                                            {% endif %}
-                                        </div>
-                                    </td>
+                            <tr>
+                                <td class="p-3 text-center d-flex">
+                                    <h5 class="my-0"><strong>{{ item.course.title}}</strong></h5>
+                                    <div class="text-center">
+                                        {% if item.course.image %}
+                                        <img src="{{ item.course.image.url}}" alt="{{item.course.title}}"
+                                            class="img-fluid rounded mt-2 w-25 ">
+                                        {% else %}
+                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}"
+                                            class="img-fluid rounded mt-2 w-25 ">
+                                        {% endif %}
+                                    </div>
+                                </td>
 
-                                    <td class="py-3">
-                                        <p class="my-0"><strong>${{item.course.price}}</strong></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="text-end">
-                                        <a href="{% url 'remove_course_from_bag' item.course.id %}">Remove Course</a>
-                                        <hr>
-                                    </td>
-                                </tr>
+                                <td class="py-3">
+                                    <p class="my-0"><strong>${{item.course.price}}</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-end">
+                                    <a href="{% url 'remove_course_from_bag' item.course.id %}">Remove Course</a>
+                                    <hr>
+                                </td>
+                            </tr>
                             {% endfor %}
 
                             <tr>
                                 <td colspan="5" class="pt-5 text-end">
                                     {% if discount_flag %}
-                                        {% if discount_delta == 0 %}
-                                            <h6>Bag Total: <s>${{total|floatformat:2}}</s></h6>
-                                             <p class="text-danger"> Hurray! You got {{ discount_percentage}}% of discount.</p>
-                                        {% endif %}
-                                        
-                                        <h4><strong>Bag Total: ${{grand_total|floatformat:2}}</strong></h4>
-                                        
-                                        {% if discount_delta > 0 %}
-                                            <p class="mb-1 text-danger">
-                                                You could get {{ discount_percentage }}% discount by adding just
-                                                <strong>${{ discount_delta}}</strong> more!
-                                            </p>
-                                        {% endif %}
+                                    {% if discount_delta == 0 %}
+                                    <h6>Bag Total: <s>${{total|floatformat:2}}</s></h6>
+                                    <p class="text-danger"> Hurray! You got {{ discount_percentage}}% of discount.</p>
+                                    {% endif %}
+
+                                    <h4><strong>Bag Total: ${{grand_total|floatformat:2}}</strong></h4>
+
+                                    {% if discount_delta > 0 %}
+                                    <p class="mb-1 text-danger">
+                                        You could get {{ discount_percentage }}% discount by adding just
+                                        <strong>${{ discount_delta}}</strong> more!
+                                    </p>
+                                    {% endif %}
                                     {% else %}
-                                        <h4><strong>Bag Total: ${{grand_total|floatformat:2}}</strong></h4>
+                                    <h4><strong>Bag Total: ${{grand_total|floatformat:2}}</strong></h4>
                                     {% endif %}
                                 </td>
                             </tr>

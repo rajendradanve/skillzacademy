@@ -2,9 +2,10 @@
 
 html {
     box-sizing: border-box;
-    height: 100vh; /* Allows the h-100 and vertical centering to work */
+    height: 100vh;
+    /* Allows the h-100 and vertical centering to work */
     scroll-behavior: smooth;
-  }
+}
 
 body {
     font-family: 'Lato';
@@ -12,31 +13,33 @@ body {
     width: 100%;
 }
 
-.container-fluid{
-    padding-left: 0!important;
-    padding-right: 0!important;
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
-*.row{
-    width:100%;
+
+*.row {
+    width: 100%;
     margin-right: 0;
     margin-left: 0;
 }
+
 .main-block {
- min-height: calc(100vh - 128px)!important;
+    min-height: calc(100vh - 128px) !important;
 }
 
 
 .footer {
     text-align: center;
- }
+}
 
- #subscribe-form {
-     width: 80%!important;
- }
+#subscribe-form {
+    width: 80% !important;
+}
 
- #subscription-email{
-    max-width: 100%!important;
- }
+#subscription-email {
+    max-width: 100% !important;
+}
 
 .content-placement {
     padding-top: 128px;
@@ -56,11 +59,11 @@ body {
     text-transform: capitalize;
 }
 
-.main-logo-link{
+.main-logo-link {
     width: fit-content;
 }
 
-a.category-badge > span.badge:hover {
+a.category-badge>span.badge:hover {
     background: #212529 !important;
     color: #fff !important;
 }
@@ -71,7 +74,7 @@ input[name='q']::placeholder {
 
 /* ------------------------------- bootstrap toasts */
 .message-container {
-    position:fixed;
+    position: fixed;
     top: 72px;
     right: 15px;
     z-index: 99999999999;
@@ -87,10 +90,10 @@ input[name='q']::placeholder {
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
 .arrow-up {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
+    border-right: 4px solid transparent;
     border-bottom: 10px solid black;
     position: absolute;
     top: -10px;
@@ -139,8 +142,10 @@ input[name='q']::placeholder {
 /* Allauth form formatting. Taken from Codeinstitue botique ado mini project */
 
 .allauth-form-inner-content p {
-    margin-top: 1.5rem; /* mt-4 */
-    color: #6c757d; /* text-secondary */
+    margin-top: 1.5rem;
+    /* mt-4 */
+    color: #6c757d;
+    /* text-secondary */
 }
 
 .allauth-form-inner-content input {
@@ -158,8 +163,8 @@ input[name='q']::placeholder {
 
 .allauth-form-inner-content button,
 .allauth-form-inner-content input[type='submit'] {
-	/* btn */
-	display: inline-block;
+    /* btn */
+    display: inline-block;
     font-weight: 400;
     color: #fff;
     text-align: center;
@@ -176,18 +181,19 @@ input[name='q']::placeholder {
     border-radius: 0;
 
     /* standard bootstrap btn transitions */
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
-	color: #fff;
+.allauth-form-inner-content input[type='submit']:hover {
+    color: #fff;
     background-color: #222;
     border-color: #222;
 }
 
 .allauth-form-inner-content a {
-	color: #17a2b8; /* text-info */
+    color: #17a2b8;
+    /* text-info */
 }
 
 /* course Form */
@@ -255,36 +261,35 @@ input[name='q']::placeholder {
 
 @media (min-width: 1200px) {
     .container {
-      max-width: 80%;
+        max-width: 80%;
     }
-  }
+}
 
-  /* fixed top navbar only on medium and up */
+/* fixed top navbar only on medium and up */
 @media (max-width: 992px) {
 
     .content-placement {
         padding-top: 68.78px;
     }
 
-    .display-4.logo-font{
-        font-size:2rem;
+    .display-4.logo-font {
+        font-size: 2rem;
     }
 
-    .nav-link{
+    .nav-link {
         padding: 0.15rem;
     }
 
-    i.fa-lg{
+    i.fa-lg {
         font-size: 1rem;
     }
 
-    .navbar-toggler{
+    .navbar-toggler {
         padding: .6rem;
         font-size: 1rem
     }
 
-    #offer-banner h4{
+    #offer-banner h4 {
         font-size: .9rem;
     }
 }
-
