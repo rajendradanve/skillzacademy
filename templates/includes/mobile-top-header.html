@@ -1,4 +1,5 @@
-<li class="list-inline-item me-0">
+<ul class="list-inline my-auto">
+<li class="list-inline-item ms-2">
     <a class="text-dark nav-link d-block d-lg-none" href="#" id="mobile-search" role="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         <div class="text-center">
@@ -24,7 +25,7 @@
 </li>
 {% if request.user.is_authenticated %}
     {% if request.user.is_superuser %}
-        <li class="list-inline-item dropdown">
+        <li class="list-inline-item dropdown mx-3">
             <a class="text-dark nav-link d-block d-lg-none" href="#" id="navbarDropdownAdmin" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="text-center">
@@ -41,7 +42,7 @@
             </ul>
         </li>
     {% else %}
-        <li class="list-inline-item dropdown">
+        <li class="list-inline-item dropdown mx-3">
             <a class="nav-link text-dark d-block d-lg-none" href="#" id="navbarDropdownProfile" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="text-center">
@@ -62,7 +63,7 @@
 {% else %}
 
    
-        <li class="list-inline-item me-0">
+        <li class="list-inline-item ms-2">
             <a href="{% url 'account_signup' %}" class="nav-link d-block d-lg-none text-dark dropdown-item">
                 <div class="text-center">
                     <i class="fas fa-user-plus fa-lg"></i>
@@ -72,7 +73,7 @@
                   </p>
             </a>
         </li>
-        <li class="list-inline-item me-0">
+        <li class="list-inline-item ms-2">
             <a href="{% url 'account_login' %}" class="nav-link d-block text-dark d-lg-none">
                 <div class="text-center">
                     <i class="fas fa-user fa-lg"></i>
@@ -84,7 +85,7 @@
         </li>
    
 {% endif %}
-    <li class="list-inline-item">
+    <li class="list-inline-item ms-2">
         <a class="nav-link text-dark d-block d-lg-none" href="{% url 'view_bag' %}">
             <div class="text-center"> <i class="fas fa-shopping-cart fa-lg"></i></div>
             <p class="my-0">
@@ -96,3 +97,4 @@
             </p>
         </a>
     </li>
+</ul>

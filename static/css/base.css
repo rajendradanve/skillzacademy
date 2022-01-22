@@ -1,3 +1,4 @@
+/* *{border:1px solid red} Kept for testing purpose */
 
 html {
     box-sizing: border-box;
@@ -21,7 +22,7 @@ body {
     margin-left: 0;
 }
 .main-block {
- min-height: calc(100vh - 128px);
+ min-height: calc(100vh - 128px)!important;
 }
 
 

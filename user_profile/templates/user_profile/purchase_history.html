@@ -3,7 +3,7 @@
 
 
 {% block content %} 
-    <div class="content-placement mt-4">
+    <div class="content-placement my-4">
         <div class="row">
             <div class="col">
                 <div class="col">
@@ -13,42 +13,49 @@
             
         </div>
         <div class="row">
-            <div class="col">
-              <div class="purchase-history table-responsive">
-                  <table class="table">
-                      <thead>
-                          <th>Order Number</th>
-                          <th>Date</th>
-                          <th>Courses</th>
-                          <th>Total Price</th>
-                      </thead>
-                      
-                      <tbody>
-                        {% for order in orders %}
-                          <tr>
-                              <td>
-                                <a href="{% url 'purchase_history_details' order.order_number %}" title="{{ order.order_number }}">
-                                    {{ order.order_number|truncatechars:6}}
-                                </a>
-                              </td>
-                              <td>{{ order.date }}</td>
-                              <td>
-                                  <ul class="list-unstyled">
-                                      {% for item in order.lineitems.all %}
-                                      <li class="small">
-                                          {{ item.course.title }}
-                                      </li>
-                                      {% endfor %}
-                                  </ul>
-                              </td>
-                              <td>${{ order.grand_total}}</td>
-                          </tr>
-                          {% endfor %}
-                      </tbody>
-                  </table>
-              </div>
-            </div>
+            {% if orders|length > 0 %}
+                <div class="col">
+                    <div class="purchase-history table-responsive">
+                        <table class="table">
+                            <thead>
+                                <th>Order Number</th>
+                                <th>Date</th>
+                                <th>Courses</th>
+                                <th>Total Price</th>
+                            </thead>
+                            
+                            <tbody>
+                                {% for order in orders %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'purchase_history_details' order.order_number %}" title="{{ order.order_number }}">
+                                            {{ order.order_number|truncatechars:6}}
+                                        </a>
+                                    </td>
+                                    <td>{{ order.date }}</td>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            {% for item in order.lineitems.all %}
+                                            <li class="small">
+                                                {{ item.course.title }}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>${{ order.grand_total}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% else %}
             
+                <div class="col-10 offset-1 col-md-8 offset-md-2 text-center mx-2">
+                    <h6>You have not done any purchases yet</h6>
+                    <a href="{% url 'courses' %}" class="btn btn-dark mt-2">Explore Courses</a>
+                </div>    
+            {% endif %}
         </div>
     </div>
 {% endblock %}

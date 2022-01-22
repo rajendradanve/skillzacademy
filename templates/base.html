@@ -4,10 +4,10 @@
 
 <head>
   {% block meta %}
-  <!-- Required meta tags -->
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   {% endblock %}
 
   <!--Block to add extra meta if required for particular page-->
@@ -17,26 +17,26 @@
 
   {% block corecss %}
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
   <!--Block to add extra css if required for particular page-->
   {% block extra_css%}
   {% endblock %}
 
   {% block corejs %}
-  <!-- Jquery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-  </script>
-  <!-- Fontawesome JS -->
-  <script src="https://kit.fontawesome.com/023e38a18b.js" crossorigin="anonymous"></script>
-  <!-- Stripe JS -->
-  <script src="https://js.stripe.com/v3/"></script>
+    <!-- Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <!-- Fontawesome JS -->
+    <script src="https://kit.fontawesome.com/023e38a18b.js" crossorigin="anonymous"></script>
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
   {% endblock %}
 
   <!--Block to add extra ja if required for particular page-->
@@ -70,23 +70,23 @@
       <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
         <ul class="list-inline list-unstyled text-center text-lg-end my-0">
           {% if request.user.is_authenticated %}
-          {% if request.user.is_superuser %}
-          <li class="list-inline-item dropdown">
-            <a class="nav-link text-dark" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <div class="text-center">
-                <div><i class="fas fa-user-shield fa-lg"></i></div>
-                <p class="my-0">Admin</p>
-              </div>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-              <li><a class="dropdown-item" href="{% url 'admin' %}">Managment</a></li>
-              <li>
-                <hr class="dropdown-divider">
+            {% if request.user.is_superuser %}
+              <li class="list-inline-item dropdown">
+                <a class="nav-link text-dark" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <div class="text-center">
+                    <div><i class="fas fa-user-shield fa-lg"></i></div>
+                    <p class="my-0">Admin</p>
+                  </div>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                  <li><a class="dropdown-item" href="{% url 'admin' %}">Managment</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                </ul>
               </li>
-              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-            </ul>
-          </li>
           {% else %}
           <li class="list-inline-item dropdown">
             <a class="nav-link text-dark" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown"
@@ -97,12 +97,12 @@
               </div>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-              <li><a class="dropdown-item" href="{% url 'my_courses' %}">My Courses</a></li>
-              <li><a class="dropdown-item" href="{% url 'purchase_history' %}">Purchase History</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                <li><a class="dropdown-item" href="{% url 'my_courses' %}">My Courses</a></li>
+                <li><a class="dropdown-item" href="{% url 'purchase_history' %}">Purchase History</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
             </ul>
           </li>
           {% endif %}
@@ -146,13 +146,14 @@
     <div class="row bg-white">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
           aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         {% include 'includes/mobile-top-header.html' %}
         {% include 'includes/main-nav.html' %}
-
+      </div>
       </nav>
 
     </div>
@@ -186,44 +187,44 @@
   </div>
   {% endif %}
 
-<main class = "container-fluid main-block">
-  <!--Block to add page content-->
+  <main class="container-fluid main-block">
+    <!--Block to add page content-->
 
-  {% block content %}
-  {% endblock %}
-</main>
-  
-<!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- Footer : Taken from footer examples on https://getbootstrap.com/docs/5.1/examples/footers/ -->
 
   <footer class="container-fluid footer pt-3 bg-light border-top">
     <div class="row">
-     <div class="col col-md-6 my-auto d-flex flex-column">
-      
-      <form id="subscribe-form" class="mx-auto" action="{% url 'subscribe' %}" method="POST">
-        <p class="text-center text-dark mb-0">Subscribe To Our Newsletter</p>
-        {% csrf_token %}
-        <input type="email" id="subscription-email" name="subscription-email"
-        placeholder="Enter Your Email Address" size="30" required>
-      <button type="submit" class="btn btn-primary btn-sm my-2">Submit</button>
-      </form>
-     </div>
-     <div class="col col-md-2 d-flex justify-content-center my-auto">
-      <a href="{% url 'contact_us' %}" class="text-dark text-decoration-none mx-2">
-        <h5>Contact Us</h5>
-      </a>
+      <div class="col col-md-6 my-auto d-flex flex-column">
 
-   </div>
-     <div class="col col-md-4 d-flex justify-content-center my-auto">
-      <ul class="nav justify-content-center pb-1 mb-1">
-        <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i
-              class="fab fa-twitter-square fa-2x"></i></a></li>
-        <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i
-              class="fab fa-facebook-square fa-2x"></i></a></li>
-        <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i
-              class="fab fa-youtube-square fa-2x"></i></a></li>
-      </ul>
-     </div>
-    
+        <form id="subscribe-form" class="mx-auto" action="{% url 'subscribe' %}" method="POST">
+          <p class="text-center text-dark mb-0">Subscribe To Our Newsletter</p>
+          {% csrf_token %}
+          <input type="email" id="subscription-email" name="subscription-email" placeholder="Enter Your Email Address"
+            size="30" required>
+          <button type="submit" class="btn btn-primary btn-sm my-2">Submit</button>
+        </form>
+      </div>
+      <div class="col col-md-2 d-flex justify-content-center my-auto">
+        <a href="{% url 'contact_us' %}" class="text-dark text-decoration-none mx-2">
+          <h5>Contact Us</h5>
+        </a>
+
+      </div>
+      <div class="col col-md-4 d-flex justify-content-center my-auto">
+        <ul class="nav justify-content-center pb-1 mb-1">
+          <li class="nav-item"><a href="https://twitter.com/" target="_blank" class="nav-link px-2"><i
+                class="fab fa-twitter-square fa-2x"></i></a></li>
+          <li class="nav-item"><a href="https://www.facebook.com/" target="_blank" class="nav-link px-2 mx-2"><i
+                class="fab fa-facebook-square fa-2x"></i></a></li>
+          <li class="nav-item"><a href="https://www.youtube.com/" target="_blank" class="nav-link px-2"><i
+                class="fab fa-youtube-square fa-2x"></i></a></li>
+        </ul>
+      </div>
+
     </div>
     <div class="row">
       <div class="col">
@@ -235,12 +236,11 @@
 
   <!--Extra JS which can in run after page is loaded-->
   {% block postloadjs %}
-    <script>
-      $(document).ready(function () {
-        $('.toast').toast('show');
-      });
-
-    </script>
+  <script>
+    $(document).ready(function () {
+      $('.toast').toast('show');
+    });
+  </script>
   {% endblock %}
 </body>
 
