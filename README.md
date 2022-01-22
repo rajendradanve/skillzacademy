@@ -18,6 +18,8 @@ For the GitHub repository [click here](https://github.com/rajendradanve/skillzac
     *   [User Goals](#user-goals)
     *   [Developer Goals](#developer-goals)
     *   [User Stories](#user-stories)
+    *   [Scope](#scope)
+    *   [Structure](#structure)
     *   [Design Choice](#design-choice)
     *   [Wireframes](#wireframes)
 
@@ -62,9 +64,9 @@ Admin has possibility to add, edit different categories. Add, edit, and delete c
 ## **Targeted Audience**
 This website can be used by variety of users who want to learn, extent skills or learn new hobbies.
 This website can be used by
-- School student provided parents can buy course.
 - College student or young professional who wants to develop there skills or learn hobbies.
 - Group who want to learn something new or develop new hobbies. 
+- Parents who want to improve who want their kids to improve in education, develop new skills or hobbies.
 
 ## **User Goals**
 
@@ -90,6 +92,86 @@ This website can be used by
 *   Admin shall ableto add/ edit/ delete course
 *   Admin can add / edit main categories and categories
 *   Admin has possibility add/edit discount and offer for the user.
+
+## **Developer Goals**
+
+* Shows developer's understanding of full stack development using Django framework
+* Design website for broad range of users with simple and user friendly layout
+* Develop responsive website suitable for all types of screens such as desktop, tablet and mobile.
+
+## **User Stories**
+
+### **Non-register User**
+* As a non-registered user, I shall be able to access all the courses available on [Skillz Academy](https://skillz-academy.herokuapp.com/)
+* As a non-registered user, I shall be able to get all information realted to the course before registering for the course. 
+* As a non-registered user, I shall be able to add courses in the cart so that my courses to purchase gets saved before creating user account
+* As a non-register user, I shall be able to create my user account easily with minimum details. 
+
+### **Registered User**
+
+* As a registered user, I shall be able to sign in and sign out of the site successfully.
+* As a registered user, I shall be able to access all pages meant for registered users.
+* As a registered user, I shall be able to buy the courses added in the bag. 
+* As a registered user, I shall be able to get history of my purchases.
+* As a registered user, I shall be able to access courses I purchased.
+* As a registered user, I shall get information of the course schedule and link to attend the meeting. 
+
+### **Admin**
+
+* As an admin, I shall be able to sign in and sign out of the site successfully.
+* As an admin, I shall be able to access all pages.
+* As an admin, I shall be able to add, edit or delete course. 
+* As an admin, I shall be able to add, update course schedule.
+* As an admin, I shall be able to add applicable discount.
+* As an admin, I shall be able to add, edit Main Categories and Sub Categoreries.
+
+## **Scope**
+
+Aim of developing [Skillz Academy](https://skillz-academy.herokuapp.com/) is to exhibit understanding of full stack development using modern framework.
+Project I decided to do is huge and with lot of possibilities and improvements which requires more advance coading and time. But due to time constraint I decided to focus developing Minimum Viable Product (Minimum Viable Product). This will allow me to work on basic functionality which shows my understanding and capability of full stack development. 
+So I limited scope for this website as 
+- Create a simple but useful website.
+- Create medimum level of UX but still responsive and user friendly.
+- Meet the requirements of most of the user stories.
+
+Website included minimum of 
+- A navbar on all the pages through out the website for easily navigating to different pages on different devices.
+- A footer on all the pages through out the website which includes social media links, subscription form and contact us form. 
+- Card layout for showing all the coures with important information
+- Simple layout for showing all details of the course with all important information.
+- Simple management options for admin which helps him to add, edit , update courses, categories etc. 
+
+## **Structure**
+
+### **General For All Pages**
+There will be fully responsive navbar with full width. There will be two navbars one is main nav bar and other is top navbar.
+Top navbar will consist of links to sign in, sign up user profile and cart and main navbar which is also collasable will consist of dropdown categories.
+All pages will have footer which will be at the bottom and will contain social media links, subscription form and contact us link. 
+
+### **Home Page**
+Basic template for the home page is taken from the [bootstrap carousel example](https://getbootstrap.com/docs/5.1/examples/carousel/). Aim of this page is to serve as main marketing page which has carousel, features marketing text with image. 
+
+### **Courses Page**
+This page will show all the coures and also based on category selection, search critetia and sorting options. To show the course card layout will be used with imporant details sucha as course name, category, price, start date so that user will get quick overview of the course. This page will also show search results. 
+
+### **Courses Detail Page**
+This page will show all important information about the course. Main information will be shown at top which contains course name, price, category, start date, number of lectures along with option to add course to the cart. Below it will have tabs showing all the important information about the course including course schedule.
+
+### **My Courses Page**
+This page will show courses register user purchased. This is has same layout as courses page.
+
+### **Purchase History Page**
+
+
+## **Design Choice**
+
+### **Framework**
+
+[Skillz Academy](https://skillz-academy.herokuapp.com/) used [bootstrap](https://getbootstrap.com/) version 5.1 for its design
+Bootstrap is most popular and widely used mobile-first design framework giving many different possibilities UX possibilities.
+
+
+
 
 
 --------To be verified---------------
