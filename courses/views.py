@@ -406,7 +406,7 @@ def update_course(request, course_id):
         messages.error(request, 'Sorry, only admin can update database')
         return redirect(reverse('home'))
 
-    course = get_object_or_404(Course, pk=course_id)
+    course = Course.objects.get(pk=course_id)
 
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)

@@ -84,7 +84,7 @@ def discount(request):
     discount0 = Discount.objects.first()
 
     if request.method == 'POST':
-        if discount:
+        if discount0:
             form = DiscountForm(request.POST, instance=discount0)
         else:
             form = DiscountForm(request.POST)
@@ -92,7 +92,7 @@ def discount(request):
         if form.is_valid():
             form.save()
             messages.success(request,
-                             'Discount data added in the database.')
+                             'Discount data updated in the database.')
 
             return redirect('admin')
         else:
