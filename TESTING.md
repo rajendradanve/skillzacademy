@@ -30,9 +30,97 @@ Below are the results from validator.
 -   Login page: No errors found
 -   Signup page: No errors found
 -   Bag page : No errors found
--   Checkout Page - Below warning came. I ignored this warning.
+-   Checkout Page: Below warning came. I ignored this warning.
     ![Empty Header Tag](./media/issues/checkout-empty-h1.png)
 -   Checkout Success Page: No errors found
 -   Purchase History Page: No errors found
 -   Contact Us Page: No errors found
--   
+-   Admin Page: No errors found
+-   Add Course Page: No errors found
+-   Discount Page: No errors found
+-   Add Category: No errors found
+-   Add Main Category: No errors found
+-   Update Main Category: No errors found
+-   Update Category: No errors found
+
+
+ **CSS**
+
+CSS is validated using the online [CSS Validator](https://validator.w3.org/) tool.
+
+-   **base.css:** The CSS validator did not found any errors.
+-   **checkout.css:** The CSS validator did not found any errors.
+-   **add_courses.css:** The CSS validator did not found any errors.
+-   **courses.css:** The CSS validator did not found any errors.
+-   **home.css:** The CSS validator did not found any errors.
+-   **my-courses.css:** The CSS validator did not found any errors.
+
+ **Javascript**
+
+Javascript is validated using the online [JSHint](https://jshint.com/) tool.
+
+-   **stripe_elements.js:** The JSHint did not found any errors.
+-   **courses.js:** The JSHint did not found any errors after adding missing semicolon.
+
+**Python**
+
+All tests are run through [Python Validation Service](https://extendsclass.com/python-tester.html). Verified all views.py files and found no syntax errors. 
+
+# **Manual Testing Based on User Stories**
+
+### **General Testing**
+
+- Chrome Developer Tools were used to test responsiveness on different screen sizes.
+- Checked the website on different devices available to me which includes desktop, mobile phones.
+- Checked the website on different browsers such as Google Chrome, Safari, Edge, and Firefox.
+- Asked friends and family members to go through the website to know the issues if any.
+- Tested all links working properly.
+- All CRUD functions were tested to make sure that they work as intended.
+
+### **Non Register User**
+
+- Verified that home page, all courses page, courses, Sign up and sign in pages are available for the non registered users.
+- Verified that the profile page and purchase history pages are not accessible to non-registered users and redirect to sign in pages
+- Checked that when the non-register user tries to register username will be unique.
+- Checked that password is validated before the user is registered.
+
+### **Register User**
+
+-   Verified that user correctly sign in after entering correct username and password.
+-   Verified that the register page is not available to sign-in users.
+-   Verified that review form available to the sign-in user as each book page if the user did not submit reviews already.
+-   Verified that the user who has reviewed the book gets the message that he already reviewed the book.
+-   Verified that added book and profile pages are available for the sign-in page.
+-   Verified that after adding book profile page shows book added by the user with the possibility to edit or delete the book.
+-   Verified that the user who added the book shall be able to edit the book or delete it.
+-   Verified that discount is calculated correctly for the register users.
+-   Verified that test payment is working fine by stripe and amount is calculated correctly.
+
+    
+### **Admin**
+
+-   Verified that admin correctly sign in after entering correct username and password.
+-   Verified admin has access to all the courses pages.
+-   Verified that admin can add course, course schedule
+-   Verified that admin can add and edit main category, category
+-   Verified that admin can update course and course schedule
+-   Verified that admin can activate or deactivate discount and also update.
+
+
+# **Automated Testing**
+
+* The Chrome extension [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) has been run and checked.
+
+* Website tested on [Mobile-Friendly Test - Google Search Console](https://search.google.com/test/mobile-friendly) and validated correctly.
+
+* Run style sheet code through [Autoprefixer CSS online](http://autoprefixer.github.io/) and pasted prefixed code back into the style sheet.
+
+* Website performance is tested using [Google Lighhouse](https://developers.google.com/web/tools/lighthouse) and below are the screenshot from the result
+   
+![Lighthouse test report](./static/images/readwise-lighthouse-result.png)
+
+Performance was low as images size were too big. 
+Reduced images sizes and uploaded again to improve the performance. 
+
+- Background colors adjusted to increase contrast. 
+- Aria, Aria-label added to the links
