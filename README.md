@@ -31,7 +31,7 @@ For the GitHub repository [click here](https://github.com/rajendradanve/skillzac
     *   [Languages Used](#languages-used)
     *   [Frameworks, Libraries, Programs and Tools Used](#frameworks-libraries-programs-and-tools-used)
    
-4. [Mongodb Database](#mongodb-database) 
+4. [Database Schema](#database-schema) 
 
 5. [Testing](#testing)
 
@@ -231,11 +231,11 @@ Complete project is build using following apps and pages.
 
 Refer to the below files for basic wireframe design created for different screen sizes. There are some changes with respect to actual website during the development and to work with functionality. 
 
-* [Desktop Wireframe](media/wireframe/Skillz-Academy-DesktopWireframe.pdf)
+* [Desktop Wireframe](./media/wireframe/Skillz-Academy-DesktopWireframe.pdf)
 
-* [Tablet Wireframe](media/wireframe/Skillz-Academy-TabletWireframe.pdf)
+* [Tablet Wireframe](./media/wireframe/Skillz-Academy-TabletWireframe.pdf)
 
-* [Mobile Wireframe](media/wireframe/Skillz-Academy-MobileWireframe.pdf)
+* [Mobile Wireframe](./media/wireframe/Skillz-Academy-MobileWireframe.pdf)
 
 
 # **Features**
@@ -259,57 +259,411 @@ Refer to the below files for basic wireframe design created for different screen
 - Allow user to add courses to wishlist
 - Showing user upcoming scheduled course when he login
 - Instead of admin adding book,Instructor shall able to add his book and admin shall just approve or disapprove course.
-- Sending contact us 
+- Admin control to activiate and deactivate courses
+- Functionality to add rating for the instructor and his earlier courses
+- Functionality for admin to add and activate different offers
+- Functionality to update course start and end time based on user timezone
+- Functionality to send email to user for separate course with course schedule and calendar invitation.
+- UX can be improved more to have it appealing. 
 
---------To be verified---------------
+
+# **Technologies Used**
+
+## **Languages Used**
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML#:~:text=The%20HyperText%20Markup%20Language%2C%20or,displayed%20in%20a%20web%20browser.)
+  - The language used to give the site its main structure and all necessary features.
+
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+  - The language used to give the application its visual effects including the font, color, and layout, etc.
+
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+  - Used for activiating materialized functionality
+
+- [Python](https://www.python.org/)
+  - Use to build the main logic of the website.
+
+
+## **Frameworks, Libraries, Programs and Tools Used**
+
+- [Bootstrap](https://getbootstrap.com/)
+    - Bootstrap library version 5.1 is used to create responsive design, beautiful buttons, modal templates.
+
+- [Jquery](https://jquery.com/)
+    - Jquery library is used to create DOM elements, event handling, animation.
+
+- [Django](https://www.djangoproject.com/)
+  - Django is high level python web frame work that helps to build web application quickly.
+
+- [SQLite3](https://www.sqlite.org/) 
+  - Used for the development database of the site.
+
+- [PostgreSQL](https://www.postgresql.org/) 
+  - Used for the Deployed database of the site.
+
+- [Heroku](https://www.heroku.com/home)
+  - Used for hosting the live website
+
+- [AWS](https://aws.amazon.com/) 
+  - Used for hosting images and static files.
+
+- [Github](https://github.com/)
+  - Github is used to create, store and maintain all codes in a repository.
+  
+- [Git Version control](https://git-scm.com/)
+  - Git 2.30.1 for Mac is used for commit and push codes to Github.
+
+- [Google Fonts](https://fonts.google.com/)
+  - The font used for text is imported from google fonts.
+
+- [Fontawesome](https://fontawesome.com/)
+  - The icons used for this game are taken from fontawesome.
+
+- [Balsamiq](https://balsamiq.com/)
+  - The wireframes were created using Balsamiq.
+
+- [Google DevTools](https://developer.chrome.com/docs/devtools/)
+  - Google DevTools was extensively used throughout the project for various styling, testing, performance, and debugging purposes.
+
+- [Am I Responsive](http://ami.responsivedesign.is/)
+  - Am I responsive to create the mock-up image presented at the start of this document.
+
+- [W3C Markup Validation service](https://validator.w3.org/)
+  - W3C Markup Validation Service has been used to test the HTML codes.
+
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+  - W3C CSS Validation Service has been used to test the CSS codes.
+
+- [Code Beautifier](http://minifycode.com/html-beautifier/)
+    -   The tools to minify and beautify JavaScript, CSS, and HTML codes.
+
+- [PEP8 Online](http://pep8online.com/)
+  - Used to check Python Code is PEP8 compliant.
+
+- [WAVE](https://wave.webaim.org/)
+  - Used to test the accessibility of the site.
+
+- [DBDiagram](https://dbdiagram.io/)
+  - Used to create database schema
+
+
+# **Database Schema**
+
+During development [SQLite3](https://www.sqlite.org/) used for database. Once the site was deployed to Heroku, the database was migrated to
+[PostgreSQL](https://www.postgresql.org/). 
+
+The user model used for the site somes from django.contrib.auth.models. 
+
+Below is the database schema for the web application.
+
+![Database Schema](./media/SkillzAcademyDBDiagram.png)
+   
+
+# **Testing**
+
+Testing documentation can be found separately at [TESTING.md](TESTING.md)
+
+# **Deployment**
+
+The site is hosted on [Heroku](https://www.heroku.com/home)
+
+Project files are stored on [GitHub](https://github.com/)
+
+Below describes the deployment of the site on Heroku and set up process to store static files and images on AWS.
+
+## **Local Project Creation**
+
+Below are steps used to create project during development.
+
+1.  A new repository was created using 'Code-Instutute-Org/gitpod-full-template'.
+2.  The repository was then opened in the 'Gitpod' to work on locally.
+3.  Install Django as per documentation given in [Django Website](https://www.djangoproject.com/download/)
+4.  Install allauth django library to create login system.
+5.  Continue with coding and installed libraries like CKeditor, crispy forms, bootstrap, pillow, gunicorn as required during coding.
+6.  Version control was used time to time for by using git add . , git commit -m "message" and git push commands.   
+
+
+## **Deployment On Heroku**
+
+1.  Go to [Heroku](https://www.heroku.com/) and create account if not created.
+2.  Provide a unique name in the "App Name" suitable for the website.
+2.  Select the region closest for you.
+4.  Click "Create App".
+5.  Once app has been created, go to 'Resoures tab' and add 'postgres database' by typing 'Heroku Postgres'.
+6.  Select "Deploy" from the Heroku app menu.
+7.  From the deployment menu select the "GitHub" option.
+8.  Verify that the "Github" profile name is showing in the "Connect to GitHub" section.
+9.  Search the "Skillz Academy" repository and click "Connect" to connect the GitHub repository with Heroku.
+10. Make sure that deployment is successful. 
+11. Click on "Connect and enable automatic deployments" so that whenever code is updated in github it will automaticaly deployed on the Heroku.
+12. In the IDE install `pip install dj_database_url` and `psycopg2-binary` to be able to use the postgres database.
+13. In the `settings.py` file, add the following lines:
+
+  ```
+    DATABASES = {
+        "default": dj_database_url.parse("database_url")
+    }
+  ```
+14. Comment out the existing sqlite3 database.
+  **PLEASE NOTE: Before committing and pushing to GitHub make sure to uncomment your sqlite3 to ensure this piece of code isn't committed to GitHub**
+15. Login to Heroku using the command line by typing `heroku login -i`.
+16. Run the following command in the terminal:
+
+  - `heroku run python manage.py makemigrations --dry-run` to see what changes will be made to the database.
+
+  - `heroku run python manage.py makemigrations` to actually make the changes to the database.
+
+  - `heroku run python manage.py migrate --plan` to see what will be migrated.
+
+  - `heroku run python manage.py migrate` to actually migrate the database.
+
+17. Create superuser to access the admin side using command `heroku run python manage.py createsuperuser`.
+18. Install the `gunicorn` package by typing `pip install gunicorn`.
+19. Now you can create your requirements.txt file by typing `pip freeze > requirements.txt`.
+20. Create a `Procfile` file by typing `touch Procfile`.
+21. Add config vars (SECRET_KEY, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY, STRIPE_WH_SECRET, USE_AWS, EMAIL_HOST_USER, EMAIL_HOST_PASS, AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID) in the Heroku. (AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID will get from below steps)
+
+  ### AWS s3
+  
+  #### How to set up AWS s3
+
+  1. Go to [AWS](https://aws.amazon.com/) and create account. You need to enter card details for creating account. Card will not be charged within Free tire limit.
+
+  2. After logging in, go to the [S3](https://console.aws.amazon.com/s3/) and create a bucket.
+
+  3. Make sure you name your bucket the same as you did for Heroku and choose the nearest region to your location.
+
+  4. Scroll down to the "Block Public Access" section and unchecked the "Block public access" checkbox. Confirm that you want to allow access to the bucket. Scroll down to the bottom of the page and click on "Create bucket"
+
+---
+
+#### Customizing the bucket properties
+
+1. Click on the Properties tab. Scroll to the end of that page and click on edit button.
+
+2. At the top it will allow you to choose between "Enable" and "Disable" static website hosting. Choose Enable.
+
+3. The section below will allow you to select "Host a static website", Select "Host a static website" and then scroll down to the index "Document inputs"
+
+4. In the input field, enter the home file which is the "index.html" file and in the error field, enter "error.html".
+
+5. Leave the redirection rules empty and click on "Save changes".
+
+---
+
+#### Setting up the Permissions
+
+1. Next, go to the permissions tab. Scroll down to the bottom of the page and click edit the "Cross-Origin Resource Sharing (CORS)" section.
+
+2. Add the following lines:
+
+```
+[{
+  "AllowedHeaders": ["
+  Authorization"
+  ],
+  "AllowedMethods": [
+    "Get"
+    ],
+  "AllowedOrigins": [
+    "*"
+    ],
+  "ExposeHeaders": [],
+}]
+```
+
+3. Save the changes. Navigate to "Bucket Policy" section and click "edit"
+
+#### Generating A Bucket Policy
+
+1. Click on the "Policy Generator" button. Select "S3 Bucket Policy" from the dropdown list.
+
+2. You will need to set following permissions:
+
+   - Effect – Allow
+   - Principle - \*
+   - Actions – GetObject, GetObjectAcl, PutObject, PutObjectAcl and DeleteObject
+   - Amazon Resource Name – This can be found on the previous page, under "Bucket ARN". Copy and paste it into this box
+
+3. After these have been entered, click "Add Statemen" and "Generate Policy".
+
+4. Copy the policy into the bucket policy editor, adding `/*` onto the end, the click "Save Changes".
+
+---
+
+#### Access Control List
+
+1. While in the permissions tab, click "edit" under the "Access Control List" section.
+
+2. Next, navigate to "Everyone (public access)" and tick the box on the left, "List" under the "Objects" heading. Tick the box that you understand the effect then click on "Save Changes".
+
+---
+
+#### Creating A Group and Policy with IAM
+
+1. Next, search for IAM in the search bar at the top, and click on it to set up a group policy.
+
+2. Under "Access Management", Select "User Groups" and create a new group.
+
+3. Give the group a name (try keep it relational to the project name) and click "Create Group".
+
+4. This will bring you to the IAM dashboard. Go to the "Access Management" section, and click on "Policies".
+
+5. Click "Create Policy" and click on the JSON tab, and select "Import Managed Policy".
+
+6. Search for "AmazonS3FullAccess" and select it, then Import".
+
+7. Copy your ARN and place it in the code twice (the second time with `/*`) so that it looks like the below;
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "s3-object-lambda:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::YOUR-ARN",
+                "arn:aws:s3:::YOUR-ARN/*"
+            ]
+        }
+    ]
+}
+```
+
+8. Select "Next: Tags", "Next: Review", Enter a name and click on "Create Policy".
+
+---
+
+#### Attaching the Group Policy
+
+1. Go to "User Groups", under "Access Management". Click on the your newly created group and go over to the "Permissions" tab
+
+2. Select the "Add Permissions" button, and select "Attach Policy".
+
+3. Search for and click on the checkbox next to the policy you have just created, then Select "Add Permissions".
+
+---
+
+#### Create User for IAM
+
+1. Head back to the IAM dashboard, click on "Users", then "Add User".
+
+2. Choose a name and tick the checkbox to give the user access, then select "Next: Permissions".
+
+3. Select the group to put the user in and keep clicking the next buttons until the very end and click "Create user".
+
+4. Click on “Download .csv” file (**Keep this is a secure location as you wont be able to get these details again**), as you will not have access to this page again! This file will contain information required as shown in the Heroku table above.
+
+---
+
+#### **_PLEASE NOTE_**
+
+these changes must be made in your settings.py file.
+
+```
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'your_bucket_name'
+    AWS_S3_REGION_NAME = 'your_region'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
+
+
+## **Local Deployment**
+
+#### Forking the GitHub Repo
+
+1.  Log in to your GitHub account.
+2.  Navigate to the repository <a href="#"><strong>HERE</strong></a>.
+3.  Select the 'Fork' button in the top right corner of the page (under your account image).
+4.  The repo has now been copied into your own repos and you can work on it in your chosen IDE.
+5.  If you have any suggestions to make regards to the code to make the site better, you can put in a pull request.
+6.  If you want to create a web-app from the repo please follow the instructions in "Project Deployment"
+
+#### Cloning the repo with GitPod
+
+1.  Log in to your GitHub account.
+2.  Navigate to the Repository <a href="#"><strong>HERE</strong></a>.
+3.  Select the 'Code' button above the file list on the right had side.
+4.  Ensure HTTPS is selected and click the clipboard on the right of the URL to copy it.
+5.  Open a new workspace in GitPod.
+6.  In the bash terminal type 'git clone [copy url here from step 4]'.
+7.  Press enter - the IDE will clone and download the repo.
+8.  You can then type 'python3 -m http.server' to host the website locally - this will not run the python file, only allow you to check how the web-app looks.
+9.  If you want to create a web-app from the repo please follow the instructions in "Project Deployment".
+
+#### Download and extract the zip directly from GitHub
+
+1.  Log in to your GitHub account.
+2.  Navigate to the Repository <a href="#"><strong>HERE</strong></a>.
+3.  Select the 'Code' button above the file list on the right had side.
+4.  Select 'Download Zip'.
+5.  Once you have the Zip downloaded, open it with your preferred file decompression software.
+6.  You can then drag and drop the files from the folder into your chosen IDE or view/edit them on your local machine.
+7.  If you want to create a web-app from the repo please follow the instructions in "Project Deployment".
+
+
 # **Credits**
 
 **Images**
+  
+  Homepage Images: Images used on the home page are taken from 
+  - [link](https://www.pexels.com/photo/a-man-wearing-a-headphone-attached-to-a-computer-tablet-7983604/)
+  - [link](https://www.pexels.com/photo/selective-focus-photography-of-paintbrush-near-paint-pallet-1047540/)
+  - [link](https://www.freepik.com/free-psd/board-full-math-formulas-mock-up_5375925.htm)
 
-The main page library image is taken from [Pexels](https://www.pexels.com/photo/row-of-books-in-shelf-256541/)
+  Images for the courses are taken from [link](https://www.pexels.com)
 
 **Text**
 
-Text for the added book is mostly taken from [Amazon](https://www.amazon.com/).
+Ideas and Text for the courses, categories are taken from the websites such as  [Udemy](https://www.udemy.com/), [edx](https://www.edx.org/), [youngsingersacademy](https://www.youngsingersacademy.com/), [Voice Academy](https://voiceacademynyc.com/kids-tweens/) .
 
-Ideas for book categories, age groups are taken from [Book Depository](https://www.bookdepository.com/).
+
 **Code**
 
 - [W3schools](https://www.w3schools.com/) 
-
   Used in general to solve issues related to HTML and CSS.
  
 - [Materializecss](https://materializecss.com/)
-
   Mostly materializecss card component is used for this website. 
 
 - [Jquery](https://jquery.com/)
-
   jquery code is used as required by materializecss.
 
 - [MDN Resources](https://developer.mozilla.org/en-US/docs/Web/Reference)
-
     MDS resources are used to get more understanding of some concepts and some regular help
 
 - [Google Fonts](https://fonts.google.com/)
-   
-   Roboto font link from google fonts used all over the site.
+   Loto font link from google fonts used all over the site.
 
 - HTML and CSS for star rating is taken from this [Youtube Video](https://www.youtube.com/watch?v=zDHC4r5eCdY)
 
+- [Stackoverflow](https://stackoverflow.com/)
+  Stackoverflow is a lifesave to get answers to many doubts and issues come along the way during this project. 
 
+- [Ckeditor](https://django-ckeditor.readthedocs.io/en/latest/)
+  Ckeditor is used on text areas which give possibility to normal Text area to add more editing options.
+  [This Video](https://django-ckeditor.readthedocs.io/en/latest/) used to get help to work with Ckeditor.
+
+  - [Boutique ADO](https://github.com/Code-Institute-Solutions/boutique_ado_v1/tree/250e2c2b8e43cccb56b4721cd8a8bd4de6686546)
+    Most of the code is taken from the mini ecommerce project from the Boutiquo ADO. This mini project along with it's video tutorial helped a lot during this project and I used them regularly.
 
 # **Acknowledgements**
 
 I would like to thank:
 
 - My mentor Akshat Garg for his encouragement and valuable comments for this project. 
-Thanks to his guidance and tips to improve my code.
+    Thanks to his guidance and tips to improve my code and my overall journey during this course.
 
 - Lessons from code mainly mini projects on backend development institute helped a lot during this project. Used regularly to check if I am following the correct method of coding.
 
 - Help from in the Slack community.
 
-- Code Institute Tutor support .
+- Code Institute Tutor support. Tutors were life save for me during this project and I used them extensively. I really appriciate their help.
 
 Should you have any queries please reach me at rajendradanve@gmail.com.
