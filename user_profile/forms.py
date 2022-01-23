@@ -1,3 +1,4 @@
+""" Forms used for custom signup and discount """
 from allauth.account.forms import SignupForm
 from django import forms
 from django.contrib.auth.models import User
@@ -13,7 +14,7 @@ class CustomSignupForm(SignupForm):
                                  widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(max_length=30, label='Last Name',
                                 widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
-    
+
     class Meta:
         model = User()
         fields = ['first_name', 'last_name']
@@ -27,18 +28,19 @@ class CustomSignupForm(SignupForm):
 
 
 class DiscountForm(forms.ModelForm):
+    """ Discount form to update discount and activate it """
     class Meta:
         model = Discount
         fields = '__all__'
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+
         self.fields['offer_name'].label = 'Offer Name'
         self.fields['offer_flag'].label = 'Offer Active'
         self.fields['offer_flag'].required = False
         self.fields['discount_amount_threshold'].label = 'Discount Amount Threshold in $'
-    
+
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
             

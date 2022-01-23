@@ -6,11 +6,13 @@
     <div class="container content-placement ">
         <div class="row mt-4">
             <div class="col">
-                {% if form_flag == 'update' %}
-                    <h2 class="logo-font mb-4 text-center">Update Discount</h2>
-                {% else%}
-                    <h2 class="logo-font mb-4 text-center">Add Discount</h2>
-                {% endif %}
+                    <h2 class="logo-font my-4 text-center">
+                        {% if form_flag == 'update' %}
+                            Update Discount
+                        {% else%}
+                            Add Discount
+                        {% endif %}
+                    </h2>
             </div>
         </div>
 
