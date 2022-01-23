@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col col-md-10 offset-md-1">
+            <div class="col mx-2">
                 <form
                     action="{% if from_course_detail %} {% url 'update_course_schedule' course_id %} {% else %} {% url 'add_course_schedule' course_id %} {% endif %}"
                     method="POST" class="form mb-2" id="add-course-form">
@@ -64,7 +64,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="col col-md-6 offset-md-3 d-flex justify-content-center">
+                        <div class="col col-md-10 offset-md-1 d-flex justify-content-center">
                             {% if not from_course_detail %}
                                 <a href="{% url 'delete_course' course_id %}"
                                     class="btn rounded-1 border border-1 border-dark me-3">Delete & Go Back</a>

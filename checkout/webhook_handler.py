@@ -24,7 +24,7 @@ class StripeWH_Handler:
         """
         Send the user a confirmation email about order
         """
-        cust_email = "rajendradanve@gmail.com"
+        cust_email = order.user_profile
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order})

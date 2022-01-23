@@ -142,7 +142,7 @@ Website included minimum of
 - Simple management options for admin which helps him to add, edit , update courses, categories etc. 
 
 ## **Structure**
-
+Below provided structure for the important pages. 
 ### **General For All Pages**
 There will be fully responsive navbar with full width. There will be two navbars one is main nav bar and other is top navbar.
 Top navbar will consist of links to sign in, sign up user profile and cart and main navbar which is also collasable will consist of dropdown categories.
@@ -161,6 +161,17 @@ This page will show all important information about the course. Main information
 This page will show courses register user purchased. This is has same layout as courses page.
 
 ### **Purchase History Page**
+This page will show user all the histroy of purchases made by the user with date of purchase and cost. 
+This will also has a link of to order  history which will show more details related to order. 
+
+### **Admin Management Page**
+This page is providing options for the admin to add course, add and update categories and add discount information. 
+
+### **Cart Page**
+Cart Page is showing all the courses in the cart with cost. There will be link to remove the course from the cart. 
+
+### **Checkout Page**
+Checkout Page will have all order information and form to add card details to start the payment. Most of the layout and design for this page is similar to [Boutique Ado Project](https://github.com/Code-Institute-Solutions/boutique_ado_v1/tree/250e2c2b8e43cccb56b4721cd8a8bd4de6686546) from [Code Institute](https://codeinstitute.net/global/)
 
 
 ## **Design Choice**
@@ -171,8 +182,84 @@ This page will show courses register user purchased. This is has same layout as 
 Bootstrap is most popular and widely used mobile-first design framework giving many different possibilities UX possibilities.
 
 
+### **Colour Scheme**
+
+For [Skillz Academy](https://skillz-academy.herokuapp.com/) site mostly black and white colors are used. To make it easy standard bootstrap colours are used. Major bootstrap classed used are related to dark, light primary, and success colors. More details about these colors can be found at [bootstrap color page](https://getbootstrap.com/docs/5.1/customize/color/)
+
+### **Typography**
+
+For this website 'Lato' font is used with sans-serif as a backup font. Font is downloaded from [google fonts](https://fonts.google.com/)
+
+### **APPS and Pages **
+
+Complete project is build using following apps and pages.
+
+  - home: 
+    - Homepage
+
+  - courses: 
+    - courses
+    - course detail
+    - add course/update course 
+    - add course schedule
+    - add main category
+    - update main category
+    - add category
+    - update category
+
+  - bag:
+    - bag
+
+  - checkout
+    - checkout
+    - checkout success
+
+  - user_profile:
+    - admin page
+    - discount setting page
+    - my courses
+    - purchase history
+
+  - contact_us
+    - contact us
+
+    
+    Apart from this standard Allauth templates were upadated to suits the UX of the website.
 
 
+## **Wireframe** 
+
+Refer to the below files for basic wireframe design created for different screen sizes. There are some changes with respect to actual website during the development and to work with functionality. 
+
+* [Desktop Wireframe](media/wireframe/Skillz-Academy-DesktopWireframe.pdf)
+
+* [Tablet Wireframe](media/wireframe/Skillz-Academy-TabletWireframe.pdf)
+
+* [Mobile Wireframe](media/wireframe/Skillz-Academy-MobileWireframe.pdf)
+
+
+# **Features**
+
+## **Existing Features**
+
+- Showing courses category wise
+- Possibility to add new courses and course schedule. 
+- Register new user with minimum inputs.
+- User able to search the course and sort it based on price, alphabatically, category namewise.
+- User able to get overview of the course on one page.
+- User able to see details and course schedule.
+- User able to purchase course by adding minimum information. 
+- User able to see purchased courses and order history from the profile page.
+- Admin able to delete, edit courses and course schedule.
+- Admin able to add and update main categories and sub categories.
+- Admin able to update discount and also on and off the discount. 
+
+## **Features Left to Implement**
+
+- Allow user to add courses to wishlist
+- Showing user upcoming scheduled course when he login
+- Instead of admin adding book,Instructor shall able to add his book and admin shall just approve or disapprove course.
+- Sending contact us 
 
 --------To be verified---------------
 # **Credits**
