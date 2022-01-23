@@ -7,7 +7,7 @@ If you would like to view the README.md click **[here!](README.md)**
 
 # **Coding Test**
 
-**HTML**
+##  **HTML**
 
 HTML is validated using online [HTML Validator](https://validator.w3.org/) tool.
 The address is entered in the validator to check for errors.
@@ -45,7 +45,7 @@ Below are the results from the validator.
 -   Update Category: No errors found
 
 
- **CSS**
+## **CSS**
 
 CSS is validated using the online [CSS Validator](https://validator.w3.org/) tool.
 
@@ -56,20 +56,20 @@ CSS is validated using the online [CSS Validator](https://validator.w3.org/) too
 -   **home.css:** The CSS validator did not find any errors.
 -   **my-courses.css:** The CSS validator did not find any errors.
 
- **Javascript**
+## **Javascript**
 
 Javascript is validated using the online [JSHint](https://jshint.com/) tool.
 
 -   **stripe_elements.js:** The JSHint did not find any errors.
 -   **courses.js:** The JSHint did not find any errors after adding the missing semicolon.
 
-**Python**
+##  **Python**
 
 All tests are run through [Python Validation Service](https://extendsclass.com/python-tester.html). Verified all views.py files and found no syntax errors. 
 
 # **Manual Testing Based on User Stories**
 
-### **General Testing**
+## **General Testing**
 
 - Chrome Developer Tools were used to test responsiveness on different screen sizes.
 - Checked the website on different devices available to me which include desktops, mobile phones.
@@ -78,14 +78,14 @@ All tests are run through [Python Validation Service](https://extendsclass.com/p
 - Tested all links working properly.
 - All CRUD functions were tested to make sure that they work as intended.
 
-### **Non Register User**
+## **Non Register User**
 
 - Verified that the home page, all courses page, courses, Sign up, and sign in pages are available for the non-registered users.
 - Verified that the profile page and purchase history pages are not accessible to non-registered users and redirect to sign-in pages
 - Checked that when the non-register user tries to register username will be unique.
 - Checked that password is validated before the user is registered.
 
-### **Register User**
+## **Register User**
 
 -   Verified that the user correctly sign in after entering the correct username and password.
 -   Verified that the register page is not available to sign-in users.
@@ -98,7 +98,7 @@ All tests are run through [Python Validation Service](https://extendsclass.com/p
 -   Verified that test payment is working fine by stripe and amount is calculated correctly.
 
     
-### **Admin**
+## **Admin**
 
 -   Verified that admin correctly sign in after entering the correct username and password.
 -   Verified admin has access to all the courses pages.
@@ -118,17 +118,17 @@ All tests are run through [Python Validation Service](https://extendsclass.com/p
 
 * Website performance is tested using [Google Lighhouse](https://developers.google.com/web/tools/lighthouse) and below are the screenshot from the result
    
-![Lighthouse test report](./static/images/readwise-lighthouse-result.png)
+![Lighthouse test report](./media/skillzacademy-lighthouse-result.png)
 
 Performance was low as the size of the images was too big. 
-Reduced image sizes and uploaded again to improve the performance. 
+Reduced image sizes and uploaded again to improve the performance. There are more possibiilties to reduce size of the image to improve performance. But due to time contraint this was ignored for this time.  
 
 
 ## **Important Issues and  Solution**
 
 -   Earlier I aimed to create only one page to add the course. While using modelformset_factory, I tried different ways to add courses and course schedules on one page. As this was a bit of advanced coding and was taking a lot of time. Finally, after some discussion with tutors, I decided to make 2 pages for adding the course. This is a bit extra work but due to time constraints for submitting the project, I decided to go with current solutions. 
 
--   I had trouble adjusting the layout for the webpage as some areas were going outside the boundaries and the page was scrolling horizontally. After some research I got a good tip from [stackoverflow link](https://stackoverflow.com/questions/18645870/responsive-website-how-to-get-rid-of-horizontal-scroll-bar). By using '* {border:1px solid red} ' in the CSS I manage to figure out the issue area and fix it. 
+-   I had trouble adjusting the layout for the webpage as some areas were going outside the boundaries and the page was scrolling horizontally. After some research I got a good tip from [stackoverflow link](https://stackoverflow.com/questions/18645870/responsive-website-how-to-get-rid-of-horizontal-scroll-bar). By using "* {border:1px solid red} " in the CSS I manage to figure out the issue area and fix it. 
 
 - While implementing email functionality I figure out that even though payment is going correctly there are some issues with intent coming from the stripe. After some research, I figure out that the javascript file was not correctly getting some values and we're not sending it to the stripe handler. I manage to fix this and then worked with emails. 
 

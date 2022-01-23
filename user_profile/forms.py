@@ -11,14 +11,17 @@ class CustomSignupForm(SignupForm):
     Added First and Last name
     """
     first_name = forms.CharField(max_length=30, label='First Name',
-                                 widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+                                 widget=forms.TextInput(
+                                     attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(max_length=30, label='Last Name',
-                                widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+                                widget=forms.TextInput(
+                                    attrs={'placeholder': 'Last Name'}))
 
     class Meta:
         model = User()
         fields = ['first_name', 'last_name']
         fields = ('first_name', 'last_name')
+
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']
@@ -39,8 +42,8 @@ class DiscountForm(forms.ModelForm):
         self.fields['offer_name'].label = 'Offer Name'
         self.fields['offer_flag'].label = 'Offer Active'
         self.fields['offer_flag'].required = False
-        self.fields['discount_amount_threshold'].label = 'Discount Amount Threshold in $'
+        self.fields['discount_amount_threshold'
+                    ].label = 'Discount Amount Threshold in $'
 
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
-            

@@ -14,7 +14,6 @@ from .forms import (CategoryForm, MainCategoryForm, UpdateCategoryForm,
                     CourseForm, CourseScheduleForm)
 
 
-
 def all_courses(request):
     """ A view to show all courses including sorting and search queries"""
 
@@ -55,7 +54,8 @@ def all_courses(request):
         # sorting based on all courses for top main-nav item
         if 'main_category' in request.GET:
             main_category = request.GET['main_category']
-            categories = Category.objects.filter(main_category__name=main_category)
+            categories = Category.objects.filter(
+                main_category__name=main_category)
             courses = courses.filter(category__in=categories)
 
     if request.GET:
@@ -66,7 +66,8 @@ def all_courses(request):
                 messages.error(request, "Please enter search criteria!")
                 return redirect(reverse('courses'))
             # Created queries with 'or' condition
-            queries = Q(title__icontains=query) | Q(description__icontains=query)
+            queries = Q(title__icontains=query) | Q(
+                description__icontains=query)
 
             courses = courses.filter(queries)
 
@@ -101,7 +102,10 @@ def course_detail(request, course_id):
 
     already_bought = False
     if request.user.is_authenticated:
-        # Checking orders from logged in users and checking if course is already bought.
+        """
+        Checking orders from logged in users and checking
+        if course is already bought.
+        """
         profile = get_object_or_404(UserProfile, user=request.user)
         if profile.orders.filter(lineitems__course_id=course_id):
             already_bought = True
@@ -131,7 +135,8 @@ def add_course(request):
             new_course_id = new_course.id
             return redirect('add_course_schedule', course_id=new_course_id)
         else:
-            messages.error(request, 'Failed to add course. Check all values are filed correctly.')
+            messages.error(request, 'Failed to add course. Check all \
+                           values are filed correctly.')
 
     form = CourseForm()
 
@@ -154,12 +159,13 @@ def add_course_schedule(request, course_id):
 
     course = Course.objects.get(pk=course_id)
 
-    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule,
-                                                     form=CourseScheduleForm, extra=1)
+    CourseScheduleFormset = inlineformset_factory(Course, CourseSchedule,
+                                                  form=CourseScheduleForm,
+                                                  extra=1)
 
     if request.method == 'POST':
 
-        formset = AddCourseScheduleFormset(request.POST, instance=course)
+        formset = CourseScheduleFormset(request.POST, instance=course)
         if formset.is_valid():
             formset.save()
 
@@ -173,7 +179,7 @@ def add_course_schedule(request, course_id):
 
             messages.error(request, 'Something went wrong. Please try again')
 
-    formset = AddCourseScheduleFormset(instance=course)
+    formset = CourseScheduleFormset(instance=course)
 
     template = 'courses/add_course_schedule.html'
     context = {
@@ -195,11 +201,12 @@ def update_course_schedule(request, course_id):
 
     course = Course.objects.get(pk=course_id)
 
-    AddCourseScheduleFormset = inlineformset_factory(Course, CourseSchedule,
-                                                     form=CourseScheduleForm, extra=0)
+    CourseScheduleFormset = inlineformset_factory(Course, CourseSchedule,
+                                                  form=CourseScheduleForm,
+                                                  extra=0)
 
     if request.method == 'POST':
-        formset = AddCourseScheduleFormset(request.POST, instance=course)
+        formset = CourseScheduleFormset(request.POST, instance=course)
 
         if formset.is_valid():
             formset.save()
@@ -207,12 +214,14 @@ def update_course_schedule(request, course_id):
             if 'save-n-add' in request.POST:
                 return redirect('add_course_schedule', course_id=course.id)
             elif 'save-n-view' in request.POST:
-                messages.success(request, 'Course schedule update successfully')
+                messages.success(request,
+                                 'Course schedule update successfully')
                 return redirect('course_detail', course_id=course.id)
             else:
-                messages.error(request, 'Something went wrong. Please try again')
+                messages.error(request,
+                               'Something went wrong. Please try again')
 
-    formset = AddCourseScheduleFormset(instance=course)
+    formset = CourseScheduleFormset(instance=course)
     template = 'courses/add_course_schedule.html'
     context = {
         'formset': formset,
@@ -236,10 +245,11 @@ def add_category(request):
             friendly_name = request.POST['friendly_name']
             name = request.POST['friendly_name'].lower().replace(' ',  '_')
 
-            if Category.objects.filter(friendly_name=friendly_name).exists(
-                ) or Category.objects.filter(name=name).exists():
+            if (Category.objects.filter(friendly_name=friendly_name).exists() or Category.objects.filter(name=name).exists()):
+
                 messages.warning(request,
-                                 (f'{friendly_name} already exists in the database. '
+                                 (f'{friendly_name} already exists in \
+                                  the database. '
                                   'Please enter another name'
                                   ))
                 return redirect(reverse('add_category'))
@@ -272,10 +282,11 @@ def add_main_category(request):
             friendly_name = request.POST['friendly_name']
             name = request.POST['friendly_name'].lower().replace(' ',  '_')
 
-            if MainCategory.objects.filter(friendly_name=friendly_name).exists(
-                ) or Category.objects.filter(name=name).exists():
+            if (MainCategory.objects.filter(friendly_name=friendly_name).exists() or Category.objects.filter(name=name).exists()):
+
                 messages.warning(request,
-                                 (f'{friendly_name} already exists in the database. '
+                                 (f'{friendly_name} already exists in \
+                                  the database. '
                                   'Please enter another name'
                                   ))
                 return redirect(reverse('add_main_category'))
@@ -326,7 +337,8 @@ def update_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
 
     if request.method == 'POST':
-        update_category_form = UpdateCategoryForm(request.POST, instance=category)
+        update_category_form = UpdateCategoryForm(
+            request.POST, instance=category)
 
         if update_category_form.is_valid():
             update_category_form.save()
@@ -357,7 +369,8 @@ def update_main_category(request):
 
     if request.method == 'POST':
         MainCategory.objects.filter(pk=request.POST['select-main-category']
-                                    ).update(friendly_name=request.POST['new-main-category'])
+                                    ).update(friendly_name=request.POST[
+                                        'new-main-category'])
         messages.success(request, (
             'You successfully updated category name in the database.'
             ))

@@ -8,6 +8,7 @@ from django.db.models import Sum
 from courses.models import Course
 from user_profile.models import Discount, UserProfile
 
+
 class Order(models.Model):
     """
     Create Order model
@@ -15,7 +16,7 @@ class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
-                                      related_name='orders')                        
+                                     related_name='orders')
     date = models.DateTimeField(auto_now_add=True)
     discount_percentage = models.PositiveIntegerField(null=True, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
@@ -23,7 +24,8 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
     cardholder_full_name = models.CharField(max_length=32, null=False)
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False,
+                                  blank=False, default='')
 
     def _generate_order_number(self):
         """
@@ -51,7 +53,8 @@ class Order(models.Model):
             'course_price__sum'] or 0
         if discount_flag:
             if self.order_total > discount_threshold:
-                self.grand_total = self.order_total * (1 - discount_percentage/100)
+                self.grand_total = self.order_total * (
+                    1 - discount_percentage/100)
                 self.discount_percentage = discount_percentage
 
         self.grand_total = self.order_total
@@ -60,7 +63,7 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.order_number)
-    
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number
@@ -92,4 +95,5 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.course.title} order with order number- {self.order.order_number}'
+        return f'{self.course.title} order with order number- \
+    {self.order.order_number}'

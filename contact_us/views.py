@@ -24,13 +24,16 @@ def contact_us(request):
             message = request.POST.get('message')
 
             subject = render_to_string(
-            'contact_us/contact_us_emails/contact_us_email_subject.txt',
-            {'subject_form': subject_form})
-            body = render_to_string(
-            'contact_us/contact_us_emails/contact_us_email_body.txt',
-            {'subject_form': subject_form, 'contact_email': contact_email,
-             'full_name': full_name, 'message': message})
+                'contact_us/contact_us_emails/contact_us_email_subject.txt',
+                {'subject_form': subject_form})
 
+            body = render_to_string(
+                'contact_us/contact_us_emails/contact_us_email_body.txt',
+                {'subject_form': subject_form,
+                 'contact_email': contact_email,
+                 'full_name': full_name,
+                 'message': message
+                 })
 
             send_mail(
                 subject,
@@ -39,11 +42,13 @@ def contact_us(request):
                 [settings.ADMIN_EMAIL]
                 )
 
-            messages.success(request, 'Your message submitted successfully. \
+            messages.success(request,
+                             'Your message submitted successfully. \
                 We will come back to you as soon as possible.')
             return redirect('home')
         else:
-            messages.success(request, 'Error occured while submitting the form. Try again.')
+            messages.success(request, 'Error occured while submitting the form. \
+                             Try again.')
             return redirect(reversed('contact_us'))
     form = ContactForm()
 

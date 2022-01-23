@@ -15,4 +15,5 @@ class ContactUsAdmin(admin.ModelAdmin):
         'subject',
     )
 
+
 admin.site.register(ContactUs, ContactUsAdmin)

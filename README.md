@@ -11,8 +11,8 @@ Welcome to **[Skillz Academy](https://skillz-academy.herokuapp.com/)**, website 
 
 ##   **Table of Content**
 
- 1. [About](#About)
- 2. [UX](#UX)
+1. [About](#About)
+2. [UX](#UX)
     *   [Project Goals](#project-goals)
     *   [Targeted Audience](#targeted-audience)
     *   [User Goals](#user-goals)
@@ -23,23 +23,23 @@ Welcome to **[Skillz Academy](https://skillz-academy.herokuapp.com/)**, website 
     *   [Design Choice](#design-choice)
     *   [Wireframes](#wireframes)
 
- 2. [Features](#features)
+3. [Features](#features)
     *   [Existing Features](#existing-features)
     *   [Features Left to Implement](#features-left-to-implement)
 
-3.  [Technologies Used](#technologies-used)
+4.  [Technologies Used](#technologies-used)
     *   [Languages Used](#languages-used)
     *   [Frameworks, Libraries, Programs and Tools Used](#frameworks-libraries-programs-and-tools-used)
    
-4. [Database Schema](#database-schema) 
+5. [Database Schema](#database-schema) 
 
-5. [Testing](#testing)
+6. [Testing](#testing)
 
-5. [Deployment](#deployment)
+7. [Deployment](#deployment)
 
-6. [Credits](#credits)
+8. [Credits](#credits)
 
-7. [Acknowledgements](#acknowledgements)
+9. [Acknowledgements](#acknowledgements)
 
 # **About**
 This is my fourth milestone project for the full-stack development course conducted by [Code Institute](https://codeinstitute.net/global/). For this project, I made a website [Skillz Academy](https://skillz-academy.herokuapp.com/) This website will help students to develop new skills, hobbies or find some extra help in education. This site is useful for a wide range of group but the main target group is teenagers and young people. Users of this website can browse different categories get details regarding courses and instructors and buy the course. The purpose of this project is to exhibit knowledge learned during the study of the Django framework.
@@ -90,12 +90,14 @@ This website can be used by
   *   Admin can add/edit main categories and categories
   *   Admin can add/edit discount and offer for the user.
 
-  **Developer Goals**
+## **Developer Goals**
 
   * Shows developer's understanding of full-stack development using Django framework
   * Design website for a broad range of users with simple and user-friendly layout
   * Develop responsive website suitable for all types of screens such as desktop, tablet, and mobile.
 
+
+## **User Stories**
 
   ### **Non-register User**
   * As a non-registered user, I shall be able to access all the courses available on [Skillz Academy](https://skillz-academy.herokuapp.com/)

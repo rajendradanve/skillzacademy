@@ -19,7 +19,6 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
-
     def _send_confirmation_email(self, order):
         """
         Send the user a confirmation email about order
@@ -63,7 +62,7 @@ class StripeWH_Handler:
         order_exists = False
         attempt = 1
 
-        while attempt <=5:
+        while attempt <= 5:
             try:
                 order = Order.objects.get(
                     user_profile=profile,
@@ -84,8 +83,7 @@ class StripeWH_Handler:
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]}| SUCCESS: \
-                VERIFIED order already in database ',
-                    status=200)
+                VERIFIED order already in database ', status=200)
 
         else:
             order = None
@@ -94,23 +92,24 @@ class StripeWH_Handler:
                 order = Order.objects.create(
                         cardholder_full_name=billing_details.name,
                         stripe_pid=pid,
-                        user_profile= profile
+                        user_profile=profile
                     )
 
                 for course_id in json.loads(bag):
                     course = Course.objects.get(id=course_id)
                     order_line_item = OrderLineItem(order=order,
-                                                        course=course,)
+                                                    course=course,)
                     order_line_item.save()
             except Exception as e:
 
                 if order:
                     order.delete()
                 return HttpResponse(content=f'Webhook received: {event["type"]}|\
-                    ERROR: {e}',status=500)
+                    ERROR: {e}', status=500)
         self._send_confirmation_email(order)
 
-        return HttpResponse(content=f'Webhook received: {event["type"]}',status=200)
+        return HttpResponse(content=f'Webhook received: {event["type"]}',
+                            status=200)
 
     def handle_payment_intent_payment_failed(self, event):
         """

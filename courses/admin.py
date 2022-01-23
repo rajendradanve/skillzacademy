@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Course, Category, CourseSchedule, MainCategory
-  
-  
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
@@ -28,7 +28,8 @@ class CourseScheduleAdminInline(admin.TabularInline):
         'date_added',
         'date_updated',
     )
-    
+
+
 class CourseAdmin(admin.ModelAdmin):
     inlines = (CourseScheduleAdminInline,)
     list_display = (
@@ -39,8 +40,8 @@ class CourseAdmin(admin.ModelAdmin):
         'date_added',
         'date_updated',
     )
-  
-  
+
+
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(MainCategory, MainCategoryAdmin)

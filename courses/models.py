@@ -24,7 +24,8 @@ class MainCategory(models.Model):
 
     def _generate_name(self):
         """
-        generate name from the friendly name removing spaces and using lowercase
+        generate name from the friendly name removing
+        spaces and using lowercase
         """
         return self.friendly_name.lower().replace(' ', '_')
 
@@ -56,7 +57,8 @@ class Category(models.Model):
 
     def _generate_name(self):
         """
-        generate name from the friendly name removing spaces and using lowercase
+        generate name from the friendly name removing
+        spaces and using lowercase
         """
         return self.friendly_name.lower().replace(' ', '_')
 
@@ -93,10 +95,10 @@ class Course(models.Model):
 
     timezone = models.CharField(max_length=100, default="CET")
 
-
     def update_start_date(self):
-        if self.courseschedulelist.order_by('course_date').count()>0:
-            self.start_date = self.courseschedulelist.order_by('course_date').first().course_date
+        if self.courseschedulelist.order_by('course_date').count() > 0:
+            self.start_date = self.courseschedulelist.order_by(
+                'course_date').first().course_date
         self.save()
 
     def __str__(self):
@@ -108,11 +110,13 @@ class CourseSchedule(models.Model):
     Model for Course Lectures details.
     """
     course = models.ForeignKey(Course, on_delete=models.CASCADE,
-                                  related_name='courseschedulelist')
+                               related_name='courseschedulelist')
     course_date = models.DateField()
     course_start_time = models.TimeField()
     course_end_time = models.TimeField()
     course_link = models.URLField(max_length=1024, null=False, blank=False)
     date_added = models.DateField(auto_now_add=True, editable=False)
     date_updated = models.DateField(blank=True, null=True)
-    
+
+    def __str__(self):
+        return self.course.title

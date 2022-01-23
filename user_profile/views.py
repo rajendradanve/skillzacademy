@@ -1,7 +1,7 @@
+""" Views for user_profile app """
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from courses.models import Course, Category, MainCategory
 from checkout.models import Order
 from .models import UserProfile, Discount
 from .forms import DiscountForm
@@ -15,6 +15,7 @@ def admin_profile(request):
 
     return render(request, 'user_profile/admin.html')
 
+
 @login_required
 def my_courses(request):
     """ Showing List of Register Courses"""
@@ -23,9 +24,8 @@ def my_courses(request):
     orders = profile.orders.all()
     courses = []
     for order in orders:
-        
+
         for item in order.lineitems.all():
-            
             courses.append(item.course)
 
     template = 'user_profile/my_courses.html'
@@ -80,27 +80,27 @@ def discount(request):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can visit this page.')
         return redirect('home')
-    
+
     discount0 = Discount.objects.first()
-    
+
     if request.method == 'POST':
         if discount:
             form = DiscountForm(request.POST, instance=discount0)
         else:
             form = DiscountForm(request.POST)
-   
+
         if form.is_valid():
             form.save()
             messages.success(request,
-                                 'Discount data added in the database.')
+                             'Discount data added in the database.')
 
             return redirect('admin')
         else:
             messages.error(request,
-                                 'Something went wrong. Try again')
+                           'Something went wrong. Try again')
 
             return redirect(reverse('discount'))
-    
+
     form_flag = 'add'
     if discount0:
         form = DiscountForm(instance=discount0)

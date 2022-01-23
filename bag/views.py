@@ -23,7 +23,7 @@ def add_to_bag(request, course_id):
     bag = request.session.get('bag', [])
 
     bag.append(course.id)
-    
+
     request.session['bag'] = bag
     messages.success(request, f'Added {course.title} to your bag')
 
