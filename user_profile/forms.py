@@ -36,9 +36,9 @@ class DiscountForm(forms.ModelForm):
         
         self.fields['offer_name'].label = 'Offer Name'
         self.fields['offer_flag'].label = 'Offer Active'
+        self.fields['offer_flag'].required = False
         self.fields['discount_amount_threshold'].label = 'Discount Amount Threshold in $'
     
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-dark rounded-1'
-            if field != 'offer_flag':
-                field.widget.attrs['required'] = 'required'
+            

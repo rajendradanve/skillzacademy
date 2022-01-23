@@ -1,0 +1,10 @@
+Hi Admin,
+You have received new message via contact us form with below details.
+
+Contact Name: {{full_name}}
+Contact Email: {{contact_email}}
+Subject: {{subject_form}}
+Message:
+{{message}}
+
+

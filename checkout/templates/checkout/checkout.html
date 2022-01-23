@@ -69,7 +69,7 @@
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
                     <fieldset class=" rounded px-3">
-                        <legent class="fieldset-label small text-black px-2 w-auto">Billing Details</legent>
+                        <legend class="fieldset-label small text-black px-2 w-auto">Billing Details</legend>
                         {{ order_form.cardholder_full_name| as_crispy_field }}
                         <div class="mb-3" id="card-element"></div>
                         <!--Used to display form errors-->

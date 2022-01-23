@@ -129,9 +129,7 @@
                                     <th scope="col">Date</th>
                                     <th scope="col">Start Time</th>
                                     <th scope="col">End Time</th>
-                                    {% if already_bought or request.user.is_superuser %}
                                     <th scope="col">Meeting Link</th>
-                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,8 +139,10 @@
                                         <td>{{course_schedule.course_start_time}}</td>
                                         <td>{{course_schedule.course_end_time}}</td>
                                         {% if already_bought or request.user.is_superuser %}
-                                        <td><a href="{{ course_schedule.course_link }}" target="_blank"
+                                            <td><a href="{{ course_schedule.course_link }}" target="_blank"
                                                 class="btn btn-success">Meeting Link</a></td>
+                                        {% else %}
+                                            <td>Buy the course to get the link</td>
                                         {% endif %}
                                     </tr>
                                 {% endfor %}
