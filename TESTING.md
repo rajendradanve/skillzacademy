@@ -122,5 +122,20 @@ All tests are run through [Python Validation Service](https://extendsclass.com/p
 Performance was low as images size were too big. 
 Reduced images sizes and uploaded again to improve the performance. 
 
-- Background colors adjusted to increase contrast. 
-- Aria, Aria-label added to the links
+
+## **Important Issues and  Solution**
+
+-   Earlier my aim to create only one page to add the course. While using modelformset_factory, I tried different ways to add course and course schedule on the one page. As this was bit a advance coding and was taking lot of time. Finally after some discussion with tutors I decided to make 2 pages for adding course. This is bit extra work but due to time contraint for submitting the project I decided to go with current solutions. 
+
+-   I had a trouble to adjust layout for the webpage as some areas were going outsite the boundries and page was scrolling horizontally. After some research I got good tip from [stackoverflow link](https://stackoverflow.com/questions/18645870/responsive-website-how-to-get-rid-of-horizontal-scroll-bar). By using '* {border:1px solid red} ' in the css I manage to figure out issue area and fix it. 
+
+- While implementing email functionality I figure out that even though payment is going correctly there is some issues with intent coming from stripe. After some research I figure out that javascript file was not correctly getting some values and were not sending it to stripe handler. I manage to fix this and then worked with emails. 
+
+
+## **Known Bugs and Issues**
+
+-   Admin management page buttons are not correctly aligned. I didn't fixed those due to time contraint to submit the project.
+
+-   Button shows for update course, update course schedule and delete score (when at adming login on course detail page) looks too big on mobile phone version. I didn't fixed those due to time contraint to submit the project.
+
+-   
