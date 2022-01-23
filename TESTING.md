@@ -96,6 +96,7 @@ All tests are run through [Python Validation Service](https://extendsclass.com/p
 -   Verified that the user who added the book shall be able to edit the book or delete it.
 -   Verified that discount is calculated correctly for the registered users.
 -   Verified that test payment is working fine by stripe and amount is calculated correctly.
+-   Verified that order email coming correctly for the register user. 
 
     
 ## **Admin**
@@ -106,6 +107,8 @@ All tests are run through [Python Validation Service](https://extendsclass.com/p
 -   Verified that admin can add and edit the main category, category
 -   Verified that admin can update course and course schedule
 -   Verified that admin can activate or deactivate discount and also update.
+-   Verified that admin getting email for all the forms sent via contact us page. 
+-   Verfied that outdated course are not visible on the pages. 
 
 
 # **Automated Testing**
@@ -132,9 +135,16 @@ Reduced image sizes and uploaded again to improve the performance. There are mor
 
 - While implementing email functionality I figure out that even though payment is going correctly there are some issues with intent coming from the stripe. After some research, I figure out that the javascript file was not correctly getting some values and we're not sending it to the stripe handler. I manage to fix this and then worked with emails. 
 
+- After deployment found that internal server error is coming for update course details. 
+After some research it is found that I split 'courses/custom_widget_templates/custom_clearable_file_input.html' in 2 lines to avoid error of long lines in the widgets.py. So I kept this link in one line only. 
+
 
 ## **Known Bugs and Issues**
 
 -   Admin management page buttons are not correctly aligned. I didn't fix those due to time constraints to submit the project.
 
 -   Button shows for update course, update course schedule and delete score (when at admin login on course detail page) looks too big on the mobile phone version. I didn't fix those due to time constraints to submit the project.
+
+- Messages for add or update discount is required to be sync correctly. It is not a issue as such but good to get correct message to admin.
+
+- During the last part of testing I realize that if I put time as 12:00 pm heroku server showing it in text form as "noon". Due to time contraint I do not have possibility to fix this.
